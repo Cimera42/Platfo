@@ -1,0 +1,51 @@
+Entity
+{
+window: window.cfg;
+}
+
+Entity "lander"
+{
+world: -0.5,1.0,0, 1,1,1, 0,0,0;
+render2d: 0.5, 0.5, 0.5, 0.5;
+//player: 0;
+//control: 5, W, S, A, D;
+camera2d: 10, true;
+}
+
+Entity "lander2"
+{
+world: 0,0,0, 1,1,1, 0,180,0;
+control: 5, W, S, A, D, Q, E;
+camera3d: 90,0.1,100, true;
+}
+
+Entity "lander4"
+{
+world: 0,0,15, 1,1,1, 0,0,0;
+render3d: debug/mountainPath.store, debug/mountainPathTexture.store;
+}
+
+Entity "tower"
+{
+world: 2.0,0.1,0, 1,1,1, 0,0,0;
+render2d: 0, 0.5, 0.5, 0.5;
+control: 10, I, K, J, L, N, M;
+}
+
+Entity "house"
+{
+world: -1,2,0, 1,1,1, 0,0,0;
+render2d: 0, 0, 0.5, 0.5;
+}
+
+Entity "house"
+{
+world: 0.0,2,0, 1,1,1, 0,0,0;
+render2d: 0, 0, 0.5, 0.5;
+}
+
+Entity "turret"
+{
+world: -1.95,2,0, 1,1,1, 0,0,0;
+render2d: 0.5, 0.125, 0.375, 0.375;
+}

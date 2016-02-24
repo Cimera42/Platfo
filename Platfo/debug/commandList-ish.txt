@@ -1,0 +1,40 @@
+exit //Exit command line
+
+list
+    count //Total entity and component count
+    entities //All entities + names
+    components //All component ids
+        - Entity ID //Components on an entity
+
+add
+    entity //Add blank entity
+        - Entity name
+    component //Add component to entity
+        - Entity ID
+        - Component ID
+        - Component parameters //Parameters specific to the component
+
+delete
+    entity //Delete entity
+        - Entity ID
+    component //Delete component on an entity
+        - Entity ID
+        - Component ID
+
+output
+    fps //FPS output
+        toggle
+        true
+        false
+    subscription //System subscription output
+        toggle
+        true
+        false
+    deletion //Entity deletion output
+        toggle
+        true
+        false
+
+move
+    - X offset
+    - Y offset

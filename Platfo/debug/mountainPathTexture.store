@@ -1,0 +1,5 @@
+Texture "mountain path texture"
+{
+filename: ../textures/mountainPath_texture.png;
+srgb: false;
+}

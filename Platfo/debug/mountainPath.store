@@ -1,0 +1,4 @@
+Mesh "mountain path"
+{
+filename: ../models/mountainPath.obj;
+}

@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Platfo" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Option virtualFolders="Entity\;Component\;System\;Store\;Global\;Loading\;Shaders\;Other\;Shaders\Terrain\;StoreFiles\;Shaders\2D\;InputHandlers\;Shaders\3D\;" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/2DGame" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-pedantic-errors" />
+					<Add option="-Wfatal-errors" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add directory="../libraries/include" />
+				</Compiler>
+				<Linker>
+					<Add library="..\libraries\shared\lib\libglew32.dll.a" />
+					<Add library="..\libraries\shared\lib\glfw3dll.a" />
+					<Add library="..\libraries\shared\lib\libSOIL.a" />
+					<Add library="..\libraries\shared\lib\libassimp.dll.a" />
+					<Add library="glu32" />
+					<Add library="opengl32" />
+					<Add library="gdi32" />
+					<Add library="comdlg32" />
+					<Add library="..\libraries\shared\lib\libpthreadGC2.a" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/2DGame" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-Os" />
+					<Add option="-O3" />
+					<Add option="-O2" />
+					<Add option="-O1" />
+					<Add option="-O" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++11" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="camera2DComponent.cpp">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="camera2DComponent.h">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="camera2DSystem.cpp">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="camera2DSystem.h">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="camera3DComponent.cpp">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="camera3DComponent.h">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="camera3DSystem.cpp">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="camera3DSystem.h">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="component.cpp">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="component.h">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="consoleSystem.cpp">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="consoleSystem.h">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="debug/mountainPath.store">
+			<Option compilerVar="CC" />
+			<Option virtualFolder="StoreFiles/" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="debug/mountainPathTexture.store">
+			<Option virtualFolder="StoreFiles/" />
+		</Unit>
+		<Unit filename="debug/scene.store">
+			<Option virtualFolder="StoreFiles/" />
+		</Unit>
+		<Unit filename="debug/texture.store">
+			<Option virtualFolder="StoreFiles/" />
+		</Unit>
+		<Unit filename="debug/textureTerrain.store">
+			<Option virtualFolder="StoreFiles/" />
+		</Unit>
+		<Unit filename="debug/window.cfg">
+			<Option virtualFolder="StoreFiles/" />
+		</Unit>
+		<Unit filename="entity.cpp">
+			<Option virtualFolder="Entity/" />
+		</Unit>
+		<Unit filename="entity.h">
+			<Option virtualFolder="Entity/" />
+		</Unit>
+		<Unit filename="fileReader.cpp">
+			<Option virtualFolder="Loading/" />
+		</Unit>
+		<Unit filename="fileReader.h">
+			<Option virtualFolder="Loading/" />
+		</Unit>
+		<Unit filename="globals.cpp">
+			<Option virtualFolder="Global/" />
+		</Unit>
+		<Unit filename="globals.h">
+			<Option virtualFolder="Global/" />
+		</Unit>
+		<Unit filename="keyboardHandler.cpp">
+			<Option virtualFolder="InputHandlers/" />
+		</Unit>
+		<Unit filename="keyboardHandler.h">
+			<Option virtualFolder="InputHandlers/" />
+		</Unit>
+		<Unit filename="loadShader.cpp">
+			<Option virtualFolder="Loading/" />
+		</Unit>
+		<Unit filename="loadShader.h">
+			<Option virtualFolder="Loading/" />
+		</Unit>
+		<Unit filename="loadTexture.cpp">
+			<Option virtualFolder="Loading/" />
+		</Unit>
+		<Unit filename="loadTexture.h">
+			<Option virtualFolder="Loading/" />
+		</Unit>
+		<Unit filename="loader.cpp">
+			<Option virtualFolder="Loading/" />
+		</Unit>
+		<Unit filename="loader.h">
+			<Option virtualFolder="Loading/" />
+		</Unit>
+		<Unit filename="logger.cpp">
+			<Option virtualFolder="Global/" />
+		</Unit>
+		<Unit filename="logger.h">
+			<Option virtualFolder="Global/" />
+		</Unit>
+		<Unit filename="main.cpp">
+			<Option virtualFolder="Other/" />
+		</Unit>
+		<Unit filename="main.h">
+			<Option virtualFolder="Other/" />
+		</Unit>
+		<Unit filename="mesh.cpp">
+			<Option virtualFolder="Other/" />
+		</Unit>
+		<Unit filename="mesh.h">
+			<Option virtualFolder="Other/" />
+		</Unit>
+		<Unit filename="modelStore.cpp">
+			<Option virtualFolder="Store/" />
+		</Unit>
+		<Unit filename="modelStore.h">
+			<Option virtualFolder="Store/" />
+		</Unit>
+		<Unit filename="mouseHandler.cpp">
+			<Option virtualFolder="InputHandlers/" />
+		</Unit>
+		<Unit filename="mouseHandler.h">
+			<Option virtualFolder="InputHandlers/" />
+		</Unit>
+		<Unit filename="mouseScreenCoordSystem.cpp">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="mouseScreenCoordSystem.h">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="movementSystem.cpp">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="movementSystem.h">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="noise.cpp">
+			<Option virtualFolder="Other/" />
+		</Unit>
+		<Unit filename="noise.h">
+			<Option virtualFolder="Other/" />
+		</Unit>
+		<Unit filename="openGLFunctions.cpp">
+			<Option virtualFolder="Loading/" />
+		</Unit>
+		<Unit filename="openGLFunctions.h">
+			<Option virtualFolder="Loading/" />
+		</Unit>
+		<Unit filename="own_funcs.cpp">
+			<Option virtualFolder="Other/" />
+		</Unit>
+		<Unit filename="own_funcs.h">
+			<Option virtualFolder="Other/" />
+		</Unit>
+		<Unit filename="physicsComponent.cpp">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="physicsComponent.h">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="playerComponent.cpp">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="playerComponent.h">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="render2DComponent.cpp">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="render2DComponent.h">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="render2DSystem.cpp">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="render2DSystem.h">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="render3DComponent.cpp">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="render3DComponent.h">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="render3DSystem.cpp">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="render3DSystem.h">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="sceneStore.cpp">
+			<Option virtualFolder="Store/" />
+		</Unit>
+		<Unit filename="sceneStore.h">
+			<Option virtualFolder="Store/" />
+		</Unit>
+		<Unit filename="shaders/2dfrag.frag">
+			<Option virtualFolder="Shaders/2D/" />
+		</Unit>
+		<Unit filename="shaders/2dvert.vert">
+			<Option virtualFolder="Shaders/2D/" />
+		</Unit>
+		<Unit filename="shaders/3dfrag.frag">
+			<Option virtualFolder="Shaders/3D/" />
+		</Unit>
+		<Unit filename="shaders/3dvert.vert">
+			<Option virtualFolder="Shaders/3D/" />
+		</Unit>
+		<Unit filename="shaders/terrainFrag.frag">
+			<Option virtualFolder="Shaders/Terrain/" />
+		</Unit>
+		<Unit filename="shaders/terrainVert.vert">
+			<Option virtualFolder="Shaders/Terrain/" />
+		</Unit>
+		<Unit filename="store.cpp">
+			<Option virtualFolder="Store/" />
+		</Unit>
+		<Unit filename="store.h">
+			<Option virtualFolder="Store/" />
+		</Unit>
+		<Unit filename="system.cpp">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="system.h">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="tempplayerControlComponent.cpp">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="tempplayerControlComponent.h">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="tempplayerControlSystem.cpp">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="tempplayerControlSystem.h">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="textureStore.cpp">
+			<Option virtualFolder="Store/" />
+		</Unit>
+		<Unit filename="textureStore.h">
+			<Option virtualFolder="Store/" />
+		</Unit>
+		<Unit filename="typeConversion.cpp">
+			<Option virtualFolder="Other/" />
+		</Unit>
+		<Unit filename="typeConversion.h">
+			<Option virtualFolder="Other/" />
+		</Unit>
+		<Unit filename="windowComponent.cpp">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="windowComponent.h">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="windowSystem.cpp">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="windowSystem.h">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="worldComponent.cpp">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="worldComponent.h">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Extensions>
+			<envvars />
+			<code_completion />
+			<lib_finder disable_auto="1" />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
