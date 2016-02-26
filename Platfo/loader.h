@@ -25,7 +25,9 @@
 #include <pthread.h>
 
 extern std::map<std::string, Store*> internalMap;
-
+extern std::map<std::string, pthread_t> currentlyLoadingMap;
+extern pthread_mutex_t internalMapMutex;
+extern pthread_mutex_t currentlyLoadingMapMutex;
 
 ///Distribution Classes
 template <class T>
@@ -56,8 +58,27 @@ void* Load<T>::threadedLoad(void* inptr)
     Logger() << s <<" In Load"<< std::endl;
     T** returnLoc = inParam.returnLoc;
 
+    //Mutex lock the map of stores being loaded to prevent data race
+    pthread_mutex_lock(&currentlyLoadingMapMutex);
+    //Search for store in map
+    //If it has been loaded at least once, it will exist here
+    //The wait for it to finish will however immediately terminate
+    std::map<std::string, pthread_t>::iterator loadingit = currentlyLoadingMap.find(s);
+    if(loadingit != currentlyLoadingMap.end())
+    {
+        //Wait for the store to be loaded
+        pthread_join(loadingit->second, NULL);
+        //Matching store will now be in internalMap
+    }
+    //Set store as being loaded
+    currentlyLoadingMap[s] = pthread_self();
+    //Unlock mutex, as it is no longer needed to protect currentlyLoadingMap
+    pthread_mutex_unlock(&currentlyLoadingMapMutex);
+
     //Loading is controlled by the string
+    pthread_mutex_lock(&internalMapMutex);
     std::map<std::string, Store*>::iterator it = internalMap.find(s); //see if the object already exists
+    pthread_mutex_unlock(&internalMapMutex);
     if(it != internalMap.end())
     {
         //if it exists, double check name is correct,
@@ -86,7 +107,10 @@ void* Load<T>::threadedLoad(void* inptr)
         if(loadedValues->correctlyLoaded)
         {
             //check loading process succeded
+            pthread_mutex_lock(&internalMapMutex);
             internalMap.insert(std::pair<std::string, Store*>(s, loadedValues));
+            pthread_mutex_unlock(&internalMapMutex);
+
             loadedValues->internalName = s;
             //overide and delete and return
             *returnLoc = loadedValues;
@@ -102,6 +126,7 @@ void* Load<T>::threadedLoad(void* inptr)
             Logger()<<"Load Error: Cannot load object '"<<s<<"'. \n \n"; //Loading a new object hasnt worked - report it
             //use default and delete the new threaded one etc etc and return
             //*returnLoc = nullptr;
+            Logger() << pthread_self().p << " done" << std::endl;
             return NULL; //false;
         }
     }
