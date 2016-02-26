@@ -20,7 +20,7 @@ class Camera2DComponent : public Component
 
         float zoom;
         glm::mat4 projectionMatrix;
-        glm::mat4 jointMatrix;
+        glm::mat4 viewMatrix;
 
         void updateMatrix();
 

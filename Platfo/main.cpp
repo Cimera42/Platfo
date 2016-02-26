@@ -42,7 +42,7 @@ int main()
     //Temporary loading place for systems
     systems[WindowSystem::getStaticID()] = new WindowSystem();
     systems[Render3DSystem::getStaticID()] = new Render3DSystem();
-    //systems[Render2DSystem::getStaticID()] = new Render2DSystem();
+    systems[Render2DSystem::getStaticID()] = new Render2DSystem();
     systems[PlayerControlSystem::getStaticID()] = new PlayerControlSystem();
     systems[Camera2DSystem::getStaticID()] = new Camera2DSystem();
     systems[Camera3DSystem::getStaticID()] = new Camera3DSystem();
@@ -90,7 +90,7 @@ int main()
             //3D rendering system
             systems[Render3DSystem::getStaticID()]->update();
             //2D rendering system
-            //systems[Render2DSystem::getStaticID()]->update();
+            systems[Render2DSystem::getStaticID()]->update();
             //Should go last, since it updates window buffer
             systems[WindowSystem::getStaticID()]->update();
             //Command console

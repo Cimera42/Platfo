@@ -1,0 +1,5 @@
+Texture "hut texture"
+{
+filename: ../textures/hut_texture.png;
+srgb: false;
+}

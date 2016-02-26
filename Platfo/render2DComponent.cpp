@@ -1,18 +1,32 @@
 #include "render2DComponent.h"
 #include "logger.h"
 #include "typeConversion.h"
+#include "loader.h"
+#include "loadShader.h"
 
 ComponentID Render2DComponent::ID;
 
 Render2DComponent::Render2DComponent(){vanityName = "Render 2D Component";}
-Render2DComponent::~Render2DComponent(){}
-Render2DComponent* Render2DComponent::construct(glm::vec2 inStartUV, glm::vec2 inSize)
+Render2DComponent::~Render2DComponent()
 {
-    //start position of UV
-    startUV = glm::vec2(inStartUV.x, inStartUV.y);
+    glDeleteShader(shader);
 
-    //Width and height of UV
-    UVsize = glm::vec2(inSize.x, inSize.y);
+    Unload<TextureStore>::Object(&textureStore);
+}
+Render2DComponent* Render2DComponent::construct(std::string textureStoreName)
+{
+    Load<TextureStore>::Object(&textureStore, textureStoreName);
+
+    //Create shader
+    std::vector<const char*> shaderLocations;
+    //shaderLocations.push_back("vertPos");
+    //shaderLocations.push_back("vertUV");
+    shader = loadShader("shaders/2dvert.vert", "shaders/2dfrag.frag", shaderLocations);
+
+    textureLoc = glGetUniformLocation(shader, "textureSampler");
+    modelMatLoc = glGetUniformLocation(shader, "modelMat");
+    viewMatLoc = glGetUniformLocation(shader, "viewMat");
+    projMatLoc = glGetUniformLocation(shader, "projMat");
 
     return this;
 }
@@ -20,19 +34,11 @@ Render2DComponent* Render2DComponent::construct(std::vector<std::string> inArgs)
 {
     if(inArgs.size() == 4)
     {
-        float uvX = stringToFloat(inArgs[0]);
-        float uvY = stringToFloat(inArgs[1]);
+        std::string textureStoreName = inArgs[0];
 
-        float sX = stringToFloat(inArgs[2]);
-        float sY = stringToFloat(inArgs[3]);
-
-        if(uvX != -9999 && uvY != -9999 &&
-           sX != -9999 && sY != -9999)
+        if(textureStoreName != "")
         {
-            glm::vec2 uv = glm::vec2(uvX,uvY);
-            glm::vec2 siz = glm::vec2(sX,sY);
-
-            this->construct(uv,siz);
+            this->construct(textureStoreName);
         }
         else
         {

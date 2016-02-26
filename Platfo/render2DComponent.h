@@ -2,7 +2,9 @@
 #define RENDER2DCOMPONENT_H_INCLUDED
 
 #include "component.h"
+#include <GL/glew.h>
 #include <glm/glm.hpp>
+#include "textureStore.h"
 
 class Render2DComponent : public Component
 {
@@ -12,12 +14,17 @@ class Render2DComponent : public Component
     public:
         Render2DComponent();
         virtual ~Render2DComponent();
-        Render2DComponent* construct(glm::vec2 inStartUV, glm::vec2 inSize);
+        Render2DComponent* construct(std::string);
         Render2DComponent* construct(std::vector<std::string>);
         Render2DComponent* clone() {return new Render2DComponent(*this);}
 
-        glm::vec2 startUV;
-        glm::vec2 UVsize;
+        GLuint shader;
+        TextureStore* textureStore;
+
+        GLuint textureLoc;
+        GLuint modelMatLoc;
+        GLuint viewMatLoc;
+        GLuint projMatLoc;
 
         //Auto generation of ID
         ComponentID getID() {if(ID == 0) {ID = componentIDIncrementor++;} return ID;}

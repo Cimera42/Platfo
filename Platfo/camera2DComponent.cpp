@@ -2,6 +2,8 @@
 #include <glm/gtx/transform.hpp>
 #include "typeConversion.h"
 #include "logger.h"
+#include "worldComponent.h"
+#include "globals.h"
 
 ComponentID Camera2DComponent::ID;
 
@@ -42,4 +44,14 @@ Camera2DComponent* Camera2DComponent::construct(std::vector<std::string> inArgs)
 void Camera2DComponent::updateMatrix()
 {
     projectionMatrix = glm::ortho(-zoom, zoom, -zoom, zoom);
+
+    if(parentEntity != -1)
+    {
+        if(entities[parentEntity]->hasComponent(WorldComponent::getStaticID()))
+        {
+            WorldComponent* worldComp = static_cast<WorldComponent*>(entities[parentEntity]->getComponent(WorldComponent::getStaticID()));
+
+            viewMatrix = glm::lookAt(worldComp->position, worldComp->position+glm::vec3(0,0,1), glm::vec3(0,1,0));
+        }
+    }
 }

@@ -37,15 +37,6 @@ void Camera2DSystem::update()
             setActiveCamera(subscribedEntities[0][0]);
         }
     }
-    for(int subID = 0; subID < subscribedEntities[0].size(); subID++)
-    {
-        Entity * entity = entities[subscribedEntities[0][subID]];
-
-        WorldComponent* worldComp = static_cast<WorldComponent*>(entity->getComponent(WorldComponent::getStaticID()));
-        Camera2DComponent* cameraComp = static_cast<Camera2DComponent*>(entity->getComponent(Camera2DComponent::getStaticID()));
-
-        cameraComp->jointMatrix = cameraComp->projectionMatrix * glm::inverse(worldComp->modelMatrix);
-    }
 }
 
 void Camera2DSystem::setActiveCamera(EntityID inEntityID)

@@ -48,7 +48,7 @@ void Camera3DSystem::update()
         Camera3DComponent* cameraComp = static_cast<Camera3DComponent*>(activeCameraEntity->getComponent(Camera3DComponent::getStaticID()));
         WorldComponent* camWorldComp = static_cast<WorldComponent*>(activeCameraEntity->getComponent(WorldComponent::getStaticID()));
 
-        camWorldComp->rotation.x += (mouseData.yScreenPos-mainWindow->windowSize.y/2)/10;
+        camWorldComp->rotation.x -= (mouseData.yScreenPos-mainWindow->windowSize.y/2)/10;
         camWorldComp->rotation.y -= (mouseData.xScreenPos-mainWindow->windowSize.x/2)/10;
         camWorldComp->updateMatrix();
         cameraComp->updateMatrix();

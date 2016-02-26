@@ -2569,3 +2569,932 @@
 	"logger.h"
 	"loader.h"
 
+1456405946 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\camera2dcomponent.cpp
+	"camera2DComponent.h"
+	<glm/gtx/transform.hpp>
+	"typeConversion.h"
+	"logger.h"
+	"worldComponent.h"
+	"globals.h"
+
+1456402494 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\camera2dcomponent.h
+	"component.h"
+	<glm/glm.hpp>
+
+1456300634 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\component.h
+	<string>
+	<vector>
+	"entity.h"
+
+1445738386 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\entity.h
+	<unordered_map>
+	<string>
+
+1439534150 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\glm.hpp
+	"core/_fixes.hpp"
+	<cmath>
+	<climits>
+	<cfloat>
+	<limits>
+	<cstdio>
+	"core/setup.hpp"
+	"./core/_detail.hpp"
+	"./core/type.hpp"
+	"./core/func_trigonometric.hpp"
+	"./core/func_exponential.hpp"
+	"./core/func_common.hpp"
+	"./core/func_packing.hpp"
+	"./core/func_geometric.hpp"
+	"./core/func_matrix.hpp"
+	"./core/func_vector_relational.hpp"
+	"./core/func_integer.hpp"
+	"./core/func_noise.hpp"
+	"./core/_swizzle.hpp"
+
+1439534122 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\_fixes.hpp
+	<cmath>
+
+1439534132 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\setup.hpp
+	<immintrin.h>
+	<immintrin.h>
+	<smmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+
+1439534122 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\_detail.hpp
+	"setup.hpp"
+	<cassert>
+	<cstdint>
+
+1439534132 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type.hpp
+	"type_half.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_gentype.hpp"
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat2x2.hpp"
+	"type_mat2x3.hpp"
+	"type_mat2x4.hpp"
+	"type_mat3x2.hpp"
+	"type_mat3x3.hpp"
+	"type_mat3x4.hpp"
+	"type_mat4x2.hpp"
+	"type_mat4x3.hpp"
+	"type_mat4x4.hpp"
+
+1439534132 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_half.hpp
+	<cstdlib>
+	"type_half.inl"
+
+1439534132 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_half.inl
+	"_detail.hpp"
+
+1439534132 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_float.hpp
+	"type_half.hpp"
+	"setup.hpp"
+
+1439534132 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_int.hpp
+	"setup.hpp"
+	"_detail.hpp"
+
+1439534132 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_gentype.hpp
+	"type_size.hpp"
+
+1439534138 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_size.hpp
+	<cstdlib>
+
+1439534138 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_vec1.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec1.inl"
+
+1439534138 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_vec.hpp
+	"type_gentype.hpp"
+
+1439534122 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\_swizzle.hpp
+	"_swizzle_func.hpp"
+
+1439534122 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\_swizzle_func.hpp
+
+1439534138 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_vec1.inl
+
+1439534138 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_vec2.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec2.inl"
+
+1439534140 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_vec2.inl
+
+1439534140 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_vec3.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec3.inl"
+
+1439534140 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_vec3.inl
+
+1439534140 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_vec4.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec4.inl"
+
+1439534140 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_vec4.inl
+
+1439534134 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat2x2.hpp
+	"type_mat.hpp"
+	"type_mat2x2.inl"
+
+1439534132 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat.hpp
+	"type_gentype.hpp"
+
+1439534134 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat2x2.inl
+
+1439534134 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat2x3.hpp
+	"type_mat.hpp"
+	"type_mat2x3.inl"
+
+1439534134 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat2x3.inl
+
+1439534134 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat2x4.hpp
+	"type_mat.hpp"
+	"type_mat2x4.inl"
+
+1439534134 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat2x4.inl
+
+1439534136 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat3x2.hpp
+	"type_mat.hpp"
+	"type_mat3x2.inl"
+
+1439534136 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat3x2.inl
+
+1439534136 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat3x3.hpp
+	"type_mat.hpp"
+	"type_mat3x3.inl"
+
+1439534136 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat3x3.inl
+
+1439534136 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat3x4.hpp
+	"type_mat.hpp"
+	"type_mat3x4.inl"
+
+1439534136 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat3x4.inl
+
+1439534136 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat4x2.hpp
+	"type_mat.hpp"
+	"type_mat4x2.inl"
+
+1439534138 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat4x2.inl
+
+1439534138 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat4x3.hpp
+	"type_mat.hpp"
+	"type_mat4x3.inl"
+
+1439534138 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat4x3.inl
+
+1439534138 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat4x4.hpp
+	"type_mat.hpp"
+	"type_mat4x4.inl"
+
+1439534138 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\type_mat4x4.inl
+
+1439534128 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\func_trigonometric.hpp
+	"func_trigonometric.inl"
+
+1439534128 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\func_trigonometric.inl
+	"_vectorize.hpp"
+
+1439534122 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\_vectorize.hpp
+
+1439534124 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\func_exponential.hpp
+	"func_exponential.inl"
+
+1439534124 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\func_exponential.inl
+	"_vectorize.hpp"
+
+1439534124 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\func_common.hpp
+	"_fixes.hpp"
+	"func_common.inl"
+
+1439534124 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\func_common.inl
+	"_vectorize.hpp"
+
+1439534128 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\func_packing.hpp
+	"func_packing.inl"
+
+1439534128 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\func_packing.inl
+
+1439534124 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\func_geometric.hpp
+	"func_geometric.inl"
+
+1439534124 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\func_geometric.inl
+	"_vectorize.hpp"
+
+1439534126 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\func_matrix.hpp
+	"func_matrix.inl"
+
+1439534126 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\func_matrix.inl
+	"_vectorize.hpp"
+
+1439534128 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\func_vector_relational.hpp
+	"_detail.hpp"
+	"func_vector_relational.inl"
+
+1439534128 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\func_vector_relational.inl
+
+1439534124 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\func_integer.hpp
+	"func_integer.inl"
+
+1439534124 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\func_integer.inl
+	"_vectorize.hpp"
+	<intrin.h>
+
+1439534126 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\func_noise.hpp
+	"func_noise.inl"
+
+1439534126 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\core\func_noise.inl
+
+1439534216 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\gtx\transform.hpp
+	"../glm.hpp"
+	"../gtc/matrix_transform.hpp"
+	"transform.inl"
+
+1439534152 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\gtc\matrix_transform.hpp
+	"../glm.hpp"
+	"matrix_transform.inl"
+
+1439534152 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\gtc\matrix_transform.inl
+
+1439534216 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\gtx\transform.inl
+
+1442725306 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\typeconversion.h
+	<string>
+
+1442725322 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\logger.h
+	<pthread.h>
+	<iostream>
+	<sstream>
+
+1439534252 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\pthread.h
+	<windows.h>
+	"config.h"
+	<time.h>
+	<signal.h>
+	<limits.h>
+	"need_errno.h"
+	<errno.h>
+	<sched.h>
+	<sys/types.h>
+
+1439534252 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\sched.h
+	"need_errno.h"
+	<errno.h>
+	<sys/types.h>
+	<time.h>
+
+1456404214 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\camera2dsystem.cpp
+	"camera2DSystem.h"
+	"globals.h"
+	"worldComponent.h"
+	"camera2DComponent.h"
+
+1455705608 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\camera2dsystem.h
+	"system.h"
+
+1444967280 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\system.h
+	<vector>
+
+1446429548 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\globals.h
+	"entity.h"
+	"component.h"
+	"system.h"
+	<unordered_map>
+
+1456282823 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\worldcomponent.h
+	"component.h"
+	<glm/glm.hpp>
+
+1456402567 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\camera3dcomponent.cpp
+	"camera3DComponent.h"
+	<glm/gtx/transform.hpp>
+	"typeConversion.h"
+	"logger.h"
+	"windowComponent.h"
+	"worldComponent.h"
+	"globals.h"
+
+1456282811 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\camera3dcomponent.h
+	"component.h"
+	<glm/glm.hpp>
+
+1446037136 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\windowcomponent.h
+	<string>
+	"component.h"
+	"fileReader.h"
+	"openGLFunctions.h"
+	<glm/glm.hpp>
+
+1445736986 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\filereader.h
+	<string>
+	<vector>
+	<fstream>
+	<glm/glm.hpp>
+	"typeConversion.h"
+
+1442725308 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\openglfunctions.h
+	<GL/glew.h>
+	<GLFW/glfw3.h>
+
+1440225062 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\gl\glew.h
+	<stddef.h>
+	<inttypes.h>
+	<stdint.h>
+	<inttypes.h>
+	<Availability.h>
+	<OpenGL/glu.h>
+	<GL/glu.h>
+
+1439533906 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glfw\glfw3.h
+	<stddef.h>
+	<OpenGL/gl3.h>
+	<OpenGL/gl3ext.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/glcorearb.h>
+	<GLES/gl.h>
+	<GLES/glext.h>
+	<GLES2/gl2.h>
+	<GLES2/gl2ext.h>
+	<GLES3/gl3.h>
+	<GLES3/gl2ext.h>
+	<GLES3/gl31.h>
+	<GLES3/gl2ext.h>
+	<GL/gl.h>
+	<GL/glext.h>
+	<GL/glu.h>
+
+1456404523 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\camera3dsystem.cpp
+	"camera3DSystem.h"
+	"globals.h"
+	"worldComponent.h"
+	"camera3DComponent.h"
+	<glm/glm.hpp>
+	<glm/gtx/transform.hpp>
+	"openGLFunctions.h"
+	"mouseHandler.h"
+	"windowComponent.h"
+
+1456282551 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\camera3dsystem.h
+	"system.h"
+
+1456279138 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\mousehandler.h
+	<unordered_map>
+	<GLFW/glfw3.h>
+
+1446037880 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\component.cpp
+	"component.h"
+
+1455706304 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\consolesystem.cpp
+	"consoleSystem.h"
+	"keyboardHandler.h"
+	<string>
+	<iostream>
+	"logger.h"
+	"own_funcs.h"
+	"globals.h"
+	"typeConversion.h"
+	"worldComponent.h"
+
+1446427496 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\consolesystem.h
+	"system.h"
+
+1442148758 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\keyboardhandler.h
+	<unordered_map>
+	<GLFW/glfw3.h>
+
+1446265462 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\own_funcs.h
+	<glm/glm.hpp>
+	<vector>
+	<string>
+
+1456283110 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\entity.cpp
+	"entity.h"
+	"component.h"
+	"system.h"
+	<stdlib.h>
+
+1445736998 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\filereader.cpp
+	"fileReader.h"
+	"logger.h"
+	<algorithm>
+
+1453179468 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\globals.cpp
+	"globals.h"
+	"logger.h"
+	<pthread.h>
+
+1442232954 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\keyboardhandler.cpp
+	"keyboardHandler.h"
+
+1442725312 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\loader.cpp
+	"loader.h"
+
+1456204246 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\loader.h
+	<map>
+	<string>
+	"fileReader.h"
+	"store.h"
+	"openGLFunctions.h"
+	"logger.h"
+	"windowComponent.h"
+	<pthread.h>
+
+1442725324 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\store.h
+	<string>
+	<iostream>
+
+1456196517 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\loadshader.cpp
+	"loadShader.h"
+	"logger.h"
+
+1442725322 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\loadshader.h
+	<iostream>
+	<fstream>
+	<string>
+	<vector>
+	<glm/glm.hpp>
+	<map>
+	<GL/glew.h>
+
+1442725308 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\loadtexture.cpp
+	"loadTexture.h"
+	"logger.h"
+
+1442725306 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\loadtexture.h
+	"openGLFunctions.h"
+	<SOIL.h>
+	<iostream>
+	<vector>
+
+1439533916 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\soil.h
+
+1442725314 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\logger.cpp
+	"logger.h"
+
+1456404572 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\main.cpp
+	"main.h"
+	"globals.h"
+	"entity.h"
+	"component.h"
+	"system.h"
+	"store.h"
+	"loader.h"
+	"openGLFunctions.h"
+	"windowSystem.h"
+	"render2DSystem.h"
+	"render3DSystem.h"
+	"sceneStore.h"
+	"textureStore.h"
+	"tempplayerControlSystem.h"
+	"camera2DSystem.h"
+	"camera3DSystem.h"
+	"mouseScreenCoordSystem.h"
+	"movementSystem.h"
+	"consoleSystem.h"
+	"camera2DComponent.h"
+	"physicsComponent.h"
+	"camera3DComponent.h"
+	"render2DComponent.h"
+	"render3DComponent.h"
+	"tempplayerControlComponent.h"
+	"windowComponent.h"
+	"worldComponent.h"
+	"playerComponent.h"
+	<iostream>
+	<string>
+	<fstream>
+
+1442725314 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\main.h
+	"windowSystem.h"
+	"render2DSystem.h"
+
+1442725306 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\windowsystem.h
+	"system.h"
+
+1456405118 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dsystem.h
+	"system.h"
+	<GL/glew.h>
+	<glm/glm.hpp>
+
+1456405131 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dcomponent.h
+	"component.h"
+	<GL/glew.h>
+	<glm/glm.hpp>
+	"textureStore.h"
+
+1456318785 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\texturestore.h
+	"fileReader.h"
+	"store.h"
+	"openGLFunctions.h"
+	<pthread.h>
+
+1455800968 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render3dsystem.h
+	"system.h"
+	<GL/glew.h>
+
+1442725306 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\scenestore.h
+	"fileReader.h"
+	"store.h"
+
+1442725986 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\tempplayercontrolsystem.h
+	"system.h"
+
+1442233720 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\mousescreencoordsystem.h
+	"system.h"
+
+1446265462 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\movementsystem.h
+	"system.h"
+
+1455706671 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\physicscomponent.h
+	"component.h"
+	<glm/glm.hpp>
+
+1456323642 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render3dcomponent.h
+	"component.h"
+	<glm/glm.hpp>
+	<GL/glew.h>
+	<string>
+	"modelStore.h"
+	"textureStore.h"
+
+1456323535 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\modelstore.h
+	"fileReader.h"
+	"store.h"
+	"openGLFunctions.h"
+	<pthread.h>
+	"mesh.h"
+	"textureStore.h"
+
+1456214706 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\mesh.h
+	<glm/glm.hpp>
+	<GL/glew.h>
+	<vector>
+	<string>
+
+1456300307 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\tempplayercontrolcomponent.h
+	"component.h"
+
+1446091274 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\playercomponent.h
+	"component.h"
+
+1456215405 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\mesh.cpp
+	"mesh.h"
+	"openGLFunctions.h"
+	"logger.h"
+	<assimp/Importer.hpp>
+	<assimp/scene.h>
+	<assimp/postprocess.h>
+
+1439533950 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\importer.hpp
+	"types.h"
+	"config.h"
+
+1439533958 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\types.h
+	<sys/types.h>
+	<memory.h>
+	<math.h>
+	<stddef.h>
+	<string.h>
+	<limits.h>
+	"defs.h"
+	"vector3.h"
+	"vector2.h"
+	"color4.h"
+	"matrix3x3.h"
+	"matrix4x4.h"
+	"quaternion.h"
+	<cstring>
+	<new>
+	<string>
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+	"vector2.inl"
+	"vector3.inl"
+	"color4.inl"
+	"quaternion.inl"
+	"matrix3x3.inl"
+	"matrix4x4.inl"
+
+1439533954 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\defs.h
+
+1439533960 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\vector3.h
+	<cmath>
+	<math.h>
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1439533920 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\compiler\pushpack1.h
+
+1439533918 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\compiler\poppack1.h
+
+1439533958 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\vector2.h
+	<cmath>
+	<math.h>
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1439533954 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\color4.h
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1439533956 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\matrix3x3.h
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1439533956 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\matrix4x4.h
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1439533958 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\quaternion.h
+
+1439533958 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\vector2.inl
+	"vector2.h"
+	<cmath>
+
+1439533960 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\vector3.inl
+	"vector3.h"
+	<cmath>
+
+1439533954 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\color4.inl
+	"color4.h"
+
+1439533958 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\quaternion.inl
+	"quaternion.h"
+	<cmath>
+
+1439533956 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\matrix3x3.inl
+	"matrix3x3.h"
+	"matrix4x4.h"
+	<algorithm>
+	<cmath>
+	<limits>
+
+1439533956 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\matrix4x4.inl
+	"matrix4x4.h"
+	"matrix3x3.h"
+	"quaternion.h"
+	<algorithm>
+	<limits>
+	<cmath>
+	<math.h>
+
+1439533954 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\config.h
+
+1439533958 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\scene.h
+	"types.h"
+	"texture.h"
+	"mesh.h"
+	"light.h"
+	"camera.h"
+	"material.h"
+	"anim.h"
+	"metadata.h"
+
+1439533958 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\texture.h
+	"types.h"
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1439533956 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\mesh.h
+	"types.h"
+
+1439533954 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\light.h
+	"types.h"
+
+1439533952 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\camera.h
+	"types.h"
+
+1439533956 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\material.h
+	"types.h"
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+	"material.inl"
+
+1439533956 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\material.inl
+
+1439533952 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\anim.h
+	"types.h"
+	"quaternion.h"
+
+1439533956 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\metadata.h
+	<assert.h>
+	"Compiler/pstdint.h"
+	<stdint.h>
+	<string>
+
+1439533918 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\compiler\pstdint.h
+	<stddef.h>
+	<limits.h>
+	<signal.h>
+	<stdint.h>
+	<wchar.h>
+
+1439533958 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\postprocess.h
+	"types.h"
+
+1456323591 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\modelstore.cpp
+	"modelStore.h"
+	"mesh.h"
+	"logger.h"
+	"loader.h"
+
+1456296062 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\mousehandler.cpp
+	"openGLFunctions.h"
+	"mouseHandler.h"
+	"windowComponent.h"
+
+1456296027 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\mousescreencoordsystem.cpp
+	"mouseScreenCoordSystem.h"
+	"globals.h"
+	"openGLFunctions.h"
+	"mouseHandler.h"
+	"windowComponent.h"
+	"worldComponent.h"
+	"camera2DComponent.h"
+	"camera2DSystem.h"
+	"logger.h"
+	"own_funcs.h"
+
+1455706653 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\movementsystem.cpp
+	"movementSystem.h"
+	<glm/glm.hpp>
+	"globals.h"
+	"own_funcs.h"
+	"worldComponent.h"
+	"physicsComponent.h"
+	"logger.h"
+	"playerComponent.h"
+
+1442725314 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\noise.cpp
+	"noise.h"
+	<cstdint>
+
+1442725322 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\noise.h
+	<cstddef>
+
+1456299440 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\openglfunctions.cpp
+	"openGLFunctions.h"
+	<iostream>
+	<stdlib.h>
+	"windowComponent.h"
+	"logger.h"
+
+1446265462 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\own_funcs.cpp
+	"own_funcs.h"
+
+1455693050 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\physicscomponent.cpp
+	"physicsComponent.h"
+	"logger.h"
+	"typeConversion.h"
+
+1446426290 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\playercomponent.cpp
+	"playerComponent.h"
+	"logger.h"
+	"typeConversion.h"
+
+1456405147 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dcomponent.cpp
+	"render2DComponent.h"
+	"logger.h"
+	"typeConversion.h"
+	"loader.h"
+	"loadShader.h"
+
+1456405173 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dsystem.cpp
+	"render2DSystem.h"
+	"globals.h"
+	<iostream>
+	"worldComponent.h"
+	"camera2DComponent.h"
+	"camera2DSystem.h"
+	"render2DComponent.h"
+	"loadShader.h"
+	"openGLFunctions.h"
+	"loader.h"
+	<glm/glm.hpp>
+	<glm/gtx/transform.hpp>
+
+1456323637 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render3dcomponent.cpp
+	"render3DComponent.h"
+	"logger.h"
+	"typeConversion.h"
+	"loader.h"
+	"loadShader.h"
+	"mesh.h"
+
+1456460068 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render3dsystem.cpp
+	"render3DSystem.h"
+	"globals.h"
+	<iostream>
+	"worldComponent.h"
+	"render3DComponent.h"
+	"textureStore.h"
+	"camera3DComponent.h"
+	"camera3DSystem.h"
+	"loadShader.h"
+	"openGLFunctions.h"
+	"loader.h"
+	"own_funcs.h"
+	<glm/glm.hpp>
+	<glm/gtx/transform.hpp>
+
+1456404412 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\scenestore.cpp
+	"sceneStore.h"
+	"openGLFunctions.h"
+	"entity.h"
+	"globals.h"
+	"main.h"
+	"windowComponent.h"
+	"render2DComponent.h"
+	"render3DComponent.h"
+	"worldComponent.h"
+	"tempplayerControlComponent.h"
+	"camera2DComponent.h"
+	"camera3DComponent.h"
+	"physicsComponent.h"
+	"playerComponent.h"
+	"logger.h"
+
+1442725306 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\store.cpp
+	"store.h"
+
+1446429360 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\system.cpp
+	"system.h"
+	"entity.h"
+	"globals.h"
+	<map>
+	"logger.h"
+
+1456300423 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\tempplayercontrolcomponent.cpp
+	"tempplayerControlComponent.h"
+	"logger.h"
+	"typeConversion.h"
+
+1456404503 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\tempplayercontrolsystem.cpp
+	"tempplayerControlSystem.h"
+	"globals.h"
+	"openGLFunctions.h"
+	"keyboardHandler.h"
+	"mouseHandler.h"
+	"render2DComponent.h"
+	"worldComponent.h"
+	"physicsComponent.h"
+	"tempplayerControlComponent.h"
+	"own_funcs.h"
+
+1442725322 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\texturestore.cpp
+	"textureStore.h"
+	"loadTexture.h"
+	"logger.h"
+
+1442725322 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\typeconversion.cpp
+	"typeConversion.h"
+	<stdlib.h>
+	<sstream>
+	<cstring>
+
+1446037464 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\windowcomponent.cpp
+	"windowComponent.h"
+	"globals.h"
+	"openGLFunctions.h"
+	"keyboardHandler.h"
+	"mouseHandler.h"
+	"logger.h"
+
+1442725986 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\windowsystem.cpp
+	"windowSystem.h"
+	"globals.h"
+	<iostream>
+	"windowComponent.h"
+	"openGLFunctions.h"
+	"keyboardHandler.h"
+
+1456283356 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\worldcomponent.cpp
+	"worldComponent.h"
+	<glm/gtx/transform.hpp>
+	"logger.h"
+	"typeConversion.h"
+	"own_funcs.h"
+

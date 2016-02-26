@@ -3,49 +3,51 @@ Entity
 window: window.cfg;
 }
 
-Entity "lander"
+Entity "2dCamera"
 {
-world: -0.5,1.0,0, 1,1,1, 0,0,0;
-render2d: 0.5, 0.5, 0.5, 0.5;
-//player: 0;
-//control: 5, W, S, A, D;
+world: 0,0,0, 1,1,1, 0,0,0;
 camera2d: 10, true;
 }
 
-Entity "lander2"
+Entity "3dCamera"
 {
-world: 0,0,0, 1,1,1, 0,180,0;
+world: -3,10.5,3, 1,1,1, 0,135,0;
 control: 5, W, S, A, D, Q, E;
 camera3d: 90,0.1,100, true;
 }
 
-Entity "lander4"
+Entity "mountain path"
 {
-world: 0,0,15, 1,1,1, 0,0,0;
+world: 0,0,0, 1,1,1, 0,0,0;
 render3d: debug/mountainPath.store, debug/mountainPathTexture.store;
 }
 
-Entity "tower"
+Entity "hut"
 {
-world: 2.0,0.1,0, 1,1,1, 0,0,0;
-render2d: 0, 0.5, 0.5, 0.5;
-control: 10, I, K, J, L, N, M;
+world: 2,9.8,2.8, .25,.25,.25, 0,200,0;
+render3d: debug/hut.store, debug/hutTexture.store;
 }
 
-Entity "house"
+Entity "handBL"
 {
-world: -1,2,0, 1,1,1, 0,0,0;
-render2d: 0, 0, 0.5, 0.5;
+world: -9.4,-9.4,0, 1,1,1, 0,0,-45;
+render2d: debug/texture.store;
 }
 
-Entity "house"
+Entity "handBR"
 {
-world: 0.0,2,0, 1,1,1, 0,0,0;
-render2d: 0, 0, 0.5, 0.5;
+world: 9.4,-9.4,0, 1,1,1, 0,0,45;
+render2d: debug/texture.store;
 }
 
-Entity "turret"
+Entity "handTL"
 {
-world: -1.95,2,0, 1,1,1, 0,0,0;
-render2d: 0.5, 0.125, 0.375, 0.375;
+world: -9.4,9.4,0, 1,1,1, 0,0,-135;
+render2d: debug/texture.store;
+}
+
+Entity "handTR"
+{
+world: 9.4,9.4,0, 1,1,1, 0,0,135;
+render2d: debug/texture.store;
 }

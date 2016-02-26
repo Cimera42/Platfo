@@ -53,8 +53,8 @@ void SceneStore::loadStore(std::string name)
                     else if(sceneBlock->checkCurrentProperty("render2d"))
                     {
                         //Render2D component FOR NOW
-                        glm::vec4 uvs = sceneBlock->getCurrentValue<glm::vec4>(0);
-                        Render2DComponent* render = (new Render2DComponent())->construct(glm::vec2(uvs.x,uvs.y), glm::vec2(uvs.z,uvs.w));
+                        std::string textureStoreName = sceneBlock->getCurrentValue<std::string>(0);
+                        Render2DComponent* render = (new Render2DComponent())->construct(textureStoreName);
                         ent->addComponent(render);
                     }
                     else if(sceneBlock->checkCurrentProperty("render3d"))

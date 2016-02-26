@@ -90,6 +90,14 @@
 		<Unit filename="consoleSystem.h">
 			<Option virtualFolder="System/" />
 		</Unit>
+		<Unit filename="debug/hut.store">
+			<Option virtualFolder="StoreFiles/" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="debug/hutTexture.store">
+			<Option virtualFolder="StoreFiles/" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="debug/mountainPath.store">
 			<Option compilerVar="CC" />
 			<Option virtualFolder="StoreFiles/" />
@@ -97,9 +105,11 @@
 		</Unit>
 		<Unit filename="debug/mountainPathTexture.store">
 			<Option virtualFolder="StoreFiles/" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="debug/scene.store">
 			<Option virtualFolder="StoreFiles/" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="debug/texture.store">
 			<Option virtualFolder="StoreFiles/" />

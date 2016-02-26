@@ -1,0 +1,4 @@
+Mesh "hut"
+{
+filename: ../models/hut.obj;
+}

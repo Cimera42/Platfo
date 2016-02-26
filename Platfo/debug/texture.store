@@ -1,5 +1,5 @@
 Texture "whatever"
 {
-filename: ../textures/mountainPath_texture.png;
+filename: ../textures/teex.png;
 srgb: false;
 }

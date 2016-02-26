@@ -19,6 +19,6 @@ void main()
     mat3 normalMatrix = mat3(modelMat);
     normalMatrix = inverse(normalMatrix);
     normalMatrix = transpose(normalMatrix);
-    vNorm = normalize(vertNorm * normalMatrix);
+    vNorm = normalize(normalMatrix * vertNorm);
     gl_Position = projMat * viewMat * modelMat * vec4(vertPos,1);
 }
