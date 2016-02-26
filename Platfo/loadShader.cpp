@@ -1,7 +1,8 @@
 #include "loadShader.h"
 #include "logger.h"
+#include <vector>
 
-void loadShaderPart(GLuint partID, char * path)
+void loadShaderPart(GLuint partID, const char * path)
 {
     std::string shaderCode;
     std::ifstream stream(path, std::ios::in);
@@ -30,15 +31,8 @@ void loadShaderPart(GLuint partID, char * path)
     std::vector<char>().swap(compileLog);
 }
 
-void createProgram(GLuint progID, std::vector<const char*> layoutLocations)
+void createProgram(GLuint progID)
 {
-    for(int i = 0; i < layoutLocations.size(); i++)
-    {
-        if (layoutLocations[i] != "")
-        {
-            glBindAttribLocation(progID, i, layoutLocations[i]);
-        }
-    }
     try
     {
         glLinkProgram(progID);
@@ -60,8 +54,7 @@ void createProgram(GLuint progID, std::vector<const char*> layoutLocations)
     }
 }
 
-GLuint loadShader(char * vertPath, char * fragPath,
-                  std::vector<const char*> layoutLocations)
+GLuint loadShader(const char * vertPath, const char * fragPath)
 {
     Logger()<< "Creating Shader" << std::endl;
     Logger() <<"Vertex: " << vertPath << std::endl;
@@ -76,7 +69,7 @@ GLuint loadShader(char * vertPath, char * fragPath,
     glAttachShader(programID, vertID);
     glAttachShader(programID, fragID);
 
-    createProgram(programID, layoutLocations);
+    createProgram(programID);
 
     glDeleteShader(vertID);
     glDeleteShader(fragID);
@@ -84,8 +77,7 @@ GLuint loadShader(char * vertPath, char * fragPath,
     return programID;
 }
 
-GLuint loadShaderG(char * vertPath, char * fragPath, char * geoPath,
-                   std::vector<const char*> layoutLocations)
+GLuint loadShaderG(const char * vertPath, const char * fragPath, const char * geoPath)
 {
     Logger()<< "Creating Shader" << std::endl;
     Logger() <<"Vertex: " << vertPath << std::endl;
@@ -105,7 +97,7 @@ GLuint loadShaderG(char * vertPath, char * fragPath, char * geoPath,
     glAttachShader(programID, fragID);
     glAttachShader(programID, geoID);
 
-    createProgram(programID, layoutLocations);
+    createProgram(programID);
 
     glDeleteShader(vertID);
     glDeleteShader(fragID);

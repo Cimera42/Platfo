@@ -13,41 +13,69 @@ Entity "3dCamera"
 {
 world: -3,10.5,3, 1,1,1, 0,135,0;
 control: 5, W, S, A, D, Q, E;
-camera3d: 90,0.1,100, true;
+camera3d: 90,0.01,100, true;
 }
 
 Entity "mountain path"
 {
 world: 0,0,0, 1,1,1, 0,0,0;
-render3d: debug/mountainPath.store, debug/mountainPathTexture.store;
+render3d: debug/mountainPath.store, debug/mountainPathTexture.store, debug/shader3D.store;
 }
 
 Entity "hut"
 {
 world: 2,9.8,2.8, .25,.25,.25, 0,200,0;
-render3d: debug/hut.store, debug/hutTexture.store;
+render3d: debug/hut.store, debug/hutTexture.store, debug/shader3D.store;
+}
+
+Entity "grug"
+{
+world: -4,7.4,-5.3, .25,.25,.25, 0,135,0;
+render3d: debug/grug.store, debug/grugTexture.store, debug/shader3D.store;
+}
+
+Entity "houserock"
+{
+world: 0.6,9.8,3.2, .25,.25,.25, 0,135,0;
+render3d: debug/rock3.store, debug/rockTexture.store, debug/shader3D.store;
+}
+Entity "houserock"
+{
+world: -0.6,9.8,3.2, .25,.25,.25, 0,0,0;
+render3d: debug/rock3.store, debug/rockTexture.store, debug/shader3D.store;
+}
+
+Entity "pathrock"
+{
+world: -3,7.7,-2, .25,.25,.25, 0,0,0;
+render3d: debug/rock2.store, debug/rockTexture.store, debug/shader3D.store;
+}
+Entity "pathrock"
+{
+world: -0.8,6.6,-6.7, .25,.25,.25, 0,150,15;
+render3d: debug/rock2.store, debug/rockTexture.store, debug/shader3D.store;
 }
 
 Entity "handBL"
 {
 world: -9.4,-9.4,0, 1,1,1, 0,0,-45;
-render2d: debug/texture.store;
+render2d: debug/texture.store, debug/shader2D.store;
 }
 
 Entity "handBR"
 {
 world: 9.4,-9.4,0, 1,1,1, 0,0,45;
-render2d: debug/texture.store;
+render2d: debug/texture.store, debug/shader2D.store;
 }
 
 Entity "handTL"
 {
 world: -9.4,9.4,0, 1,1,1, 0,0,-135;
-render2d: debug/texture.store;
+render2d: debug/texture.store, debug/shader2D.store;
 }
 
 Entity "handTR"
 {
 world: 9.4,9.4,0, 1,1,1, 0,0,135;
-render2d: debug/texture.store;
+render2d: debug/texture.store, debug/shader2D.store;
 }

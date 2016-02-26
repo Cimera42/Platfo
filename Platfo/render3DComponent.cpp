@@ -2,7 +2,6 @@
 #include "logger.h"
 #include "typeConversion.h"
 #include "loader.h"
-#include "loadShader.h"
 #include "mesh.h"
 
 ComponentID Render3DComponent::ID;
@@ -10,28 +9,21 @@ ComponentID Render3DComponent::ID;
 Render3DComponent::Render3DComponent(){vanityName = "Render 3D Component";}
 Render3DComponent::~Render3DComponent()
 {
-    glDeleteShader(shader);
-
     Unload<ModelStore>::Object(&modelStore);
     Unload<TextureStore>::Object(&textureStore);
+    Unload<ShaderStore>::Object(&shaderStore);
 }
 
-Render3DComponent* Render3DComponent::construct(std::string modelStorePath, std::string textureStorePath)
+Render3DComponent* Render3DComponent::construct(std::string modelStorePath, std::string textureStorePath, std::string shaderStorePath)
 {
     Load<ModelStore>::Object(&modelStore, modelStorePath);
     Load<TextureStore>::Object(&textureStore, textureStorePath);
+    Load<ShaderStore>::Object(&shaderStore, shaderStorePath);
 
-    std::vector<const char*> shaderLocations;
-    //shaderLocations.push_back("vertPos");
-    //shaderLocations.push_back("vertUV");
-    //shaderLocations.push_back("vertNorm");
-    shader = loadShader("shaders/3dvert.vert", "shaders/3dfrag.frag", shaderLocations);
-
-    //Load texture
-    textureLoc = glGetUniformLocation(shader, "textureSampler");
-    viewMatLoc = glGetUniformLocation(shader, "viewMat");
-    projMatLoc = glGetUniformLocation(shader, "projMat");
-    modelMatLoc = glGetUniformLocation(shader, "modelMat");
+    textureLoc = -1;
+    modelMatLoc = -1;
+    viewMatLoc = -1;
+    projMatLoc = -1;
 
     return this;
 }
@@ -40,10 +32,11 @@ Render3DComponent* Render3DComponent::construct(std::vector<std::string> inArgs)
     if(inArgs.size() == 0)
     {
         std::string modelPath = inArgs[0];
-        std::string texturePath = inArgs[0];
+        std::string texturePath = inArgs[1];
+        std::string shaderPath = inArgs[2];
 
-        if(modelPath.length() > 0)
-            this->construct(modelPath,texturePath);
+        if(modelPath != "" && texturePath != "" && shaderPath != "")
+            this->construct(modelPath,texturePath,shaderPath);
     }
     else
     {
@@ -56,4 +49,12 @@ Render3DComponent* Render3DComponent::construct(std::vector<std::string> inArgs)
 void Render3DComponent::createVAO()
 {
     modelStore->mesh.createVAO();
+}
+
+void Render3DComponent::findShaderLocations()
+{
+    textureLoc = glGetUniformLocation(shaderStore->shaderID, "textureSampler");
+    modelMatLoc = glGetUniformLocation(shaderStore->shaderID, "modelMat");
+    viewMatLoc = glGetUniformLocation(shaderStore->shaderID, "viewMat");
+    projMatLoc = glGetUniformLocation(shaderStore->shaderID, "projMat");
 }

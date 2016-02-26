@@ -1,5 +1,0 @@
-Texture "whatever"
-{
-filename: ../textures/tttestt.png;
-srgb: false;
-}

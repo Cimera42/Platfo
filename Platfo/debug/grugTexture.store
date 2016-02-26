@@ -1,0 +1,5 @@
+Texture "grug texture"
+{
+filename: ../textures/diffuseGrug.png;
+srgb: false;
+}

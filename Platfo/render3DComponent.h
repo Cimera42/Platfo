@@ -7,6 +7,7 @@
 #include <string>
 #include "modelStore.h"
 #include "textureStore.h"
+#include "shaderStore.h"
 
 class Render3DComponent : public Component
 {
@@ -16,14 +17,13 @@ class Render3DComponent : public Component
     public:
         Render3DComponent();
         virtual ~Render3DComponent();
-        Render3DComponent* construct(std::string,std::string);
+        Render3DComponent* construct(std::string,std::string,std::string);
         Render3DComponent* construct(std::vector<std::string>);
         Render3DComponent* clone() {return new Render3DComponent(*this);}
 
-        GLuint shader;
-
         ModelStore* modelStore;
         TextureStore* textureStore;
+        ShaderStore* shaderStore;
 
         GLuint textureLoc;
         GLuint viewMatLoc;
@@ -31,6 +31,7 @@ class Render3DComponent : public Component
         GLuint modelMatLoc;
 
         void createVAO();
+        void findShaderLocations();
 
         //Auto generation of ID
         ComponentID getID() {if(ID == 0) {ID = componentIDIncrementor++;} return ID;}

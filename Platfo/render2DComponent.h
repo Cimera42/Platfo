@@ -5,6 +5,7 @@
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include "textureStore.h"
+#include "shaderStore.h"
 
 class Render2DComponent : public Component
 {
@@ -14,17 +15,19 @@ class Render2DComponent : public Component
     public:
         Render2DComponent();
         virtual ~Render2DComponent();
-        Render2DComponent* construct(std::string);
+        Render2DComponent* construct(std::string,std::string);
         Render2DComponent* construct(std::vector<std::string>);
         Render2DComponent* clone() {return new Render2DComponent(*this);}
 
-        GLuint shader;
         TextureStore* textureStore;
+        ShaderStore* shaderStore;
 
         GLuint textureLoc;
         GLuint modelMatLoc;
         GLuint viewMatLoc;
         GLuint projMatLoc;
+
+        void findShaderLocations();
 
         //Auto generation of ID
         ComponentID getID() {if(ID == 0) {ID = componentIDIncrementor++;} return ID;}

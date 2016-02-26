@@ -54,7 +54,8 @@ void SceneStore::loadStore(std::string name)
                     {
                         //Render2D component FOR NOW
                         std::string textureStoreName = sceneBlock->getCurrentValue<std::string>(0);
-                        Render2DComponent* render = (new Render2DComponent())->construct(textureStoreName);
+                        std::string shaderStoreName = sceneBlock->getCurrentValue<std::string>(1);
+                        Render2DComponent* render = (new Render2DComponent())->construct(textureStoreName,shaderStoreName);
                         ent->addComponent(render);
                     }
                     else if(sceneBlock->checkCurrentProperty("render3d"))
@@ -62,7 +63,8 @@ void SceneStore::loadStore(std::string name)
                         //Render3D component FOR NOW
                         std::string modelPath = sceneBlock->getCurrentValue<std::string>(0);
                         std::string texturePath = sceneBlock->getCurrentValue<std::string>(1);
-                        Render3DComponent* render = (new Render3DComponent())->construct(modelPath,texturePath);
+                        std::string shaderPath = sceneBlock->getCurrentValue<std::string>(2);
+                        Render3DComponent* render = (new Render3DComponent())->construct(modelPath,texturePath,shaderPath);
                         ent->addComponent(render);
                     }
                     else if(sceneBlock->checkCurrentProperty("world"))

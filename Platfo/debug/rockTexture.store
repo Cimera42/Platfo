@@ -1,0 +1,5 @@
+Texture "rock texture"
+{
+filename: ../textures/diffuseRockGrey.png;
+srgb: false;
+}

@@ -1,0 +1,4 @@
+Mesh "rock2"
+{
+filename: ../models/rock2.obj;
+}

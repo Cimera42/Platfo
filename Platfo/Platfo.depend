@@ -3012,7 +3012,7 @@
 1456492297 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\loader.cpp
 	"loader.h"
 
-1456493302 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\loader.h
+1456493817 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\loader.h
 	<map>
 	<string>
 	"fileReader.h"
@@ -3026,15 +3026,15 @@
 	<string>
 	<iostream>
 
-1456196517 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\loadshader.cpp
+1456497888 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\loadshader.cpp
 	"loadShader.h"
 	"logger.h"
+	<vector>
 
-1442725322 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\loadshader.h
+1456497755 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\loadshader.h
 	<iostream>
 	<fstream>
 	<string>
-	<vector>
 	<glm/glm.hpp>
 	<map>
 	<GL/glew.h>
@@ -3094,16 +3094,17 @@
 1442725306 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\windowsystem.h
 	"system.h"
 
-1456405118 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dsystem.h
+1456496889 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dsystem.h
 	"system.h"
 	<GL/glew.h>
 	<glm/glm.hpp>
 
-1456405131 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dcomponent.h
+1456496905 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dcomponent.h
 	"component.h"
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"textureStore.h"
+	"shaderStore.h"
 
 1456318785 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\texturestore.h
 	"fileReader.h"
@@ -3111,7 +3112,7 @@
 	"openGLFunctions.h"
 	<pthread.h>
 
-1455800968 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render3dsystem.h
+1456496893 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render3dsystem.h
 	"system.h"
 	<GL/glew.h>
 
@@ -3132,13 +3133,14 @@
 	"component.h"
 	<glm/glm.hpp>
 
-1456323642 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render3dcomponent.h
+1456496958 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render3dcomponent.h
 	"component.h"
 	<glm/glm.hpp>
 	<GL/glew.h>
 	<string>
 	"modelStore.h"
 	"textureStore.h"
+	"shaderStore.h"
 
 1456323535 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\modelstore.h
 	"fileReader.h"
@@ -3375,14 +3377,13 @@
 	"logger.h"
 	"typeConversion.h"
 
-1456405147 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dcomponent.cpp
+1456498460 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dcomponent.cpp
 	"render2DComponent.h"
 	"logger.h"
 	"typeConversion.h"
 	"loader.h"
-	"loadShader.h"
 
-1456405173 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dsystem.cpp
+1456498573 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dsystem.cpp
 	"render2DSystem.h"
 	"globals.h"
 	<iostream>
@@ -3396,15 +3397,14 @@
 	<glm/glm.hpp>
 	<glm/gtx/transform.hpp>
 
-1456323637 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render3dcomponent.cpp
+1456498456 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render3dcomponent.cpp
 	"render3DComponent.h"
 	"logger.h"
 	"typeConversion.h"
 	"loader.h"
-	"loadShader.h"
 	"mesh.h"
 
-1456460068 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render3dsystem.cpp
+1456498506 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render3dsystem.cpp
 	"render3DSystem.h"
 	"globals.h"
 	<iostream>
@@ -3420,7 +3420,7 @@
 	<glm/glm.hpp>
 	<glm/gtx/transform.hpp>
 
-1456404412 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\scenestore.cpp
+1456497018 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\scenestore.cpp
 	"sceneStore.h"
 	"openGLFunctions.h"
 	"entity.h"
@@ -3497,4 +3497,15 @@
 	"logger.h"
 	"typeConversion.h"
 	"own_funcs.h"
+
+1456496249 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\shaderstore.h
+	"fileReader.h"
+	"store.h"
+	"openGLFunctions.h"
+	<pthread.h>
+
+1456497760 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\shaderstore.cpp
+	"shaderStore.h"
+	"loadShader.h"
+	"logger.h"
 

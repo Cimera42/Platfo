@@ -54,19 +54,25 @@ void Render3DSystem::update()
         if(!renderComp->modelStore->mesh.VAO)
             renderComp->modelStore->mesh.createVAO();
 
-        glSetUseProgram(renderComp->shader);
-        glUniformMatrix4fv(renderComp->viewMatLoc, 1, GL_FALSE, &cameraViewMatrix[0][0]);
-        glUniformMatrix4fv(renderComp->projMatLoc, 1, GL_FALSE, &cameraProjMatrix[0][0]);
-        glUniformMatrix4fv(renderComp->modelMatLoc, 1, GL_FALSE, &worldComp->modelMatrix[0][0]);
+        if(renderComp->shaderStore->shaderID)
+        {
+            if(renderComp->viewMatLoc == -1)
+                renderComp->findShaderLocations();
 
-        //Bind texture
-        glSetActiveTexture(GL_TEXTURE0);
-        glSetBindTexture(GL_TEXTURE_2D, renderComp->textureStore->textureID);
-        glUniform1i(renderComp->textureLoc, 0);
+            glSetUseProgram(renderComp->shaderStore->shaderID);
+            glUniformMatrix4fv(renderComp->viewMatLoc, 1, GL_FALSE, &cameraViewMatrix[0][0]);
+            glUniformMatrix4fv(renderComp->projMatLoc, 1, GL_FALSE, &cameraProjMatrix[0][0]);
+            glUniformMatrix4fv(renderComp->modelMatLoc, 1, GL_FALSE, &worldComp->modelMatrix[0][0]);
 
-        //Draw
-        glSetBindVertexArray(renderComp->modelStore->mesh.VAO);
-            glDrawElements(GL_TRIANGLES, renderComp->modelStore->mesh.bufSize, GL_UNSIGNED_INT, 0);
-        glSetBindVertexArray(0);
+            //Bind texture
+            glSetActiveTexture(GL_TEXTURE0);
+            glSetBindTexture(GL_TEXTURE_2D, renderComp->textureStore->textureID);
+            glUniform1i(renderComp->textureLoc, 0);
+
+            //Draw
+            glSetBindVertexArray(renderComp->modelStore->mesh.VAO);
+                glDrawElements(GL_TRIANGLES, renderComp->modelStore->mesh.bufSize, GL_UNSIGNED_INT, 0);
+            glSetBindVertexArray(0);
+        }
     }
 }

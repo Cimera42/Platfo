@@ -2,43 +2,37 @@
 #include "logger.h"
 #include "typeConversion.h"
 #include "loader.h"
-#include "loadShader.h"
 
 ComponentID Render2DComponent::ID;
 
 Render2DComponent::Render2DComponent(){vanityName = "Render 2D Component";}
 Render2DComponent::~Render2DComponent()
 {
-    glDeleteShader(shader);
-
     Unload<TextureStore>::Object(&textureStore);
+    Unload<ShaderStore>::Object(&shaderStore);
 }
-Render2DComponent* Render2DComponent::construct(std::string textureStoreName)
+Render2DComponent* Render2DComponent::construct(std::string textureStoreName, std::string shaderStoreName)
 {
     Load<TextureStore>::Object(&textureStore, textureStoreName);
+    Load<ShaderStore>::Object(&shaderStore, shaderStoreName);
 
-    //Create shader
-    std::vector<const char*> shaderLocations;
-    //shaderLocations.push_back("vertPos");
-    //shaderLocations.push_back("vertUV");
-    shader = loadShader("shaders/2dvert.vert", "shaders/2dfrag.frag", shaderLocations);
-
-    textureLoc = glGetUniformLocation(shader, "textureSampler");
-    modelMatLoc = glGetUniformLocation(shader, "modelMat");
-    viewMatLoc = glGetUniformLocation(shader, "viewMat");
-    projMatLoc = glGetUniformLocation(shader, "projMat");
+    textureLoc = -1;
+    modelMatLoc = -1;
+    viewMatLoc = -1;
+    projMatLoc = -1;
 
     return this;
 }
 Render2DComponent* Render2DComponent::construct(std::vector<std::string> inArgs)
 {
-    if(inArgs.size() == 4)
+    if(inArgs.size() == 2)
     {
         std::string textureStoreName = inArgs[0];
+        std::string shaderStoreName = inArgs[1];
 
-        if(textureStoreName != "")
+        if(textureStoreName != "" && shaderStoreName != "")
         {
-            this->construct(textureStoreName);
+            this->construct(textureStoreName, shaderStoreName);
         }
         else
         {
@@ -51,4 +45,12 @@ Render2DComponent* Render2DComponent::construct(std::vector<std::string> inArgs)
     }
 
     return this;
+}
+
+void Render2DComponent::findShaderLocations()
+{
+    textureLoc = glGetUniformLocation(shaderStore->shaderID, "textureSampler");
+    modelMatLoc = glGetUniformLocation(shaderStore->shaderID, "modelMat");
+    viewMatLoc = glGetUniformLocation(shaderStore->shaderID, "viewMat");
+    projMatLoc = glGetUniformLocation(shaderStore->shaderID, "projMat");
 }

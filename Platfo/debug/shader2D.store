@@ -1,0 +1,5 @@
+Shader "basic 2d shader"
+{
+vert: ../shaders/2dvert.vert;
+frag: ../shaders/2dfrag.frag;
+}
