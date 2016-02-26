@@ -90,6 +90,14 @@
 		<Unit filename="consoleSystem.h">
 			<Option virtualFolder="System/" />
 		</Unit>
+		<Unit filename="debug/grug.store">
+			<Option virtualFolder="StoreFiles/" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="debug/grugTexture.store">
+			<Option virtualFolder="StoreFiles/" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="debug/hut.store">
 			<Option virtualFolder="StoreFiles/" />
 			<Option target="&lt;{~None~}&gt;" />
@@ -107,15 +115,33 @@
 			<Option virtualFolder="StoreFiles/" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="debug/rock1.store">
+			<Option virtualFolder="StoreFiles/" />
+		</Unit>
+		<Unit filename="debug/rock2.store">
+			<Option virtualFolder="StoreFiles/" />
+		</Unit>
+		<Unit filename="debug/rock3.store">
+			<Option virtualFolder="StoreFiles/" />
+		</Unit>
+		<Unit filename="debug/rockTexture.store">
+			<Option virtualFolder="StoreFiles/" />
+		</Unit>
 		<Unit filename="debug/scene.store">
+			<Option virtualFolder="StoreFiles/" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="debug/shader2D.store">
+			<Option virtualFolder="StoreFiles/" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="debug/shader3D.store">
 			<Option virtualFolder="StoreFiles/" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="debug/texture.store">
 			<Option virtualFolder="StoreFiles/" />
-		</Unit>
-		<Unit filename="debug/textureTerrain.store">
-			<Option virtualFolder="StoreFiles/" />
+			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="debug/window.cfg">
 			<Option virtualFolder="StoreFiles/" />
@@ -262,6 +288,12 @@
 			<Option virtualFolder="Store/" />
 		</Unit>
 		<Unit filename="sceneStore.h">
+			<Option virtualFolder="Store/" />
+		</Unit>
+		<Unit filename="shaderStore.cpp">
+			<Option virtualFolder="Store/" />
+		</Unit>
+		<Unit filename="shaderStore.h">
 			<Option virtualFolder="Store/" />
 		</Unit>
 		<Unit filename="shaders/2dfrag.frag">
