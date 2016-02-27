@@ -37,16 +37,17 @@ private:
     static void *threadedLoad(void*);
 public:
     //scene
-    static bool Object(T** returnLoc, std::string s);//objects
+    static bool Object(T** returnLoc, bool attemptLoad, std::string s);//objects
 };
 
 template <class T>
 class LoadJoin //Class to allow for paramter transfer to thread
 {
 public:
-    T** returnLoc;
-    std::string s;
-    T* defaultValues;
+    T** returnLoc; //Location to return object class/store to
+    std::string s; //Internal name
+    bool attemptLoad; //Defines whether loadStore is attempted or not
+    T* defaultValues; //Default to use whilst loading/loadStore not attempted
 };
 
 template <class T>
@@ -55,7 +56,7 @@ void* Load<T>::threadedLoad(void* inptr)
     LoadJoin<T> inParam;
     inParam = *((LoadJoin<T>*) inptr);
     std::string s = inParam.s;
-    Logger() << s <<" In Load"<< std::endl;
+    bool attemptLoad = inParam.attemptLoad;
     T** returnLoc = inParam.returnLoc;
 
     //Mutex lock the map of stores being loaded to prevent data race
@@ -84,8 +85,9 @@ void* Load<T>::threadedLoad(void* inptr)
         //if it exists, double check name is correct,
         if(it->second->internalName == s)
         {
-            //if the name matches (which it should unless its been altered, use this
+            //if the name matches - regardless of attemptLoad, override and use this (only issue is if name has been altered)
             it->second->usageCount += 1;
+            Logger() << s <<" already loaded. Now used "<< it->second->usageCount << " times. \n"<< std::endl;//Debugging
             //use this and return
             *returnLoc = static_cast<T*>(it->second);
             return NULL; //true;
@@ -101,33 +103,50 @@ void* Load<T>::threadedLoad(void* inptr)
     }
     else
     {
-        //if it doesnt exist, create it
-        T* loadedValues = new T();
-        loadedValues->loadStore(s);
-        if(loadedValues->correctlyLoaded)
+        //if it doesnt exist, check attemptLoad status
+        if(!attemptLoad)
         {
-            //check loading process succeded
+            //if we dont want to use the store specific loading, we add default to map and return the defaultValues
+            Logger()<< s <<" is new, but not attempting load... \n";
             pthread_mutex_lock(&internalMapMutex);
-            internalMap.insert(std::pair<std::string, Store*>(s, loadedValues));
+            internalMap.insert(std::pair<std::string, Store*>(s, inParam.defaultValues));
             pthread_mutex_unlock(&internalMapMutex);
 
-            loadedValues->internalName = s;
-            //overide and delete and return
-            *returnLoc = loadedValues;
-            delete inParam.defaultValues;
-            return NULL; //true;
+            inParam.defaultValues->internalName = s;
+            *returnLoc = inParam.defaultValues;
+            return NULL;
         }
         else
         {
-            //if something goes wrong in loading, return indication of failure
-            delete loadedValues;
-            //set returnLoc to point to default or just nullptr it?
-            //Loading incomplete: Give error
-            Logger()<<"Load Error: Cannot load object '"<<s<<"'. \n \n"; //Loading a new object hasnt worked - report it
-            //use default and delete the new threaded one etc etc and return
-            //*returnLoc = nullptr;
-            Logger() << pthread_self().p << " done" << std::endl;
-            return NULL; //false;
+            //if we want to attemptLoad, we create it and load it!
+            T* loadedValues = new T();
+            loadedValues->loadStore(s);
+            Logger() << s <<" is new. Attempting load... \n";//Debugging
+            if(loadedValues->correctlyLoaded)
+            {
+                //check loading process succeded
+                pthread_mutex_lock(&internalMapMutex);
+                internalMap.insert(std::pair<std::string, Store*>(s, loadedValues));
+                pthread_mutex_unlock(&internalMapMutex);
+
+                loadedValues->internalName = s;
+                //overide and delete and return
+                *returnLoc = loadedValues;
+                delete inParam.defaultValues;
+                return NULL; //true;
+            }
+            else
+            {
+                //if something goes wrong in loading, return indication of failure
+                delete loadedValues;
+                //set returnLoc to point to default or just nullptr it?
+                //Loading incomplete: Give error
+                Logger()<<"Load Error: Cannot load object '"<<s<<"'. \n \n"; //Loading a new object hasnt worked - report it
+                //use default and delete the new threaded one etc etc and return
+                //*returnLoc = nullptr;
+                Logger() << pthread_self().p << " done" << std::endl;
+                return NULL; //false;
+            }
         }
     }
 
@@ -137,7 +156,7 @@ void* Load<T>::threadedLoad(void* inptr)
 
 //IMPLEMENTATION - needs to be moved and the acceptable classes controlled in .cpp
 template <class T>
-bool Load<T>::Object(T** returnLoc, std::string s)
+bool Load<T>::Object(T** returnLoc, bool attemptLoad, std::string s)
 {
     //Create a new instance of the store
     T * defaultValues = new T();
@@ -149,6 +168,7 @@ bool Load<T>::Object(T** returnLoc, std::string s)
     LoadJoin<T>* param = new LoadJoin<T>();
     param->returnLoc = returnLoc;
     param->s = s;
+    param->attemptLoad = attemptLoad;
     param->defaultValues = defaultValues;
 
     //IF 2ND THREAD, REMOVE COMMENTS

@@ -61,7 +61,7 @@ int main()
 
     //File loading TEST
     SceneStore * scene;
-    if(Load<SceneStore>::Object(&scene, "debug/scene.store"))
+    if(Load<SceneStore>::Object(&scene, true, "debug/scene.store"))
     {
         int fps = 0;
         double now = glfwGetTime();

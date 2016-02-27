@@ -13,8 +13,8 @@ Render2DComponent::~Render2DComponent()
 }
 Render2DComponent* Render2DComponent::construct(std::string textureStoreName, std::string shaderStoreName)
 {
-    Load<TextureStore>::Object(&textureStore, textureStoreName);
-    Load<ShaderStore>::Object(&shaderStore, shaderStoreName);
+    Load<TextureStore>::Object(&textureStore, true, textureStoreName);
+    Load<ShaderStore>::Object(&shaderStore, true, shaderStoreName);
 
     textureLoc = -1;
     modelMatLoc = -1;
