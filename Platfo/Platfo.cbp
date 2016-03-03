@@ -5,7 +5,7 @@
 		<Option title="Platfo" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="Entity\;Component\;System\;Store\;Global\;Loading\;Shaders\;Other\;Shaders\Terrain\;StoreFiles\;Shaders\2D\;InputHandlers\;Shaders\3D\;" />
+		<Option virtualFolders="Entity\;Component\;System\;Store\;Global\;Loading\;Shaders\;Other\;StoreFiles\;InputHandlers\;Shaders\2D\;Shaders\2D\Plain\;Shaders\2D\Screen\;Shaders\3D\;Shaders\3D\Plain\;StoreFiles\Texture\;StoreFiles\Model\;StoreFiles\Shader\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/2DGame" prefix_auto="1" extension_auto="1" />
@@ -91,60 +91,69 @@
 			<Option virtualFolder="System/" />
 		</Unit>
 		<Unit filename="debug/grug.store">
-			<Option virtualFolder="StoreFiles/" />
+			<Option virtualFolder="StoreFiles/Model/" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="debug/grugTexture.store">
-			<Option virtualFolder="StoreFiles/" />
+			<Option virtualFolder="StoreFiles/Texture/" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="debug/hut.store">
-			<Option virtualFolder="StoreFiles/" />
+			<Option virtualFolder="StoreFiles/Model/" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="debug/hutTexture.store">
-			<Option virtualFolder="StoreFiles/" />
+			<Option virtualFolder="StoreFiles/Texture/" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="debug/mountainPath.store">
 			<Option compilerVar="CC" />
-			<Option virtualFolder="StoreFiles/" />
+			<Option virtualFolder="StoreFiles/Model/" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="debug/mountainPathTexture.store">
-			<Option virtualFolder="StoreFiles/" />
+			<Option virtualFolder="StoreFiles/Texture/" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="debug/rock1.store">
-			<Option virtualFolder="StoreFiles/" />
+			<Option virtualFolder="StoreFiles/Model/" />
 		</Unit>
 		<Unit filename="debug/rock2.store">
-			<Option virtualFolder="StoreFiles/" />
+			<Option virtualFolder="StoreFiles/Model/" />
 		</Unit>
 		<Unit filename="debug/rock3.store">
-			<Option virtualFolder="StoreFiles/" />
+			<Option virtualFolder="StoreFiles/Model/" />
 		</Unit>
 		<Unit filename="debug/rockTexture.store">
-			<Option virtualFolder="StoreFiles/" />
+			<Option virtualFolder="StoreFiles/Texture/" />
 		</Unit>
 		<Unit filename="debug/scene.store">
 			<Option virtualFolder="StoreFiles/" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="debug/shader2D.store">
-			<Option virtualFolder="StoreFiles/" />
+			<Option virtualFolder="StoreFiles/Shader/" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="debug/shader3D.store">
-			<Option virtualFolder="StoreFiles/" />
+			<Option virtualFolder="StoreFiles/Shader/" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="debug/shaderScreen.store">
+			<Option virtualFolder="StoreFiles/Shader/" />
+		</Unit>
 		<Unit filename="debug/texture.store">
-			<Option virtualFolder="StoreFiles/" />
+			<Option virtualFolder="StoreFiles/Texture/" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="debug/window.cfg">
 			<Option virtualFolder="StoreFiles/" />
+		</Unit>
+		<Unit filename="directionalLightComponent.cpp">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="directionalLightComponent.h">
+			<Option virtualFolder="Component/" />
 		</Unit>
 		<Unit filename="entity.cpp">
 			<Option virtualFolder="Entity/" />
@@ -169,6 +178,12 @@
 		</Unit>
 		<Unit filename="keyboardHandler.h">
 			<Option virtualFolder="InputHandlers/" />
+		</Unit>
+		<Unit filename="lightingSystem.cpp">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="lightingSystem.h">
+			<Option virtualFolder="System/" />
 		</Unit>
 		<Unit filename="loadShader.cpp">
 			<Option virtualFolder="Loading/" />
@@ -260,6 +275,12 @@
 		<Unit filename="playerComponent.h">
 			<Option virtualFolder="Component/" />
 		</Unit>
+		<Unit filename="pointLightComponent.cpp">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="pointLightComponent.h">
+			<Option virtualFolder="Component/" />
+		</Unit>
 		<Unit filename="render2DComponent.cpp">
 			<Option virtualFolder="Component/" />
 		</Unit>
@@ -284,6 +305,18 @@
 		<Unit filename="render3DSystem.h">
 			<Option virtualFolder="System/" />
 		</Unit>
+		<Unit filename="renderScreenComponent.cpp">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="renderScreenComponent.h">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="renderScreenSystem.cpp">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="renderScreenSystem.h">
+			<Option virtualFolder="System/" />
+		</Unit>
 		<Unit filename="sceneStore.cpp">
 			<Option virtualFolder="Store/" />
 		</Unit>
@@ -296,23 +329,23 @@
 		<Unit filename="shaderStore.h">
 			<Option virtualFolder="Store/" />
 		</Unit>
-		<Unit filename="shaders/2dfrag.frag">
-			<Option virtualFolder="Shaders/2D/" />
+		<Unit filename="shaders/2D/Plain/2dfrag.frag">
+			<Option virtualFolder="Shaders/2D/Plain/" />
 		</Unit>
-		<Unit filename="shaders/2dvert.vert">
-			<Option virtualFolder="Shaders/2D/" />
+		<Unit filename="shaders/2D/Plain/2dvert.vert">
+			<Option virtualFolder="Shaders/2D/Plain/" />
 		</Unit>
-		<Unit filename="shaders/3dfrag.frag">
-			<Option virtualFolder="Shaders/3D/" />
+		<Unit filename="shaders/2D/Screen/screenFrag.frag">
+			<Option virtualFolder="Shaders/2D/Screen/" />
 		</Unit>
-		<Unit filename="shaders/3dvert.vert">
-			<Option virtualFolder="Shaders/3D/" />
+		<Unit filename="shaders/2D/Screen/screenVert.vert">
+			<Option virtualFolder="Shaders/2D/Screen/" />
 		</Unit>
-		<Unit filename="shaders/terrainFrag.frag">
-			<Option virtualFolder="Shaders/Terrain/" />
+		<Unit filename="shaders/3D/Plain/3dfrag.frag">
+			<Option virtualFolder="Shaders/3D/Plain/" />
 		</Unit>
-		<Unit filename="shaders/terrainVert.vert">
-			<Option virtualFolder="Shaders/Terrain/" />
+		<Unit filename="shaders/3D/Plain/3dvert.vert">
+			<Option virtualFolder="Shaders/3D/Plain/" />
 		</Unit>
 		<Unit filename="store.cpp">
 			<Option virtualFolder="Store/" />

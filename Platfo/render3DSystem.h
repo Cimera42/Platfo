@@ -1,8 +1,9 @@
-#ifndef RENDERSYSTEM3D_H_INCLUDED
-#define RENDERSYSTEM3D_H_INCLUDED
+#ifndef RENDER3DSYSTEM_H_INCLUDED
+#define RENDER3DSYSTEM_H_INCLUDED
 
 #include "system.h"
 #include <GL/glew.h>
+#include "textureStore.h"
 
 class Render3DSystem : public System
 {
@@ -13,6 +14,9 @@ class Render3DSystem : public System
         Render3DSystem();
         virtual ~Render3DSystem();
 
+        GLuint framebufferID;
+        TextureStore* textureStore;
+
         //Auto generation of ID
         SystemID getID() {if(ID == 0) {ID = systemIDIncrementor++;} return ID;}
         static SystemID getStaticID() {if(ID == 0) {ID = systemIDIncrementor++;} return ID;}
@@ -20,4 +24,4 @@ class Render3DSystem : public System
         void update();
 };
 
-#endif // RENDERSYSTEM3D_H_INCLUDED
+#endif // RENDER3DSYSTEM_H_INCLUDED

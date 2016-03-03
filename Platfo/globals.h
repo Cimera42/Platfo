@@ -1,6 +1,8 @@
 #ifndef GLOBALS_H_INCLUDED
 #define GLOBALS_H_INCLUDED
 
+#define MULTITHREADED_LOADING false
+
 #include "entity.h"
 #include "component.h"
 #include "system.h"

@@ -11,12 +11,11 @@ Render2DComponent::~Render2DComponent()
     Unload<TextureStore>::Object(&textureStore);
     Unload<ShaderStore>::Object(&shaderStore);
 }
-Render2DComponent* Render2DComponent::construct(std::string textureStoreName, std::string shaderStoreName)
+Render2DComponent* Render2DComponent::construct(std::string textureStoreName, bool doLoadTexture, std::string shaderStoreName)
 {
     Load<TextureStore>::Object(&textureStore, true, textureStoreName);
     Load<ShaderStore>::Object(&shaderStore, true, shaderStoreName);
 
-    textureLoc = -1;
     modelMatLoc = -1;
     viewMatLoc = -1;
     projMatLoc = -1;
@@ -25,14 +24,15 @@ Render2DComponent* Render2DComponent::construct(std::string textureStoreName, st
 }
 Render2DComponent* Render2DComponent::construct(std::vector<std::string> inArgs)
 {
-    if(inArgs.size() == 2)
+    if(inArgs.size() == 3)
     {
         std::string textureStoreName = inArgs[0];
-        std::string shaderStoreName = inArgs[1];
+        bool doLoadTexture = stringToBool(inArgs[1]);
+        std::string shaderStoreName = inArgs[2];
 
         if(textureStoreName != "" && shaderStoreName != "")
         {
-            this->construct(textureStoreName, shaderStoreName);
+            this->construct(textureStoreName, doLoadTexture, shaderStoreName);
         }
         else
         {
@@ -49,7 +49,6 @@ Render2DComponent* Render2DComponent::construct(std::vector<std::string> inArgs)
 
 void Render2DComponent::findShaderLocations()
 {
-    textureLoc = glGetUniformLocation(shaderStore->shaderID, "textureSampler");
     modelMatLoc = glGetUniformLocation(shaderStore->shaderID, "modelMat");
     viewMatLoc = glGetUniformLocation(shaderStore->shaderID, "viewMat");
     projMatLoc = glGetUniformLocation(shaderStore->shaderID, "projMat");

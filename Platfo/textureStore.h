@@ -6,6 +6,15 @@
 #include "openGLFunctions.h"
 #include <pthread.h>
 
+struct TextureData
+{
+    std::string textureFile = "";
+    bool srgb = false;
+
+    //Loaded
+    GLuint textureID = 0;
+};
+
 class TextureStore : public Store
 {
 public:
@@ -15,11 +24,8 @@ public:
 
     //Extracted
     DataBlock* textureBlock;
-    std::string textureFile;
-    bool srgb;
 
-    //Loaded
-    GLuint textureID;
+    std::vector<TextureData> textureList;
 
     pthread_mutex_t textureLoadMutex;
 };

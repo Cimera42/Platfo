@@ -2840,7 +2840,7 @@
 
 1439534216 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\glm\gtx\transform.inl
 
-1442725306 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\typeconversion.h
+1456757711 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\typeconversion.h
 	<string>
 
 1442725322 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\logger.h
@@ -2877,7 +2877,7 @@
 1444967280 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\system.h
 	<vector>
 
-1446429548 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\globals.h
+1457014034 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\globals.h
 	"entity.h"
 	"component.h"
 	"system.h"
@@ -3001,7 +3001,7 @@
 	"logger.h"
 	<algorithm>
 
-1453179468 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\globals.cpp
+1456890400 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\globals.cpp
 	"globals.h"
 	"logger.h"
 	<pthread.h>
@@ -3012,7 +3012,7 @@
 1456492297 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\loader.cpp
 	"loader.h"
 
-1456493817 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\loader.h
+1456808947 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\loader.h
 	<map>
 	<string>
 	"fileReader.h"
@@ -3021,8 +3021,9 @@
 	"logger.h"
 	"windowComponent.h"
 	<pthread.h>
+	"globals.h"
 
-1442725324 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\store.h
+1456836995 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\store.h
 	<string>
 	<iostream>
 
@@ -3054,7 +3055,7 @@
 1442725314 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\logger.cpp
 	"logger.h"
 
-1456404572 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\main.cpp
+1457013618 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\main.cpp
 	"main.h"
 	"globals.h"
 	"entity.h"
@@ -3066,6 +3067,7 @@
 	"windowSystem.h"
 	"render2DSystem.h"
 	"render3DSystem.h"
+	"renderScreenSystem.h"
 	"sceneStore.h"
 	"textureStore.h"
 	"tempplayerControlSystem.h"
@@ -3073,12 +3075,14 @@
 	"camera3DSystem.h"
 	"mouseScreenCoordSystem.h"
 	"movementSystem.h"
+	"lightingSystem.h"
 	"consoleSystem.h"
 	"camera2DComponent.h"
 	"physicsComponent.h"
 	"camera3DComponent.h"
 	"render2DComponent.h"
 	"render3DComponent.h"
+	"renderScreenComponent.h"
 	"tempplayerControlComponent.h"
 	"windowComponent.h"
 	"worldComponent.h"
@@ -3094,27 +3098,28 @@
 1442725306 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\windowsystem.h
 	"system.h"
 
-1456496889 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dsystem.h
+1456974270 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dsystem.h
 	"system.h"
 	<GL/glew.h>
 	<glm/glm.hpp>
 
-1456496905 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dcomponent.h
+1456974444 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dcomponent.h
 	"component.h"
 	<GL/glew.h>
 	<glm/glm.hpp>
 	"textureStore.h"
 	"shaderStore.h"
 
-1456318785 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\texturestore.h
+1456799384 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\texturestore.h
 	"fileReader.h"
 	"store.h"
 	"openGLFunctions.h"
 	<pthread.h>
 
-1456496893 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render3dsystem.h
+1456974254 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render3dsystem.h
 	"system.h"
 	<GL/glew.h>
+	"textureStore.h"
 
 1442725306 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\scenestore.h
 	"fileReader.h"
@@ -3317,11 +3322,11 @@
 1439533958 c:\users\tim\documents\coding\c++\projects\platfo\trunk\libraries\include\assimp\postprocess.h
 	"types.h"
 
-1456323591 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\modelstore.cpp
+1456805812 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\modelstore.cpp
 	"modelStore.h"
 	"mesh.h"
 	"logger.h"
-	"loader.h"
+	"globals.h"
 
 1456296062 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\mousehandler.cpp
 	"openGLFunctions.h"
@@ -3377,13 +3382,13 @@
 	"logger.h"
 	"typeConversion.h"
 
-1456498460 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dcomponent.cpp
+1456988528 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dcomponent.cpp
 	"render2DComponent.h"
 	"logger.h"
 	"typeConversion.h"
 	"loader.h"
 
-1456498573 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dsystem.cpp
+1456839776 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render2dsystem.cpp
 	"render2DSystem.h"
 	"globals.h"
 	<iostream>
@@ -3397,14 +3402,14 @@
 	<glm/glm.hpp>
 	<glm/gtx/transform.hpp>
 
-1456498456 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render3dcomponent.cpp
+1456660915 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render3dcomponent.cpp
 	"render3DComponent.h"
 	"logger.h"
 	"typeConversion.h"
 	"loader.h"
 	"mesh.h"
 
-1456498506 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render3dsystem.cpp
+1456887482 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\render3dsystem.cpp
 	"render3DSystem.h"
 	"globals.h"
 	<iostream>
@@ -3417,16 +3422,21 @@
 	"openGLFunctions.h"
 	"loader.h"
 	"own_funcs.h"
+	"windowComponent.h"
+	"render2DSystem.h"
+	"typeConversion.h"
+	"render2DComponent.h"
 	<glm/glm.hpp>
 	<glm/gtx/transform.hpp>
 
-1456497018 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\scenestore.cpp
+1457014819 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\scenestore.cpp
 	"sceneStore.h"
 	"openGLFunctions.h"
 	"entity.h"
 	"globals.h"
 	"main.h"
 	"windowComponent.h"
+	"renderScreenComponent.h"
 	"render2DComponent.h"
 	"render3DComponent.h"
 	"worldComponent.h"
@@ -3435,6 +3445,8 @@
 	"camera3DComponent.h"
 	"physicsComponent.h"
 	"playerComponent.h"
+	"directionalLightComponent.h"
+	"pointLightComponent.h"
 	"logger.h"
 
 1442725306 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\store.cpp
@@ -3464,10 +3476,11 @@
 	"tempplayerControlComponent.h"
 	"own_funcs.h"
 
-1442725322 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\texturestore.cpp
+1456809564 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\texturestore.cpp
 	"textureStore.h"
 	"loadTexture.h"
 	"logger.h"
+	"globals.h"
 
 1442725322 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\typeconversion.cpp
 	"typeConversion.h"
@@ -3504,8 +3517,69 @@
 	"openGLFunctions.h"
 	<pthread.h>
 
-1456497760 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\shaderstore.cpp
+1456805748 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\shaderstore.cpp
 	"shaderStore.h"
 	"loadShader.h"
 	"logger.h"
+	"globals.h"
+
+1457012927 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\directionallightcomponent.cpp
+	"directionalLightComponent.h"
+	"logger.h"
+	"typeConversion.h"
+
+1457011433 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\directionallightcomponent.h
+	"component.h"
+	<glm/glm.hpp>
+
+1457015035 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\lightingsystem.cpp
+	"lightingSystem.h"
+	<iostream>
+	"worldComponent.h"
+	"directionalLightComponent.h"
+	"pointLightComponent.h"
+	"globals.h"
+
+1457012988 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\lightingsystem.h
+	"system.h"
+	<glm/glm.hpp>
+
+1457011421 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\pointlightcomponent.h
+	"component.h"
+	<glm/glm.hpp>
+
+1456974236 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\renderscreensystem.h
+	"system.h"
+	<GL/glew.h>
+	<glm/glm.hpp>
+
+1457011770 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\renderscreencomponent.h
+	"component.h"
+	<GL/glew.h>
+	<glm/glm.hpp>
+	"textureStore.h"
+	"shaderStore.h"
+
+1457011419 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\pointlightcomponent.cpp
+	"pointLightComponent.h"
+	"logger.h"
+	"typeConversion.h"
+
+1457012332 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\renderscreencomponent.cpp
+	"renderScreenComponent.h"
+	"logger.h"
+	"typeConversion.h"
+	"loader.h"
+
+1457014674 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\renderscreensystem.cpp
+	"renderScreenSystem.h"
+	"globals.h"
+	<iostream>
+	"worldComponent.h"
+	"renderScreenComponent.h"
+	"loadShader.h"
+	"openGLFunctions.h"
+	"loader.h"
+	"lightingSystem.h"
+	<glm/glm.hpp>
 

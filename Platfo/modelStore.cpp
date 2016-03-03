@@ -1,7 +1,7 @@
 #include "modelStore.h"
 #include "mesh.h"
 #include "logger.h"
-#include "loader.h"
+#include "globals.h"
 
 ///ModelStore allows us to store the actual models from files!
 ModelStore::ModelStore()
@@ -19,7 +19,8 @@ void ModelStore::loadStore(std::string name)
 {
     glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
     GLFWwindow* tempWindow = glfwCreateWindow(1,1,"",NULL,glContext);
-    glfwMakeContextCurrent(tempWindow);
+    if(MULTITHREADED_LOADING)
+        glfwMakeContextCurrent(tempWindow);
 
     //Read file
     File readFile;

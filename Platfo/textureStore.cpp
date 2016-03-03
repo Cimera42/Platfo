@@ -1,6 +1,7 @@
 #include "textureStore.h"
 #include "loadTexture.h"
 #include "logger.h"
+#include "globals.h"
 
 ///TextureStore allows us to store the actual textures from files!
 TextureStore::TextureStore()
@@ -13,54 +14,57 @@ TextureStore::TextureStore()
 
     //Default values
     textureLoadMutex = PTHREAD_MUTEX_INITIALIZER;
-    textureID = 0;
-    srgb = false;
-    textureFile = "";
 }
 
 TextureStore::~TextureStore()
 {
-    glDeleteTextures(1, &textureID);
+    for(int i = 0; i < textureList.size(); i++)
+    {
+        glDeleteTextures(1, &textureList[i].textureID);
+    }
 }
 
 void TextureStore::loadStore(std::string name)
 {
     glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
     GLFWwindow* tempWindow = glfwCreateWindow(1,1,"",NULL,glContext);
-    glfwMakeContextCurrent(tempWindow);
+    if(MULTITHREADED_LOADING)
+        glfwMakeContextCurrent(tempWindow);
 
     //Read file
     File readFile;
     textureBlock = readFile.readFromFile(name);
     if(readFile.success)
     {
-        if(textureBlock->getNextElement()) //Changed to if for only the one texture.
+        while(textureBlock->getNextElement()) //Changed to if for only the one texture.
         {
             if(textureBlock->checkCurrentElement("Texture"))
             {
+                TextureData textureData;
+
                 while(textureBlock->getNextProperty())
                 {
                     if(textureBlock->checkCurrentProperty("filename"))
-                        textureFile = readFile.fileDirectory+textureBlock->getCurrentValue<std::string>(0);
+                        textureData.textureFile = readFile.fileDirectory+textureBlock->getCurrentValue<std::string>(0);
                     else if(textureBlock->checkCurrentProperty("srgb"))
-                        srgb = textureBlock->getCurrentValue<bool>(0);
+                        textureData.srgb = textureBlock->getCurrentValue<bool>(0);
                     else
                         Logger()<<"Innapropriate texture property in: "<<readFile.fileName<<std::endl;
                 }
-                if (textureFile != "") //After we've loaded all properties for the texture element, we can actually load the texture!...
+                if (textureData.textureFile != "") //After we've loaded all properties for the texture element, we can actually load the texture!...
                 {
-                    int tempID = load2DTexture(textureFile, srgb); //Load the actual texture we store
+                    int tempID = load2DTexture(textureData.textureFile, textureData.srgb); //Load the actual texture we store
                     if(tempID != 0)
                     {
                         pthread_mutex_lock(&textureLoadMutex);
-                        textureID = tempID;
+                        textureData.textureID = tempID;
                         pthread_mutex_unlock(&textureLoadMutex);
-
-                        correctlyLoaded = true;
                     }
                 }
+                textureList.push_back(textureData);
             }
         }
+        correctlyLoaded = true;
     }
     glfwDestroyWindow(tempWindow);
 }

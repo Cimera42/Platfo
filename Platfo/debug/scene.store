@@ -9,11 +9,23 @@ world: 0,0,0, 1,1,1, 0,0,0;
 camera2d: 10, true;
 }
 
+Entity "screen"
+{
+renderScreen: 3DRenderFBOTextures, false, debug/shaderScreen.store;
+}
+
+Entity "sunLight"
+{
+world: 1,1,-1, 1,1,1, 0,0,0;
+directionalLight: .1, 1,1,1;
+}
+
 Entity "3dCamera"
 {
 world: -3,10.5,3, 1,1,1, 0,135,0;
 control: 5, W, S, A, D, Q, E;
 camera3d: 90,0.01,100, true;
+pointLight: 1, 2, 1,1,1;
 }
 
 Entity "mountain path"
@@ -27,11 +39,21 @@ Entity "hut"
 world: 2,9.8,2.8, .25,.25,.25, 0,200,0;
 render3d: debug/hut.store, debug/hutTexture.store, debug/shader3D.store;
 }
+Entity "hut light"
+{
+world: 1.55,10,1.5, 1,1,1, 0,0,0;
+pointLight: 1, 1, 1,1,1;
+}
 
 Entity "grug"
 {
 world: -4,7.4,-5.3, .25,.25,.25, 0,135,0;
 render3d: debug/grug.store, debug/grugTexture.store, debug/shader3D.store;
+}
+Entity "grug light"
+{
+world: -3.5,8.2,-5.4, 1,1,1, 0,0,0;
+pointLight: 1, 1.5, 1,1,1;
 }
 
 Entity "houserock"
@@ -59,23 +81,23 @@ render3d: debug/rock2.store, debug/rockTexture.store, debug/shader3D.store;
 Entity "handBL"
 {
 world: -9.4,-9.4,0, 1,1,1, 0,0,-45;
-render2d: debug/texture.store, debug/shader2D.store;
+render2d: debug/texture.store, true, debug/shader2D.store;
 }
 
 Entity "handBR"
 {
 world: 9.4,-9.4,0, 1,1,1, 0,0,45;
-render2d: debug/texture.store, debug/shader2D.store;
+render2d: debug/texture.store, true, debug/shader2D.store;
 }
 
 Entity "handTL"
 {
 world: -9.4,9.4,0, 1,1,1, 0,0,-135;
-render2d: debug/texture.store, debug/shader2D.store;
+render2d: debug/texture.store, true, debug/shader2D.store;
 }
 
 Entity "handTR"
 {
 world: 9.4,9.4,0, 1,1,1, 0,0,135;
-render2d: debug/texture.store, debug/shader2D.store;
+render2d: debug/texture.store, true, debug/shader2D.store;
 }

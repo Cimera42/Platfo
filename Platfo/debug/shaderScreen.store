@@ -1,0 +1,5 @@
+Shader "screen 2d shader"
+{
+vert: ../shaders/2D/Screen/screenVert.vert;
+frag: ../shaders/2D/Screen/screenFrag.frag;
+}

@@ -11,6 +11,7 @@
 #include "windowSystem.h"
 #include "render2DSystem.h"
 #include "render3DSystem.h"
+#include "renderScreenSystem.h"
 #include "sceneStore.h"
 #include "textureStore.h"
 #include "tempplayerControlSystem.h"
@@ -18,6 +19,7 @@
 #include "camera3DSystem.h"
 #include "mouseScreenCoordSystem.h"
 #include "movementSystem.h"
+#include "lightingSystem.h"
 #include "consoleSystem.h"
 
 #include "camera2DComponent.h"
@@ -25,6 +27,7 @@
 #include "camera3DComponent.h"
 #include "render2DComponent.h"
 #include "render3DComponent.h"
+#include "renderScreenComponent.h"
 #include "tempplayerControlComponent.h"
 #include "windowComponent.h"
 #include "worldComponent.h"
@@ -42,18 +45,21 @@ int main()
     //Temporary loading place for systems
     systems[WindowSystem::getStaticID()] = new WindowSystem();
     systems[Render3DSystem::getStaticID()] = new Render3DSystem();
+    systems[RenderScreenSystem::getStaticID()] = new RenderScreenSystem();
     systems[Render2DSystem::getStaticID()] = new Render2DSystem();
     systems[PlayerControlSystem::getStaticID()] = new PlayerControlSystem();
     systems[Camera2DSystem::getStaticID()] = new Camera2DSystem();
     systems[Camera3DSystem::getStaticID()] = new Camera3DSystem();
     systems[MouseScreenCoordSystem::getStaticID()] = new MouseScreenCoordSystem();
     systems[MovementSystem::getStaticID()] = new MovementSystem();
+    systems[LightingSystem::getStaticID()] = new LightingSystem();
     systems[ConsoleSystem::getStaticID()] = new ConsoleSystem();
 
     components[Camera2DComponent::getStaticID()] = new Camera2DComponent();
     components[Camera3DComponent::getStaticID()] = new Camera3DComponent();
     components[Render2DComponent::getStaticID()] = new Render2DComponent();
     components[Render3DComponent::getStaticID()] = new Render3DComponent();
+    components[RenderScreenComponent::getStaticID()] = new RenderScreenComponent();
     components[PlayerControlComponent::getStaticID()] = new PlayerControlComponent();
     components[WindowComponent::getStaticID()] = new WindowComponent();
     components[WorldComponent::getStaticID()] = new WorldComponent();
@@ -74,6 +80,7 @@ int main()
             delta = (glfwGetTime() - lastFrame);
             lastFrame = glfwGetTime();
 
+            glClearColor(0.55f,0.65f,0.8f,1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
             //Temporary system loop
@@ -89,6 +96,8 @@ int main()
             systems[Camera3DSystem::getStaticID()]->update();
             //3D rendering system
             systems[Render3DSystem::getStaticID()]->update();
+            //Screen rendering system
+            systems[RenderScreenSystem::getStaticID()]->update();
             //2D rendering system
             systems[Render2DSystem::getStaticID()]->update();
             //Should go last, since it updates window buffer
@@ -116,6 +125,8 @@ int main()
 
         deleteAllEntities();
         deleteAllSystems();
+        delete mainWindow;
+        glfwDestroyWindow(glContext);
         glfwTerminate();
     }
     return 0;

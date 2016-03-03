@@ -1,36 +1,34 @@
-#include "render2DSystem.h"
+#include "renderScreenSystem.h"
 #include "globals.h"
 
 #include <iostream>
 #include "worldComponent.h"
-#include "camera2DComponent.h"
-#include "camera2DSystem.h"
-#include "render2DComponent.h"
+#include "renderScreenComponent.h"
 #include "loadShader.h"
 #include "openGLFunctions.h"
 #include "loader.h"
 
+#include "lightingSystem.h"
+
 #include <glm/glm.hpp>
-#include <glm/gtx/transform.hpp>
 
-SystemID Render2DSystem::ID;
+SystemID RenderScreenSystem::ID;
 
-Render2DSystem::Render2DSystem()
+RenderScreenSystem::RenderScreenSystem()
 {
     std::vector<ComponentID> subList1;
     //Components needed to subscribe to system
-    subList1.push_back(WorldComponent::getStaticID());
-    subList1.push_back(Render2DComponent::getStaticID());
+    subList1.push_back(RenderScreenComponent::getStaticID());
     addSubList(subList1);
 
     //Standard quad vertices
-    vertices.push_back(glm::vec2(-0.5f,0.5f));
+    vertices.push_back(glm::vec2(-1.0f,1.0f));
     int tl = vertices.size()-1;
-    vertices.push_back(glm::vec2(0.5f,0.5f));
+    vertices.push_back(glm::vec2(1.0f,1.0f));
     int tr = vertices.size()-1;
-    vertices.push_back(glm::vec2(-0.5f,-0.5f));
+    vertices.push_back(glm::vec2(-1.0f,-1.0f));
     int bl = vertices.size()-1;
-    vertices.push_back(glm::vec2(0.5f,-0.5f));
+    vertices.push_back(glm::vec2(1.0f,-1.0f));
     int br = vertices.size()-1;
 
     //Standard quad uvs
@@ -79,7 +77,7 @@ Render2DSystem::Render2DSystem()
         glVertexAttribPointer(uvLoc, 2, GL_FLOAT, GL_FALSE, 0, 0); //attribute, size, type, is normalised?, stride, offset
     glSetBindVertexArray(0);
 }
-Render2DSystem::~Render2DSystem()
+RenderScreenSystem::~RenderScreenSystem()
 {
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &vertexBuffer);
@@ -87,20 +85,11 @@ Render2DSystem::~Render2DSystem()
     glDeleteBuffers(1, &indexBuffer);
 }
 
-void Render2DSystem::update()
+void RenderScreenSystem::update()
 {
-    //Camera operations
-    glm::mat4 cameraViewMatrix;
-    glm::mat4 cameraProjMatrix;
-    Camera2DSystem* cameraSys = static_cast<Camera2DSystem*>(systems[Camera2DSystem::getStaticID()]);
-    if(cameraSys->activeCamera != -1)
-    {
-        Camera2DComponent* cameraComp = static_cast<Camera2DComponent*>(entities[cameraSys->activeCamera]->getComponent(Camera2DComponent::getStaticID()));
-        //Send view and projection matrix to shader
-
-        cameraViewMatrix = cameraComp->viewMatrix;
-        cameraProjMatrix = cameraComp->projectionMatrix;
-    }
+    LightingSystem* lightingSystem = static_cast<LightingSystem*>(systems[LightingSystem::getStaticID()]);
+    DirectionalLightGroup directionalLights = lightingSystem->compileDirectional();
+    PointLightGroup pointLights = lightingSystem->compilePoint();
 
     glDisable(GL_DEPTH_TEST);
     for(int subID = 0; subID < subscribedEntities[0].size(); subID++)
@@ -108,17 +97,29 @@ void Render2DSystem::update()
         Entity* entity = entities[subscribedEntities[0][subID]];
 
         WorldComponent* worldComp = static_cast<WorldComponent*>(entity->getComponent(WorldComponent::getStaticID()));
-        Render2DComponent* renderComp = static_cast<Render2DComponent*>(entity->getComponent(Render2DComponent::getStaticID()));
+        RenderScreenComponent* renderComp = static_cast<RenderScreenComponent*>(entity->getComponent(RenderScreenComponent::getStaticID()));
 
         if(renderComp->shaderStore->shaderID)
         {
-            if(renderComp->viewMatLoc == -1)
+            if(renderComp->directionalLightLoc_direction == -1)
                 renderComp->findShaderLocations();
 
             glSetUseProgram(renderComp->shaderStore->shaderID);
-            glUniformMatrix4fv(renderComp->viewMatLoc, 1, GL_FALSE, &cameraViewMatrix[0][0]);
-            glUniformMatrix4fv(renderComp->projMatLoc, 1, GL_FALSE, &cameraProjMatrix[0][0]);
-            glUniformMatrix4fv(renderComp->modelMatLoc, 1, GL_FALSE, &worldComp->modelMatrix[0][0]);
+
+            if(directionalLights.direction.size() > 0)
+            {
+                glUniform3fv(renderComp->directionalLightLoc_direction, directionalLights.direction.size(), &directionalLights.direction[0][0]);
+                glUniform1fv(renderComp->directionalLightLoc_intensity, directionalLights.intensity.size(), &directionalLights.intensity[0]);
+                glUniform3fv(renderComp->directionalLightLoc_colour, directionalLights.colour.size(), &directionalLights.colour[0][0]);
+            }
+
+            if(pointLights.location.size() > 0)
+            {
+                glUniform3fv(renderComp->pointLightLoc_location, pointLights.location.size(), &pointLights.location[0][0]);
+                glUniform1fv(renderComp->pointLightLoc_intensity, pointLights.intensity.size(), &pointLights.intensity[0]);
+                glUniform1fv(renderComp->pointLightLoc_attenuation, pointLights.attenuation.size(), &pointLights.attenuation[0]);
+                glUniform3fv(renderComp->pointLightLoc_colour, pointLights.colour.size(), &pointLights.colour[0][0]);
+            }
 
             //Bind texture
             if(renderComp->textureStore->correctlyLoaded)

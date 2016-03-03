@@ -16,8 +16,7 @@ Render3DComponent::~Render3DComponent()
 
 Render3DComponent* Render3DComponent::construct(std::string modelStorePath, std::string textureStorePath, std::string shaderStorePath)
 {
-    Load<ModelStore>::Object(&modelStore, false, modelStorePath);
-    modelStore->loadStore("debug/grug.store");
+    Load<ModelStore>::Object(&modelStore, true, modelStorePath);
     Load<TextureStore>::Object(&textureStore, true, textureStorePath);
     Load<ShaderStore>::Object(&shaderStore, true, shaderStorePath);
 

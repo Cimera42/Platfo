@@ -5,6 +5,7 @@
 #include "globals.h"
 #include "main.h"
 #include "windowComponent.h"
+#include "renderScreenComponent.h"
 #include "render2DComponent.h"
 #include "render3DComponent.h"
 #include "worldComponent.h"
@@ -13,6 +14,8 @@
 #include "camera3DComponent.h"
 #include "physicsComponent.h"
 #include "playerComponent.h"
+#include "directionalLightComponent.h"
+#include "pointLightComponent.h"
 #include "logger.h"
 /**SceneStore allows us to store the entities and any global properties.
     - Evokes components on entities. Essentially the only reason this is a store is to allow for preloading of levels in the future.
@@ -26,7 +29,9 @@ void SceneStore::loadStore(std::string name)
 {
     glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
     GLFWwindow* tempWindow = glfwCreateWindow(1,1,"",NULL,glContext);
-    glfwMakeContextCurrent(tempWindow);
+    if(MULTITHREADED_LOADING)
+        glfwMakeContextCurrent(tempWindow);
+
     //load the actual scene
     File readFile;
     sceneBlock = readFile.readFromFile(name);
@@ -50,12 +55,22 @@ void SceneStore::loadStore(std::string name)
                         //Temporary system init???? WHERE TO PUT
                         ent->addComponent(win);*/
                     }
+                    else if(sceneBlock->checkCurrentProperty("renderScreen"))
+                    {
+                        //Render2D component FOR NOW
+                        std::string textureStoreName = sceneBlock->getCurrentValue<std::string>(0);
+                        bool doLoadTextures = sceneBlock->getCurrentValue<bool>(1);
+                        std::string shaderStoreName = sceneBlock->getCurrentValue<std::string>(2);
+                        RenderScreenComponent* render = (new RenderScreenComponent())->construct(textureStoreName,doLoadTextures,shaderStoreName);
+                        ent->addComponent(render);
+                    }
                     else if(sceneBlock->checkCurrentProperty("render2d"))
                     {
                         //Render2D component FOR NOW
                         std::string textureStoreName = sceneBlock->getCurrentValue<std::string>(0);
-                        std::string shaderStoreName = sceneBlock->getCurrentValue<std::string>(1);
-                        Render2DComponent* render = (new Render2DComponent())->construct(textureStoreName,shaderStoreName);
+                        bool doLoadTextures = sceneBlock->getCurrentValue<bool>(1);
+                        std::string shaderStoreName = sceneBlock->getCurrentValue<std::string>(2);
+                        Render2DComponent* render = (new Render2DComponent())->construct(textureStoreName,doLoadTextures,shaderStoreName);
                         ent->addComponent(render);
                     }
                     else if(sceneBlock->checkCurrentProperty("render3d"))
@@ -120,6 +135,23 @@ void SceneStore::loadStore(std::string name)
                         //Player control component FOR NOW
                         PlayerControlComponent* control = (new PlayerControlComponent())->construct(speed, forward, back, left, right, up, down);
                         ent->addComponent(control);
+                    }
+                    else if(sceneBlock->checkCurrentProperty("directionalLight"))
+                    {
+                        float intensity = sceneBlock->getCurrentValue<float>(0);
+                        glm::vec3 colour = sceneBlock->getCurrentValue<glm::vec3>(1);
+                        //Directional light component FOR NOW
+                        DirectionalLightComponent* directionalLight = (new DirectionalLightComponent())->construct(intensity, colour);
+                        ent->addComponent(directionalLight);
+                    }
+                    else if(sceneBlock->checkCurrentProperty("pointLight"))
+                    {
+                        float intensity = sceneBlock->getCurrentValue<float>(0);
+                        float attenuation = sceneBlock->getCurrentValue<float>(1);
+                        glm::vec3 colour = sceneBlock->getCurrentValue<glm::vec3>(2);
+                        //Point light component FOR NOW
+                        PointLightComponent* pointLight = (new PointLightComponent())->construct(intensity, attenuation, colour);
+                        ent->addComponent(pointLight);
                     }
                     else
                     {

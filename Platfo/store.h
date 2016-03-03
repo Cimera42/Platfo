@@ -14,10 +14,10 @@ public:
     virtual ~Store();
     virtual void loadStore(std::string); ///Load the actual data on a new thread
 
-protected:
-    //Prevent usage outside of the class, subclass and friends
-    int usageCount = 0; //! Used as an internal counter.
     bool correctlyLoaded = false; //! Used to signify if the object has been loaded correctly. If not the object will be immediately deleted. (Save guard)
+
+protected:
+    int usageCount = 0; //! Used as an internal counter.
     std::string internalName; //! Used as a check on the object that's been loaded and maintained, every object must have a name
 };
 

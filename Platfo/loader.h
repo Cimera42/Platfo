@@ -23,6 +23,7 @@
 #include "logger.h"
 #include "windowComponent.h"
 #include <pthread.h>
+#include "globals.h"
 
 extern std::map<std::string, Store*> internalMap;
 extern std::map<std::string, pthread_t> currentlyLoadingMap;
@@ -160,8 +161,11 @@ bool Load<T>::Object(T** returnLoc, bool attemptLoad, std::string s)
 {
     //Create a new instance of the store
     T * defaultValues = new T();
-    //defaultValues->loadStore(s); //REMOVE IF 2ND THREAD
-    //defaultValues->internalName = s; //REMOVE IF 2ND THREAD
+    if(!MULTITHREADED_LOADING)
+    {
+        //defaultValues->loadStore(s);
+        defaultValues->internalName = s;
+    }
     *returnLoc = defaultValues;
 
     //Create paramters to send to secondary thread
@@ -171,11 +175,17 @@ bool Load<T>::Object(T** returnLoc, bool attemptLoad, std::string s)
     param->attemptLoad = attemptLoad;
     param->defaultValues = defaultValues;
 
-    //IF 2ND THREAD, REMOVE COMMENTS
-    //Create a thread which does loading, and in the meantime - return the created instance of the store.
-    pthread_t thread;
-    pthread_create(&thread, NULL, threadedLoad, (void*) param);
-    //pthread_join(thread, NULL);
+    if(MULTITHREADED_LOADING)
+    {
+        //Create a thread which does loading, and in the meantime - return the created instance of the store.
+        pthread_t thread;
+        pthread_create(&thread, NULL, threadedLoad, (void*) param);
+        //pthread_join(thread, NULL);
+    }
+    else
+    {
+        threadedLoad(param);
+    }
 
     return true;
 }

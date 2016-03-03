@@ -1,18 +1,18 @@
-#ifndef RENDER2DSYSTEM_H_INCLUDED
-#define RENDER2DSYSTEM_H_INCLUDED
+#ifndef RENDERSCREENSYSTEM_H_INCLUDED
+#define RENDERSCREENSYSTEM_H_INCLUDED
 
 #include "system.h"
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 
-class Render2DSystem : public System
+class RenderScreenSystem : public System
 {
     private:
         static SystemID ID;
 
     public:
-        Render2DSystem();
-        virtual ~Render2DSystem();
+        RenderScreenSystem();
+        virtual ~RenderScreenSystem();
 
         GLuint VAO;
         GLuint vertexBuffer;
@@ -31,4 +31,4 @@ class Render2DSystem : public System
         void update();
 };
 
-#endif // RENDER2DSYSTEM_H_INCLUDED
+#endif // RENDERSCREENSYSTEM_H_INCLUDED
