@@ -2877,7 +2877,7 @@
 1444967280 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\system.h
 	<vector>
 
-1457014034 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\globals.h
+1457084812 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\globals.h
 	"entity.h"
 	"component.h"
 	"system.h"
@@ -3055,7 +3055,7 @@
 1442725314 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\logger.cpp
 	"logger.h"
 
-1457013618 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\main.cpp
+1457070232 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\main.cpp
 	"main.h"
 	"globals.h"
 	"entity.h"
@@ -3087,6 +3087,9 @@
 	"windowComponent.h"
 	"worldComponent.h"
 	"playerComponent.h"
+	"directionalLightComponent.h"
+	"pointLightComponent.h"
+	"spotLightComponent.h"
 	<iostream>
 	<string>
 	<fstream>
@@ -3429,7 +3432,7 @@
 	<glm/glm.hpp>
 	<glm/gtx/transform.hpp>
 
-1457014819 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\scenestore.cpp
+1457084705 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\scenestore.cpp
 	"sceneStore.h"
 	"openGLFunctions.h"
 	"entity.h"
@@ -3447,6 +3450,7 @@
 	"playerComponent.h"
 	"directionalLightComponent.h"
 	"pointLightComponent.h"
+	"spotLightComponent.h"
 	"logger.h"
 
 1442725306 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\store.cpp
@@ -3532,15 +3536,17 @@
 	"component.h"
 	<glm/glm.hpp>
 
-1457015035 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\lightingsystem.cpp
+1457099383 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\lightingsystem.cpp
 	"lightingSystem.h"
 	<iostream>
 	"worldComponent.h"
 	"directionalLightComponent.h"
 	"pointLightComponent.h"
+	"spotLightComponent.h"
 	"globals.h"
+	"own_funcs.h"
 
-1457012988 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\lightingsystem.h
+1457095207 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\lightingsystem.h
 	"system.h"
 	<glm/glm.hpp>
 
@@ -3553,7 +3559,7 @@
 	<GL/glew.h>
 	<glm/glm.hpp>
 
-1457011770 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\renderscreencomponent.h
+1457095002 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\renderscreencomponent.h
 	"component.h"
 	<GL/glew.h>
 	<glm/glm.hpp>
@@ -3565,13 +3571,13 @@
 	"logger.h"
 	"typeConversion.h"
 
-1457012332 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\renderscreencomponent.cpp
+1457094918 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\renderscreencomponent.cpp
 	"renderScreenComponent.h"
 	"logger.h"
 	"typeConversion.h"
 	"loader.h"
 
-1457014674 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\renderscreensystem.cpp
+1457095234 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\renderscreensystem.cpp
 	"renderScreenSystem.h"
 	"globals.h"
 	<iostream>
@@ -3582,4 +3588,13 @@
 	"loader.h"
 	"lightingSystem.h"
 	<glm/glm.hpp>
+
+1457084474 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\spotlightcomponent.h
+	"component.h"
+	<glm/glm.hpp>
+
+1457084463 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\spotlightcomponent.cpp
+	"spotLightComponent.h"
+	"logger.h"
+	"typeConversion.h"
 

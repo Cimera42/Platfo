@@ -22,14 +22,24 @@ class RenderScreenComponent : public Component
         TextureStore* textureStore;
         ShaderStore* shaderStore;
 
+        GLuint directionalLightLoc_count;
         GLuint directionalLightLoc_direction;
         GLuint directionalLightLoc_intensity;
         GLuint directionalLightLoc_colour;
 
+        GLuint pointLightLoc_count;
         GLuint pointLightLoc_location;
         GLuint pointLightLoc_intensity;
         GLuint pointLightLoc_attenuation;
         GLuint pointLightLoc_colour;
+
+        GLuint spotLightLoc_count;
+        GLuint spotLightLoc_location;
+        GLuint spotLightLoc_direction;
+        GLuint spotLightLoc_intensity;
+        GLuint spotLightLoc_attenuation;
+        GLuint spotLightLoc_angle;
+        GLuint spotLightLoc_colour;
 
         void findShaderLocations();
 

@@ -17,7 +17,7 @@ renderScreen: 3DRenderFBOTextures, false, debug/shaderScreen.store;
 Entity "sunLight"
 {
 world: 1,1,-1, 1,1,1, 0,0,0;
-directionalLight: .1, 1,1,1;
+directionalLight: .25, 1,1,1;
 }
 
 Entity "3dCamera"
@@ -25,7 +25,30 @@ Entity "3dCamera"
 world: -3,10.5,3, 1,1,1, 0,135,0;
 control: 5, W, S, A, D, Q, E;
 camera3d: 90,0.01,100, true;
-pointLight: 1, 2, 1,1,1;
+}
+
+Entity "tunnel spotlight 1"
+{
+world: 3.7,7.5,-0.5, 1,1,1, 90,0,0;
+spotLight: .5, 5, 5,35, 1,1,0;
+}
+
+Entity "tunnel spotlight 2"
+{
+world: 3,7,2, 1,1,1, 90,0,0;
+spotLight: .5, 5, 5,35, 1,1,0;
+}
+
+Entity "tunnel spotlight 3"
+{
+world: 2.25,6,4.5, 1,1,1, 90,0,0;
+spotLight: .5, 5, 5,35, 1,1,0;
+}
+
+Entity "flooor"
+{
+world: 0,0,0, 10,1,10, 0,0,0;
+render3d: debug/plane.store, debug/rockTexture.store, debug/shader3D.store;
 }
 
 Entity "mountain path"
@@ -53,7 +76,7 @@ render3d: debug/grug.store, debug/grugTexture.store, debug/shader3D.store;
 Entity "grug light"
 {
 world: -3.5,8.2,-5.4, 1,1,1, 0,0,0;
-pointLight: 1, 1.5, 1,1,1;
+pointLight: 1, 1.5, 1,.75,0;
 }
 
 Entity "houserock"

@@ -6,6 +6,7 @@
 
 struct DirectionalLightGroup
 {
+    int count = 0;
     std::vector<glm::vec3> direction;
     std::vector<float> intensity;
     std::vector<glm::vec3> colour;
@@ -13,9 +14,21 @@ struct DirectionalLightGroup
 
 struct PointLightGroup
 {
+    int count = 0;
     std::vector<glm::vec3> location;
     std::vector<float> intensity;
     std::vector<float> attenuation;
+    std::vector<glm::vec3> colour;
+};
+
+struct SpotLightGroup
+{
+    int count = 0;
+    std::vector<glm::vec3> location;
+    std::vector<glm::vec3> direction;
+    std::vector<float> intensity;
+    std::vector<float> attenuation;
+    std::vector<glm::vec2> angle;
     std::vector<glm::vec3> colour;
 };
 
@@ -30,6 +43,7 @@ class LightingSystem : public System
 
         DirectionalLightGroup compileDirectional();
         PointLightGroup compilePoint();
+        SpotLightGroup compileSpot();
 
         //Auto generation of ID
         SystemID getID() {if(ID == 0) {ID = systemIDIncrementor++;} return ID;}

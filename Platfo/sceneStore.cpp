@@ -16,6 +16,7 @@
 #include "playerComponent.h"
 #include "directionalLightComponent.h"
 #include "pointLightComponent.h"
+#include "spotLightComponent.h"
 #include "logger.h"
 /**SceneStore allows us to store the entities and any global properties.
     - Evokes components on entities. Essentially the only reason this is a store is to allow for preloading of levels in the future.
@@ -152,6 +153,16 @@ void SceneStore::loadStore(std::string name)
                         //Point light component FOR NOW
                         PointLightComponent* pointLight = (new PointLightComponent())->construct(intensity, attenuation, colour);
                         ent->addComponent(pointLight);
+                    }
+                    else if(sceneBlock->checkCurrentProperty("spotLight"))
+                    {
+                        float intensity = sceneBlock->getCurrentValue<float>(0);
+                        float attenuation = sceneBlock->getCurrentValue<float>(1);
+                        glm::vec2 angle = sceneBlock->getCurrentValue<glm::vec2>(2);
+                        glm::vec3 colour = sceneBlock->getCurrentValue<glm::vec3>(4);
+                        //Spot light component FOR NOW
+                        SpotLightComponent* spotLight = (new SpotLightComponent())->construct(intensity, attenuation, angle, colour);
+                        ent->addComponent(spotLight);
                     }
                     else
                     {

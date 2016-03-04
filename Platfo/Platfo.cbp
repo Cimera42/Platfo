@@ -115,6 +115,9 @@
 			<Option virtualFolder="StoreFiles/Texture/" />
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="debug/plane.store">
+			<Option virtualFolder="StoreFiles/Model/" />
+		</Unit>
 		<Unit filename="debug/rock1.store">
 			<Option virtualFolder="StoreFiles/Model/" />
 		</Unit>
@@ -346,6 +349,12 @@
 		</Unit>
 		<Unit filename="shaders/3D/Plain/3dvert.vert">
 			<Option virtualFolder="Shaders/3D/Plain/" />
+		</Unit>
+		<Unit filename="spotLightComponent.cpp">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="spotLightComponent.h">
+			<Option virtualFolder="Component/" />
 		</Unit>
 		<Unit filename="store.cpp">
 			<Option virtualFolder="Store/" />

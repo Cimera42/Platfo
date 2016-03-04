@@ -90,6 +90,7 @@ void RenderScreenSystem::update()
     LightingSystem* lightingSystem = static_cast<LightingSystem*>(systems[LightingSystem::getStaticID()]);
     DirectionalLightGroup directionalLights = lightingSystem->compileDirectional();
     PointLightGroup pointLights = lightingSystem->compilePoint();
+    SpotLightGroup spotLights = lightingSystem->compileSpot();
 
     glDisable(GL_DEPTH_TEST);
     for(int subID = 0; subID < subscribedEntities[0].size(); subID++)
@@ -106,19 +107,35 @@ void RenderScreenSystem::update()
 
             glSetUseProgram(renderComp->shaderStore->shaderID);
 
-            if(directionalLights.direction.size() > 0)
+            if(directionalLights.count > 0)
             {
+                glUniform1i(renderComp->directionalLightLoc_count, directionalLights.count);
+
                 glUniform3fv(renderComp->directionalLightLoc_direction, directionalLights.direction.size(), &directionalLights.direction[0][0]);
                 glUniform1fv(renderComp->directionalLightLoc_intensity, directionalLights.intensity.size(), &directionalLights.intensity[0]);
                 glUniform3fv(renderComp->directionalLightLoc_colour, directionalLights.colour.size(), &directionalLights.colour[0][0]);
             }
 
-            if(pointLights.location.size() > 0)
+            if(pointLights.count > 0)
             {
+                glUniform1i(renderComp->pointLightLoc_count, pointLights.count);
+
                 glUniform3fv(renderComp->pointLightLoc_location, pointLights.location.size(), &pointLights.location[0][0]);
                 glUniform1fv(renderComp->pointLightLoc_intensity, pointLights.intensity.size(), &pointLights.intensity[0]);
                 glUniform1fv(renderComp->pointLightLoc_attenuation, pointLights.attenuation.size(), &pointLights.attenuation[0]);
                 glUniform3fv(renderComp->pointLightLoc_colour, pointLights.colour.size(), &pointLights.colour[0][0]);
+            }
+
+            if(spotLights.count > 0)
+            {
+                glUniform1i(renderComp->spotLightLoc_count, spotLights.count);
+
+                glUniform3fv(renderComp->spotLightLoc_location, spotLights.location.size(), &spotLights.location[0][0]);
+                glUniform3fv(renderComp->spotLightLoc_direction, spotLights.direction.size(), &spotLights.direction[0][0]);
+                glUniform1fv(renderComp->spotLightLoc_intensity, spotLights.intensity.size(), &spotLights.intensity[0]);
+                glUniform1fv(renderComp->spotLightLoc_attenuation, spotLights.attenuation.size(), &spotLights.attenuation[0]);
+                glUniform2fv(renderComp->spotLightLoc_angle, spotLights.angle.size(), &spotLights.angle[0][0]);
+                glUniform3fv(renderComp->spotLightLoc_colour, spotLights.colour.size(), &spotLights.colour[0][0]);
             }
 
             //Bind texture

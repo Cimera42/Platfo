@@ -32,6 +32,9 @@
 #include "windowComponent.h"
 #include "worldComponent.h"
 #include "playerComponent.h"
+#include "directionalLightComponent.h"
+#include "pointLightComponent.h"
+#include "spotLightComponent.h"
 
 #include <iostream>
 #include <string>
@@ -64,6 +67,9 @@ int main()
     components[WindowComponent::getStaticID()] = new WindowComponent();
     components[WorldComponent::getStaticID()] = new WorldComponent();
     components[PlayerComponent::getStaticID()] = new PlayerComponent();
+    components[DirectionalLightComponent::getStaticID()] = new DirectionalLightComponent();
+    components[PointLightComponent::getStaticID()] = new PointLightComponent();
+    components[SpotLightComponent::getStaticID()] = new SpotLightComponent();
 
     //File loading TEST
     SceneStore * scene;

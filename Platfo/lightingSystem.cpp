@@ -4,7 +4,9 @@
 #include "worldComponent.h"
 #include "directionalLightComponent.h"
 #include "pointLightComponent.h"
+#include "spotLightComponent.h"
 #include "globals.h"
+#include "own_funcs.h"
 
 SystemID LightingSystem::ID;
 
@@ -21,6 +23,12 @@ LightingSystem::LightingSystem()
     subList2.push_back(WorldComponent::getStaticID());
     subList2.push_back(PointLightComponent::getStaticID());
     addSubList(subList2);
+
+    std::vector<ComponentID> subList3;
+    //Components needed to subscribe to system
+    subList3.push_back(WorldComponent::getStaticID());
+    subList3.push_back(SpotLightComponent::getStaticID());
+    addSubList(subList3);
 }
 LightingSystem::~LightingSystem(){}
 
@@ -37,6 +45,8 @@ DirectionalLightGroup LightingSystem::compileDirectional()
         directionalLights.direction.push_back(worldComp->position);
         directionalLights.intensity.push_back(directionalLightComp->intensity);
         directionalLights.colour.push_back(directionalLightComp->colour);
+
+        directionalLights.count++;
     }
     return directionalLights;
 }
@@ -55,6 +65,38 @@ PointLightGroup LightingSystem::compilePoint()
         pointLights.intensity.push_back(pointLightComp->intensity);
         pointLights.attenuation.push_back(pointLightComp->attenuation);
         pointLights.colour.push_back(pointLightComp->colour);
+
+        pointLights.count++;
     }
     return pointLights;
+}
+
+SpotLightGroup LightingSystem::compileSpot()
+{
+    SpotLightGroup spotLights;
+
+    for(int subID = 0; subID < subscribedEntities[2].size(); subID++)
+    {
+        Entity* entity = entities[subscribedEntities[2][subID]];
+        WorldComponent* worldComp = static_cast<WorldComponent*>(entity->getComponent(WorldComponent::getStaticID()));
+        SpotLightComponent* spotLightComp = static_cast<SpotLightComponent*>(entity->getComponent(SpotLightComponent::getStaticID()));
+
+        spotLights.location.push_back(worldComp->position);
+
+        float pitch = toRad(worldComp->rotation.x);
+        float yaw = toRad(worldComp->rotation.y);
+        glm::vec3 direction = glm::vec3(cos(pitch) * sin(yaw),
+                                       sin(pitch),
+                                       cos(pitch) * cos(yaw));
+
+        spotLights.direction.push_back(direction);
+        spotLights.intensity.push_back(spotLightComp->intensity);
+        spotLights.attenuation.push_back(spotLightComp->attenuation);
+        glm::vec2 angles = glm::vec2(cos(toRad(spotLightComp->angle.x)), cos(toRad(spotLightComp->angle.y)));
+        spotLights.angle.push_back(angles);
+        spotLights.colour.push_back(spotLightComp->colour);
+
+        spotLights.count++;
+    }
+    return spotLights;
 }
