@@ -38,7 +38,7 @@ void TextureStore::loadStore(std::string name)
     {
         while(textureBlock->getNextElement()) //Changed to if for only the one texture.
         {
-            if(textureBlock->checkCurrentElement("Texture"))
+            if(textureBlock->checkCurrentElement("Texture2D"))
             {
                 TextureData textureData;
 
@@ -54,6 +54,34 @@ void TextureStore::loadStore(std::string name)
                 if (textureData.textureFile != "") //After we've loaded all properties for the texture element, we can actually load the texture!...
                 {
                     int tempID = load2DTexture(textureData.textureFile, textureData.srgb); //Load the actual texture we store
+                    if(tempID != 0)
+                    {
+                        pthread_mutex_lock(&textureLoadMutex);
+                        textureData.textureID = tempID;
+                        pthread_mutex_unlock(&textureLoadMutex);
+                    }
+                }
+                textureList.push_back(textureData);
+            }
+            else if(textureBlock->checkCurrentElement("TextureCubemap"))
+            {
+                TextureData textureData;
+                std::vector<std::string> fileNames;
+                while(textureBlock->getNextProperty())
+                {
+                    if(textureBlock->checkCurrentProperty("filename"))
+                    {
+                        for(int i=0; i<6; i++) //Load each face of the cubemap
+                        {
+                            fileNames.push_back(readFile.fileDirectory+textureBlock->getCurrentValue<std::string>(i));
+                        }
+                    }
+                    else
+                        Logger()<<"Innapropriate texture property in: "<<readFile.fileName<<std::endl;
+                }
+                if (fileNames.size() != 0) //After we've loaded all properties for the texture element, we can actually load the texture!...
+                {
+                    int tempID = loadCubemapTexture(fileNames); //Load the actual texture we store
                     if(tempID != 0)
                     {
                         pthread_mutex_lock(&textureLoadMutex);

@@ -1,4 +1,4 @@
-Texture "whatever"
+Texture2D "whatever"
 {
 filename: ../textures/teex.png;
 srgb: false;

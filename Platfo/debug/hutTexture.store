@@ -1,4 +1,4 @@
-Texture "hut texture"
+Texture2D "hut texture"
 {
 filename: ../textures/hut_texture.png;
 srgb: false;

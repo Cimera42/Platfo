@@ -8,6 +8,7 @@
 #include "renderScreenComponent.h"
 #include "render2DComponent.h"
 #include "render3DComponent.h"
+#include "renderSkyboxComponent.h"
 #include "worldComponent.h"
 #include "tempplayerControlComponent.h"
 #include "camera2DComponent.h"
@@ -81,6 +82,15 @@ void SceneStore::loadStore(std::string name)
                         std::string texturePath = sceneBlock->getCurrentValue<std::string>(1);
                         std::string shaderPath = sceneBlock->getCurrentValue<std::string>(2);
                         Render3DComponent* render = (new Render3DComponent())->construct(modelPath,texturePath,shaderPath);
+                        ent->addComponent(render);
+                    }
+                    else if(sceneBlock->checkCurrentProperty("renderSkybox"))
+                    {
+                        //RenderSkybox component FOR NOW
+                        std::string modelPath = sceneBlock->getCurrentValue<std::string>(0);
+                        std::string texturePath = sceneBlock->getCurrentValue<std::string>(1);
+                        std::string shaderPath = sceneBlock->getCurrentValue<std::string>(2);
+                        RenderSkyboxComponent* render = (new RenderSkyboxComponent())->construct(modelPath,texturePath,shaderPath);
                         ent->addComponent(render);
                     }
                     else if(sceneBlock->checkCurrentProperty("world"))

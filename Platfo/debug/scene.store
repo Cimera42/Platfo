@@ -14,6 +14,11 @@ Entity "screen"
 renderScreen: 3DRenderFBOTextures, false, debug/shaderScreen.store;
 }
 
+Entity "skybox"
+{
+renderSkybox: debug/defaultBox.store, debug/skyboxTexture.store, debug/shaderSkybox.store;
+}
+
 Entity "sunLight"
 {
 world: 1,1,-1, 1,1,1, 0,0,0;

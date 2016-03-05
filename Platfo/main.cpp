@@ -11,6 +11,7 @@
 #include "windowSystem.h"
 #include "render2DSystem.h"
 #include "render3DSystem.h"
+#include "renderSkyboxSystem.h"
 #include "renderScreenSystem.h"
 #include "sceneStore.h"
 #include "textureStore.h"
@@ -27,6 +28,7 @@
 #include "camera3DComponent.h"
 #include "render2DComponent.h"
 #include "render3DComponent.h"
+#include "renderSkyboxComponent.h"
 #include "renderScreenComponent.h"
 #include "tempplayerControlComponent.h"
 #include "windowComponent.h"
@@ -48,6 +50,7 @@ int main()
     //Temporary loading place for systems
     systems[WindowSystem::getStaticID()] = new WindowSystem();
     systems[Render3DSystem::getStaticID()] = new Render3DSystem();
+    systems[RenderSkyboxSystem::getStaticID()] = new RenderSkyboxSystem();
     systems[RenderScreenSystem::getStaticID()] = new RenderScreenSystem();
     systems[Render2DSystem::getStaticID()] = new Render2DSystem();
     systems[PlayerControlSystem::getStaticID()] = new PlayerControlSystem();
@@ -62,6 +65,7 @@ int main()
     components[Camera3DComponent::getStaticID()] = new Camera3DComponent();
     components[Render2DComponent::getStaticID()] = new Render2DComponent();
     components[Render3DComponent::getStaticID()] = new Render3DComponent();
+    components[RenderSkyboxComponent::getStaticID()] = new RenderSkyboxComponent();
     components[RenderScreenComponent::getStaticID()] = new RenderScreenComponent();
     components[PlayerControlComponent::getStaticID()] = new PlayerControlComponent();
     components[WindowComponent::getStaticID()] = new WindowComponent();
@@ -100,6 +104,8 @@ int main()
             systems[Camera2DSystem::getStaticID()]->update();
             //Camera 3D matrix calculation system
             systems[Camera3DSystem::getStaticID()]->update();
+            //Render Skybox system
+            systems[RenderSkyboxSystem::getStaticID()]->update();
             //3D rendering system
             systems[Render3DSystem::getStaticID()]->update();
             //Screen rendering system

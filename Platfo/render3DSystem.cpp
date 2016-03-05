@@ -127,8 +127,8 @@ void Render3DSystem::update()
     }
 
     glSetBindFramebuffer(GL_FRAMEBUFFER, framebufferID);
-    glClearColor(0.0f,0.0f,0.0f,0.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    //glClearColor(0.0f,0.0f,0.0f,0.0f);
+    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     for(int subID = 0; subID < subscribedEntities[0].size(); subID++)
     {
         Entity* entity = entities[subscribedEntities[0][subID]];

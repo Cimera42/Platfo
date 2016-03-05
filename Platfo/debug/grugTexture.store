@@ -1,4 +1,4 @@
-Texture "grug texture"
+Texture2D "grug texture"
 {
 filename: ../textures/diffuseGrug.png;
 srgb: false;

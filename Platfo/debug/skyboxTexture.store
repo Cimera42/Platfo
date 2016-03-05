@@ -1,0 +1,11 @@
+TextureCubemap "skybox textures"
+{
+filename:
+../textures/skybox/0mettle.png,
+../textures/skybox/1mettle.png,
+../textures/skybox/2mettle.png,
+../textures/skybox/3mettle.png,
+../textures/skybox/4mettle.png,
+../textures/skybox/5mettle.png
+;
+}

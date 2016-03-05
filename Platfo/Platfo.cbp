@@ -90,6 +90,9 @@
 		<Unit filename="consoleSystem.h">
 			<Option virtualFolder="System/" />
 		</Unit>
+		<Unit filename="debug/defaultBox.store">
+			<Option virtualFolder="StoreFiles/Model/" />
+		</Unit>
 		<Unit filename="debug/grug.store">
 			<Option virtualFolder="StoreFiles/Model/" />
 			<Option target="&lt;{~None~}&gt;" />
@@ -144,6 +147,12 @@
 		</Unit>
 		<Unit filename="debug/shaderScreen.store">
 			<Option virtualFolder="StoreFiles/Shader/" />
+		</Unit>
+		<Unit filename="debug/shaderSkybox.store">
+			<Option virtualFolder="StoreFiles/Shader/" />
+		</Unit>
+		<Unit filename="debug/skyboxTexture.store">
+			<Option virtualFolder="StoreFiles/Texture/" />
 		</Unit>
 		<Unit filename="debug/texture.store">
 			<Option virtualFolder="StoreFiles/Texture/" />
@@ -320,6 +329,18 @@
 		<Unit filename="renderScreenSystem.h">
 			<Option virtualFolder="System/" />
 		</Unit>
+		<Unit filename="renderSkyboxComponent.cpp">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="renderSkyboxComponent.h">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="renderSkyboxSystem.cpp">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="renderSkyboxSystem.h">
+			<Option virtualFolder="System/" />
+		</Unit>
 		<Unit filename="sceneStore.cpp">
 			<Option virtualFolder="Store/" />
 		</Unit>
@@ -350,13 +371,18 @@
 		<Unit filename="shaders/3D/Plain/3dvert.vert">
 			<Option virtualFolder="Shaders/3D/Plain/" />
 		</Unit>
+		<Unit filename="shaders/3D/Plain/skybox.frag">
+			<Option virtualFolder="Shaders/3D/Plain/" />
+		</Unit>
+		<Unit filename="shaders/3D/Plain/skybox.vert">
+			<Option virtualFolder="Shaders/3D/Plain/" />
+		</Unit>
 		<Unit filename="spotLightComponent.cpp">
 			<Option virtualFolder="Component/" />
 		</Unit>
 		<Unit filename="spotLightComponent.h">
 			<Option virtualFolder="Component/" />
-		</Unit>
-		<Unit filename="store.cpp">
+		</Unit>		<Unit filename="store.cpp">
 			<Option virtualFolder="Store/" />
 		</Unit>
 		<Unit filename="store.h">

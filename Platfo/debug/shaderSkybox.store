@@ -1,0 +1,5 @@
+Shader "basic skybox shader"
+{
+vert: ../shaders/3D/Plain/skybox.vert;
+frag: ../shaders/3D/Plain/skybox.frag;
+}

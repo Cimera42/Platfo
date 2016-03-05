@@ -1,4 +1,4 @@
-Texture "mountain path texture"
+Texture2D "mountain path texture"
 {
 filename: ../textures/mountainPath_texture.png;
 srgb: false;

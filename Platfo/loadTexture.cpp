@@ -165,3 +165,49 @@ GLuint load2DTextureArray(std::vector<const char*> texturePaths, int imgsize)
 
     return texture_id;
 }
+
+GLuint loadCubemapTexture(std::vector<std::string> textureNames)
+{
+    GLuint texture_id;
+    if(textureNames.size() == 6)
+    {
+        //Load cubemap textures
+        //All faces already need to be corrected for s_rgb...
+        texture_id = SOIL_load_OGL_cubemap
+        (
+            textureNames[0].c_str(), //front
+            textureNames[1].c_str(), //back
+            textureNames[2].c_str(), //top
+            textureNames[3].c_str(), //bottom
+            textureNames[4].c_str(), //left
+            textureNames[5].c_str(), //right
+            SOIL_LOAD_RGB,
+            SOIL_CREATE_NEW_ID,
+            0
+        );
+    }
+    else
+    {
+        Logger()<<"Invalid cubemap texture size - returning 0"<<std::endl;
+        return 0;
+    }
+
+    // Format cube map texture
+    glSetBindTexture(GL_TEXTURE_CUBE_MAP, texture_id);
+    glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+    glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    if (!texture_id)
+    {
+        Logger()<<"Cubemap not loaded- (First face: "<<textureNames[0]<<") - "<<SOIL_last_result()<<std::endl;
+        return 0;
+    }
+    else
+    {
+        Logger()<<"Cubemap loaded: (First face:) "<<textureNames[0]<<"."<<std::endl;
+    }
+
+    return texture_id;
+}

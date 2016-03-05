@@ -120,10 +120,19 @@ void main()
     vec4 tex =  texture(textureSampler1, vUV);
     vec3 norm = texture(textureSampler2, vUV).rgb;
     vec3 pos =  texture(textureSampler3, vUV).rgb;
+    float depth = texture(textureSampler4, vUV).r;
+    float f = 100.0;
+    float n = 0.01;
+    depth = (2 * n) / (f + n - depth * (f - n));
 
     vec3 lighting = vec3(0,0,0);
     lighting += calculateAllDirectionalLights(norm);
     lighting += calculateAllPointLights(pos, norm);
-    lighting += calculateAllSpotLights(pos, norm);
-    outColour = vec4(tex.rgb*lighting,tex.a);
-}
+    if(depth >= 0.999)
+    {
+        outColour = vec4(tex.rgb,tex.a);
+    }
+    else
+    {
+        outColour = vec4(tex.rgb*lighting,tex.a);
+    }}

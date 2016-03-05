@@ -1,4 +1,4 @@
-Texture "rock texture"
+Texture2D "rock texture"
 {
 filename: ../textures/diffuseRockGrey.png;
 srgb: false;

@@ -1,0 +1,4 @@
+Mesh "box"
+{
+filename: ../models/cube.obj;
+}
