@@ -24,9 +24,15 @@ void addEntity(Entity* inEntity)
     pthread_mutex_unlock(&entityMutex);
 }
 
+bool entityExists(EntityID entityID)
+{
+    return entities.find(entityID) != entities.end();
+}
+
 void deleteEntity(EntityID inID)
 {
-    entitiesToDelete.push_back(inID);
+    if(entityExists(inID))
+        entitiesToDelete.push_back(inID);
 }
 
 void deleteFlaggedEntities()

@@ -1,7 +1,7 @@
 #ifndef GLOBALS_H_INCLUDED
 #define GLOBALS_H_INCLUDED
 
-#define MULTITHREADED_LOADING true
+#define MULTITHREADED_LOADING false
 
 #include "entity.h"
 #include "component.h"
@@ -20,6 +20,7 @@ extern std::unordered_map<ComponentID, Component*> components;
 extern std::unordered_map<EntityID, Entity*> entities;
 
 void addEntity(Entity*);
+bool entityExists(EntityID);
 void deleteEntity(EntityID);
 void deleteFlaggedEntities();
 void deleteAllEntities();

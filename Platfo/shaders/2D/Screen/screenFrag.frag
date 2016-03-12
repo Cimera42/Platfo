@@ -128,11 +128,12 @@ void main()
     vec3 lighting = vec3(0,0,0);
     lighting += calculateAllDirectionalLights(norm);
     lighting += calculateAllPointLights(pos, norm);
+    lighting += calculateAllSpotLights(pos, norm);
     if(depth >= 0.999)
     {
         outColour = vec4(tex.rgb,tex.a);
     }
     else
     {
-        outColour = vec4(tex.rgb*lighting,tex.a);
+    outColour = vec4(tex.rgb*lighting,tex.a);
     }}

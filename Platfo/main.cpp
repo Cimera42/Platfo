@@ -21,6 +21,7 @@
 #include "mouseScreenCoordSystem.h"
 #include "movementSystem.h"
 #include "lightingSystem.h"
+#include "mouseRotationSystem.h"
 #include "consoleSystem.h"
 
 #include "camera2DComponent.h"
@@ -37,6 +38,7 @@
 #include "directionalLightComponent.h"
 #include "pointLightComponent.h"
 #include "spotLightComponent.h"
+#include "mouseRotationComponent.h"
 
 #include <iostream>
 #include <string>
@@ -59,6 +61,7 @@ int main()
     systems[MouseScreenCoordSystem::getStaticID()] = new MouseScreenCoordSystem();
     systems[MovementSystem::getStaticID()] = new MovementSystem();
     systems[LightingSystem::getStaticID()] = new LightingSystem();
+    systems[MouseRotationSystem::getStaticID()] = new MouseRotationSystem();
     systems[ConsoleSystem::getStaticID()] = new ConsoleSystem();
 
     components[Camera2DComponent::getStaticID()] = new Camera2DComponent();
@@ -74,6 +77,7 @@ int main()
     components[DirectionalLightComponent::getStaticID()] = new DirectionalLightComponent();
     components[PointLightComponent::getStaticID()] = new PointLightComponent();
     components[SpotLightComponent::getStaticID()] = new SpotLightComponent();
+    components[MouseRotationComponent::getStaticID()] = new MouseRotationComponent();
 
     //File loading TEST
     SceneStore * scene;
@@ -100,6 +104,8 @@ int main()
             systems[PlayerControlSystem::getStaticID()]->update(delta);
             //Motion addition system
             systems[MovementSystem::getStaticID()]->update(delta);
+            //Mouse rotation system
+            systems[MouseRotationSystem::getStaticID()]->update(delta);
             //Camera 2D matrix calculation system
             systems[Camera2DSystem::getStaticID()]->update();
             //Camera 3D matrix calculation system

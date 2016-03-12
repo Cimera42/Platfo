@@ -1,6 +1,7 @@
 #include "entity.h"
 #include "component.h"
 #include "system.h"
+#include "globals.h"
 
 #include <stdlib.h>
 
@@ -9,6 +10,8 @@ Entity::Entity()
 {
     //Give entity unique id
     entityID = globalEntityIncrementorID++;
+
+    parentEntity = -1;
 }
 Entity::~Entity()
 {
@@ -92,4 +95,29 @@ bool Entity::deleteComponent(ComponentID compID)
         components.erase(compID);
     }
     return false;
+}
+
+bool Entity::addChild(Entity* childEntity)
+{
+    if(entityExists(childEntity->entityID))
+    {
+        if(!isChild(childEntity->entityID))
+        {
+            childEntity->parentEntity = entityID;
+            childEntities[childEntity->entityID] = childEntity;
+        }
+    }
+}
+
+bool Entity::removeChild(EntityID childEntityID)
+{
+    if(isChild(childEntityID))
+    {
+        childEntities.erase(childEntityID);
+    }
+}
+
+bool Entity::isChild(EntityID childEntityID)
+{
+    return childEntities.find(childEntityID) != childEntities.end();
 }

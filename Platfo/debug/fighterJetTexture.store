@@ -1,0 +1,5 @@
+Texture2D "fighter jet texture"
+{
+filename: ../textures/planeTex.png;
+srgb: false;
+}

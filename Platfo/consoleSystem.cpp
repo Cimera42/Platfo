@@ -239,8 +239,8 @@ void ConsoleSystem::update()
                                         int y = stringToFloat(words[3]);
                                         int z = stringToFloat(words[4]);
 
-                                        worldComp->position += glm::vec3(x,y,z);
-                                        worldComp->updateMatrix();
+                                        worldComp->offsetPosition += glm::vec3(x,y,z);
+                                        worldComp->updateData();
                                     }
                                 }
                             }

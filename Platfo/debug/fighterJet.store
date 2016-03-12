@@ -1,0 +1,4 @@
+Mesh "fighter jet"
+{
+filename: ../models/fighterJet.obj;
+}

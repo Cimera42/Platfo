@@ -70,10 +70,10 @@ void PlayerControlSystem::update(float inDelta)
         }
         else
         {
-            worldComp->position += worldComp->forward * moveDir.z * controlComp->speed * inDelta;//bad!
-            worldComp->position += worldComp->up * moveDir.y * controlComp->speed * inDelta;//bad!
-            worldComp->position += worldComp->right * moveDir.x * controlComp->speed * inDelta;//bad!
-            worldComp->updateMatrix();
+            worldComp->offsetPosition += worldComp->forward * moveDir.z * controlComp->speed * inDelta;//bad!
+            worldComp->offsetPosition += worldComp->up * moveDir.y * controlComp->speed * inDelta;//bad!
+            worldComp->offsetPosition += worldComp->right * moveDir.x * controlComp->speed * inDelta;//bad!
+            worldComp->updateData();
         }
     }
 }

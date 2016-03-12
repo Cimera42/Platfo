@@ -166,6 +166,7 @@ GLuint load2DTextureArray(std::vector<const char*> texturePaths, int imgsize)
     return texture_id;
 }
 
+//http://www.katsbits.com/tutorials/blender/render-skybox.php
 GLuint loadCubemapTexture(std::vector<std::string> textureNames)
 {
     GLuint texture_id;
@@ -175,12 +176,12 @@ GLuint loadCubemapTexture(std::vector<std::string> textureNames)
         //All faces already need to be corrected for s_rgb...
         texture_id = SOIL_load_OGL_cubemap
         (
-            textureNames[0].c_str(), //front
-            textureNames[1].c_str(), //back
-            textureNames[2].c_str(), //top
-            textureNames[3].c_str(), //bottom
-            textureNames[4].c_str(), //left
-            textureNames[5].c_str(), //right
+            textureNames[0].c_str(), //front  //left
+            textureNames[1].c_str(), //back   //right
+            textureNames[2].c_str(), //top    //top
+            textureNames[3].c_str(), //bottom //bottom
+            textureNames[4].c_str(), //left   //front
+            textureNames[5].c_str(), //right  //back
             SOIL_LOAD_RGB,
             SOIL_CREATE_NEW_ID,
             0

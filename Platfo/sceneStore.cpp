@@ -18,6 +18,7 @@
 #include "directionalLightComponent.h"
 #include "pointLightComponent.h"
 #include "spotLightComponent.h"
+#include "mouseRotationComponent.h"
 #include "logger.h"
 /**SceneStore allows us to store the entities and any global properties.
     - Evokes components on entities. Essentially the only reason this is a store is to allow for preloading of levels in the future.
@@ -173,6 +174,28 @@ void SceneStore::loadStore(std::string name)
                         //Spot light component FOR NOW
                         SpotLightComponent* spotLight = (new SpotLightComponent())->construct(intensity, attenuation, angle, colour);
                         ent->addComponent(spotLight);
+                    }
+                    else if(sceneBlock->checkCurrentProperty("mouseRot"))
+                    {
+                        float pitchMin = sceneBlock->getCurrentValue<float>(0);
+                        float pitchMax = sceneBlock->getCurrentValue<float>(1);
+                        float yawMin = sceneBlock->getCurrentValue<float>(2);
+                        float yawMax = sceneBlock->getCurrentValue<float>(3);
+                        //Mouse rotation component FOR NOW
+                        MouseRotationComponent* mouseRotComp = (new MouseRotationComponent())->construct(pitchMin, pitchMax, yawMin, yawMax);
+                        ent->addComponent(mouseRotComp);
+                    }
+                    else if(sceneBlock->checkCurrentProperty("childOf"))
+                    {
+                        std::string entityName = sceneBlock->getCurrentValue<std::string>(0);
+                        for(std::unordered_map<EntityID, Entity*>::iterator entityPair = entities.begin(); entityPair != entities.end(); ++entityPair)
+                        {
+                            Entity* checkEnt = entityPair->second;
+                            if(checkEnt->vanityName.compare(entityName) == 0)
+                            {
+                                checkEnt->addChild(ent);
+                            }
+                        }
                     }
                     else
                     {

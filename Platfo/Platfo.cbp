@@ -245,6 +245,18 @@
 		<Unit filename="mouseHandler.h">
 			<Option virtualFolder="InputHandlers/" />
 		</Unit>
+		<Unit filename="mouseRotationComponent.cpp">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="mouseRotationComponent.h">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="mouseRotationSystem.cpp">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="mouseRotationSystem.h">
+			<Option virtualFolder="System/" />
+		</Unit>
 		<Unit filename="mouseScreenCoordSystem.cpp">
 			<Option virtualFolder="System/" />
 		</Unit>
@@ -382,7 +394,8 @@
 		</Unit>
 		<Unit filename="spotLightComponent.h">
 			<Option virtualFolder="Component/" />
-		</Unit>		<Unit filename="store.cpp">
+		</Unit>
+		<Unit filename="store.cpp">
 			<Option virtualFolder="Store/" />
 		</Unit>
 		<Unit filename="store.h">

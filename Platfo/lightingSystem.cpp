@@ -82,14 +82,7 @@ SpotLightGroup LightingSystem::compileSpot()
         SpotLightComponent* spotLightComp = static_cast<SpotLightComponent*>(entity->getComponent(SpotLightComponent::getStaticID()));
 
         spotLights.location.push_back(worldComp->position);
-
-        float pitch = toRad(worldComp->rotation.x);
-        float yaw = toRad(worldComp->rotation.y);
-        glm::vec3 direction = glm::vec3(cos(pitch) * sin(yaw),
-                                       sin(pitch),
-                                       cos(pitch) * cos(yaw));
-
-        spotLights.direction.push_back(direction);
+        spotLights.direction.push_back(worldComp->forward);
         spotLights.intensity.push_back(spotLightComp->intensity);
         spotLights.attenuation.push_back(spotLightComp->attenuation);
         glm::vec2 angles = glm::vec2(cos(toRad(spotLightComp->angle.x)), cos(toRad(spotLightComp->angle.y)));

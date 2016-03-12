@@ -22,6 +22,9 @@ class Entity
         EntityID entityID;
         EntityID getID();
 
+        EntityID parentEntity;
+        std::unordered_map<EntityID, Entity*> childEntities;
+
         //List of components attached to entity
         std::unordered_map<ComponentID, Component*> components;
 
@@ -30,6 +33,10 @@ class Entity
         bool canUseComponent(ComponentID);
         Component* getComponent(ComponentID);
         bool deleteComponent(ComponentID);
+
+        bool addChild(Entity*);
+        bool removeChild(EntityID);
+        bool isChild(EntityID);
 };
 
 #endif // ENTITY_H_INCLUDED

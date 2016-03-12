@@ -16,6 +16,8 @@ class WorldComponent : public Component
         WorldComponent* construct(std::vector<std::string>);
         WorldComponent* clone() {return new WorldComponent(*this);}
 
+        glm::vec3 offsetPosition;
+
         glm::vec3 position;
         glm::vec3 scale;
         glm::vec3 rotation;
@@ -26,7 +28,14 @@ class WorldComponent : public Component
         glm::vec3 right;
         glm::vec3 up;
 
+        void updateData();
         void updateMatrix();
+        void updateChildren();
+
+        WorldComponent* getParent();
+        glm::vec3 getParentPosition();
+        glm::vec3 getParentRotation();
+        glm::mat4 getParentMatrix();
 
         //Auto generation of ID
         ComponentID getID() {if(ID == 0) {ID = componentIDIncrementor++;} return ID;}

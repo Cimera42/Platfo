@@ -58,7 +58,7 @@ void Camera3DComponent::updateMatrix()
         {
             WorldComponent* worldComp = static_cast<WorldComponent*>(entities[parentEntity]->getComponent(WorldComponent::getStaticID()));
 
-            viewMatrix = glm::lookAt(worldComp->position, worldComp->position+worldComp->forward, worldComp->up);
+            viewMatrix = glm::lookAt(worldComp->position, worldComp->position + worldComp->forward, worldComp->up);
         }
     }
 }

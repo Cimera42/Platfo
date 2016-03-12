@@ -22,14 +22,39 @@ renderSkybox: debug/defaultBox.store, debug/skyboxTexture.store, debug/shaderSky
 Entity "sunLight"
 {
 world: 1,1,-1, 1,1,1, 0,0,0;
-directionalLight: .25, 1,1,1;
+directionalLight: .1, 1,1,1;
 }
 
+Entity "fighterJet"
+{
+world: -3,10.5,3, .1,.1,.1, 0,135,0;
+render3d: debug/fighterJet.store, debug/fighterJetTexture.store, debug/shader3D.store;
+control: 5, W, S, A, D, Q, E;
+mouseRot: -90,90, -9999,0;
+}
 Entity "3dCamera"
 {
-world: -3,10.5,3, 1,1,1, 0,135,0;
-control: 5, W, S, A, D, Q, E;
+childOf: fighterJet;
+world: 0,.2,-1, 1,1,1, 0,0,0;
 camera3d: 90,0.01,100, true;
+}
+Entity "fighterJet spotlight"
+{
+childOf: fighterJet;
+world: 0,-0.05,.05, 1,1,1, 190,0,0;
+spotLight: 1, 5, 10,20, 1,1,1;
+}
+Entity "fighterJet winglightL"
+{
+childOf: fighterJet;
+world: -0.23,.01,-.475, 1,1,1, 0,0,0;
+pointLight: 2, 0.2, 1,0,0;
+}
+Entity "fighterJet winglightR"
+{
+childOf: fighterJet;
+world: 0.23,.01,-.475, 1,1,1, 0,0,0;
+pointLight: 2, 0.2, 0,1,0;
 }
 
 Entity "tunnel spotlight 1"
@@ -84,9 +109,9 @@ world: -3.5,8.2,-5.4, 1,1,1, 0,0,0;
 pointLight: 1, 1.5, 1,.75,0;
 }
 
-Entity "houserock"
+Entity "houserock1"
 {
-world: 0.6,9.8,3.2, .25,.25,.25, 0,135,0;
+world: 0.6,9.8,3.2, .25,.25,.25, 0,0,0;
 render3d: debug/rock3.store, debug/rockTexture.store, debug/shader3D.store;
 }
 Entity "houserock"

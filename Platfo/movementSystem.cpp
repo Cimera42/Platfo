@@ -49,7 +49,7 @@ void MovementSystem::update(float inDelta)
         }
 
         glm::vec3 lastAcceleration = movementComp->acceleration;
-        worldComp->position += movementComp->velocity * inDelta + (0.5f * lastAcceleration * sq(inDelta));
+        worldComp->offsetPosition += movementComp->velocity * inDelta + (0.5f * lastAcceleration * sq(inDelta));
         movementComp->acceleration = movementComp->force / movementComp->mass;
         glm::vec3 avg_acceleration = ( lastAcceleration + movementComp->acceleration ) / 2.0f;
         movementComp->velocity += avg_acceleration * inDelta;
@@ -61,6 +61,6 @@ void MovementSystem::update(float inDelta)
         }*/
 
         //Update matrix since position changed
-        worldComp->updateMatrix();
+        worldComp->updateData();
     }
 }
