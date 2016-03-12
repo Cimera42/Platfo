@@ -1,2 +1,2 @@
-# 2DGame
-A 2D game that we feel like making.
+# Platfo
+A 3D game that we feel like making.
