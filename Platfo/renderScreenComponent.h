@@ -22,6 +22,8 @@ class RenderScreenComponent : public Component
         TextureStore* textureStore;
         ShaderStore* shaderStore;
 
+        GLuint cameraPositionLoc;
+
         GLuint directionalLightLoc_count;
         GLuint directionalLightLoc_direction;
         GLuint directionalLightLoc_intensity;

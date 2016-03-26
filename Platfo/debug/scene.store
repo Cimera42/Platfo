@@ -22,7 +22,7 @@ renderSkybox: debug/defaultBox.store, debug/skyboxTexture.store, debug/shaderSky
 Entity "sunLight"
 {
 world: 1,1,-1, 1,1,1, 0,0,0;
-directionalLight: .1, 1,1,1;
+directionalLight: 1, 1,1,1;
 }
 
 Entity "fighterJet"

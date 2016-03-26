@@ -10,6 +10,7 @@
 #include "physicsComponent.h"
 #include "tempplayerControlComponent.h"
 #include "own_funcs.h"
+#include <algorithm>
 
 SystemID PlayerControlSystem::ID;
 
@@ -70,9 +71,13 @@ void PlayerControlSystem::update(float inDelta)
         }
         else
         {
-            worldComp->offsetPosition += worldComp->forward * moveDir.z * controlComp->speed * inDelta;//bad!
-            worldComp->offsetPosition += worldComp->up * moveDir.y * controlComp->speed * inDelta;//bad!
-            worldComp->offsetPosition += worldComp->right * moveDir.x * controlComp->speed * inDelta;//bad!
+            worldComp->offsetPosition += worldComp->forward * 1.0f * controlComp->speed * inDelta;//bad!
+            //worldComp->offsetPosition += worldComp->up * moveDir.y * controlComp->speed * inDelta;//bad!
+            worldComp->rotation.z += moveDir.x*80 * inDelta;
+            worldComp->rotation.y -= worldComp->rotation.z*2 * inDelta;
+            worldComp->rotation.x -= moveDir.z*40 * inDelta;
+            controlComp->speed = std::max(0.0f, controlComp->speed + moveDir.y*5 * inDelta);
+            //worldComp->offsetPosition += worldComp->right * moveDir.x * controlComp->speed * inDelta;//bad!
             worldComp->updateData();
         }
     }

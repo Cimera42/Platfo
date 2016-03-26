@@ -1,7 +1,7 @@
 #ifndef GLOBALS_H_INCLUDED
 #define GLOBALS_H_INCLUDED
 
-#define MULTITHREADED_LOADING false
+#define MULTITHREADED_LOADING true
 
 #include "entity.h"
 #include "component.h"

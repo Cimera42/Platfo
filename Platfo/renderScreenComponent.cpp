@@ -16,6 +16,8 @@ RenderScreenComponent* RenderScreenComponent::construct(std::string textureStore
     Load<TextureStore>::Object(&textureStore, true, textureStoreName);
     Load<ShaderStore>::Object(&shaderStore, true, shaderStoreName);
 
+    cameraPositionLoc = -1;
+
     directionalLightLoc_count = -1;
     directionalLightLoc_direction = -1;
     directionalLightLoc_intensity = -1;
@@ -64,6 +66,8 @@ RenderScreenComponent* RenderScreenComponent::construct(std::vector<std::string>
 
 void RenderScreenComponent::findShaderLocations()
 {
+    cameraPositionLoc = glGetUniformLocation(shaderStore->shaderID, "cameraPosition");
+
     directionalLightLoc_count = glGetUniformLocation(shaderStore->shaderID, "directionalLight_count");
     directionalLightLoc_direction = glGetUniformLocation(shaderStore->shaderID, "directionalLight_direction");
     directionalLightLoc_intensity = glGetUniformLocation(shaderStore->shaderID, "directionalLight_intensity");

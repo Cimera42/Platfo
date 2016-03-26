@@ -2877,7 +2877,7 @@
 1444967280 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\system.h
 	<vector>
 
-1457686880 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\globals.h
+1458737839 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\globals.h
 	"entity.h"
 	"component.h"
 	"system.h"
@@ -3475,7 +3475,7 @@
 	"logger.h"
 	"typeConversion.h"
 
-1457783745 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\tempplayercontrolsystem.cpp
+1458960165 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\tempplayercontrolsystem.cpp
 	"tempplayerControlSystem.h"
 	"globals.h"
 	"openGLFunctions.h"
@@ -3486,6 +3486,7 @@
 	"physicsComponent.h"
 	"tempplayerControlComponent.h"
 	"own_funcs.h"
+	<algorithm>
 
 1457605652 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\texturestore.cpp
 	"textureStore.h"
@@ -3515,7 +3516,7 @@
 	"openGLFunctions.h"
 	"keyboardHandler.h"
 
-1457791749 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\worldcomponent.cpp
+1458959362 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\worldcomponent.cpp
 	"worldComponent.h"
 	<glm/gtx/transform.hpp>
 	"logger.h"
@@ -3567,7 +3568,7 @@
 	<GL/glew.h>
 	<glm/glm.hpp>
 
-1457095002 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\renderscreencomponent.h
+1458891517 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\renderscreencomponent.h
 	"component.h"
 	<GL/glew.h>
 	<glm/glm.hpp>
@@ -3579,13 +3580,13 @@
 	"logger.h"
 	"typeConversion.h"
 
-1457094918 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\renderscreencomponent.cpp
+1458891529 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\renderscreencomponent.cpp
 	"renderScreenComponent.h"
 	"logger.h"
 	"typeConversion.h"
 	"loader.h"
 
-1457792602 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\renderscreensystem.cpp
+1458894084 source:c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\renderscreensystem.cpp
 	"renderScreenSystem.h"
 	"globals.h"
 	<iostream>
@@ -3595,6 +3596,7 @@
 	"openGLFunctions.h"
 	"loader.h"
 	"lightingSystem.h"
+	"camera3DSystem.h"
 	<glm/glm.hpp>
 
 1457084474 c:\users\tim\documents\coding\c++\projects\platfo\trunk\platfo\spotlightcomponent.h

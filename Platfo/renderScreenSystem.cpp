@@ -9,6 +9,7 @@
 #include "loader.h"
 
 #include "lightingSystem.h"
+#include "camera3DSystem.h"
 
 #include <glm/glm.hpp>
 
@@ -92,6 +93,16 @@ void RenderScreenSystem::update()
     PointLightGroup pointLights = lightingSystem->compilePoint();
     SpotLightGroup spotLights = lightingSystem->compileSpot();
 
+    glm::vec3 cameraPosition;
+    Camera3DSystem* cameraSys = static_cast<Camera3DSystem*>(systems[Camera3DSystem::getStaticID()]);
+    if(cameraSys->activeCamera != -1)
+    {
+        WorldComponent* worldComp = static_cast<WorldComponent*>(entities[cameraSys->activeCamera]->getComponent(WorldComponent::getStaticID()));
+        //Send view and projection matrix to shader
+
+        cameraPosition = worldComp->position;
+    }
+
     glDisable(GL_DEPTH_TEST);
     for(int subID = 0; subID < subscribedEntities[0].size(); subID++)
     {
@@ -106,6 +117,8 @@ void RenderScreenSystem::update()
                 renderComp->findShaderLocations();
 
             glSetUseProgram(renderComp->shaderStore->shaderID);
+
+            glUniform3fv(renderComp->cameraPositionLoc, 1, &cameraPosition[0]);
 
             if(directionalLights.count > 0)
             {

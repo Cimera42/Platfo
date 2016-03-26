@@ -1,11 +1,11 @@
 TextureCubemap "skybox textures"
 {
 filename:
-../textures/skybox/nleft.png,
-../textures/skybox/nright.png,
-../textures/skybox/ntop.png,
-../textures/skybox/nbottom.png,
-../textures/skybox/nfront.png,
-../textures/skybox/nback.png
+../textures/skybox/left.jpg,
+../textures/skybox/right.jpg,
+../textures/skybox/top.jpg,
+../textures/skybox/bottom.jpg,
+../textures/skybox/front.jpg,
+../textures/skybox/back.jpg
 ;
 }
