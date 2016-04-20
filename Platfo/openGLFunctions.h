@@ -4,6 +4,7 @@
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <pthread.h>
 
 void glSetActiveTexture(GLenum);
 void glSetBindTexture(GLenum, GLuint);
@@ -13,6 +14,7 @@ void glSetUseProgram(GLuint);
 
 class WindowComponent;
 extern GLFWwindow* glContext;
+extern pthread_mutex_t context_lock;
 extern WindowComponent* mainWindow;
 bool initGLFW();
 bool initGLEW();

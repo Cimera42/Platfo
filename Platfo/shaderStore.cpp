@@ -2,6 +2,7 @@
 #include "loadShader.h"
 #include "logger.h"
 #include "globals.h"
+#include <pthread.h>
 
 ///ShaderStore allows us to store the actual shader from files!
 ShaderStore::ShaderStore()
@@ -21,7 +22,9 @@ ShaderStore::~ShaderStore()
 void ShaderStore::loadStore(std::string name)
 {
     glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
+    pthread_mutex_lock(&context_lock);
     GLFWwindow* tempWindow = glfwCreateWindow(1,1,"",NULL,glContext);
+    pthread_mutex_unlock(&context_lock);
     if(MULTITHREADED_LOADING)
         glfwMakeContextCurrent(tempWindow);
 

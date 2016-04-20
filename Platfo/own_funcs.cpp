@@ -56,3 +56,8 @@ std::vector<std::string> splitBy(std::string inString, char splitCharacter)
     words.push_back(wordBuffer);
     return words;
 }
+
+glm::vec3 computeNormal(glm::vec3 pos1, glm::vec3 pos2, glm::vec3 pos3)
+{
+    return glm::normalize(glm::cross(pos2 - pos1, pos3 - pos1));
+}

@@ -8,6 +8,9 @@
 #include "system.h"
 #include <unordered_map>
 
+extern void * __gxx_personality_v0;
+extern void * _Unwind_Resume;
+
 extern bool shouldExit;
 extern float lastFrame;
 

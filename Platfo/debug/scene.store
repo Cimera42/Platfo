@@ -77,8 +77,8 @@ spotLight: .5, 5, 5,35, 1,1,0;
 
 Entity "flooor"
 {
-world: 0,0,0, 10,1,10, 0,0,0;
-render3d: debug/plane.store, debug/rockTexture.store, debug/shader3D.store;
+world: 0,0,0, 0.1,20,0.1, 0,0,0;
+terrain: ./textures/terr/terr.png, debug/terrainTexture.store, debug/shader3D.store;
 }
 
 Entity "mountain path"

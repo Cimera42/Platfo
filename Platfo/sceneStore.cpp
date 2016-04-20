@@ -19,7 +19,9 @@
 #include "pointLightComponent.h"
 #include "spotLightComponent.h"
 #include "mouseRotationComponent.h"
+#include "terrainComponent.h"
 #include "logger.h"
+#include <pthread.h>
 /**SceneStore allows us to store the entities and any global properties.
     - Evokes components on entities. Essentially the only reason this is a store is to allow for preloading of levels in the future.
 **/
@@ -31,7 +33,9 @@ SceneStore::SceneStore()
 void SceneStore::loadStore(std::string name)
 {
     glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
+    pthread_mutex_lock(&context_lock);//glContext can only be bound to a single thread at a time >< WHY!!!!
     GLFWwindow* tempWindow = glfwCreateWindow(1,1,"",NULL,glContext);
+    pthread_mutex_unlock(&context_lock);
     if(MULTITHREADED_LOADING)
         glfwMakeContextCurrent(tempWindow);
 
@@ -84,6 +88,15 @@ void SceneStore::loadStore(std::string name)
                         std::string shaderPath = sceneBlock->getCurrentValue<std::string>(2);
                         Render3DComponent* render = (new Render3DComponent())->construct(modelPath,texturePath,shaderPath);
                         ent->addComponent(render);
+                    }
+                    else if(sceneBlock->checkCurrentProperty("terrain"))
+                    {
+                        //Terrain component FOR NOW
+                        std::string mapPath = sceneBlock->getCurrentValue<std::string>(0);
+                        std::string texturePath = sceneBlock->getCurrentValue<std::string>(1);
+                        std::string shaderPath = sceneBlock->getCurrentValue<std::string>(2);
+                        TerrainComponent* terrain = (new TerrainComponent())->construct(mapPath,texturePath,shaderPath);
+                        ent->addComponent(terrain);
                     }
                     else if(sceneBlock->checkCurrentProperty("renderSkybox"))
                     {

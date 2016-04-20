@@ -12,7 +12,7 @@ class DirectionalLightComponent : public Component
     public:
         DirectionalLightComponent();
         virtual ~DirectionalLightComponent();
-        DirectionalLightComponent* construct(float,glm::vec3);
+        DirectionalLightComponent* construct(float, glm::vec3);
         DirectionalLightComponent* construct(std::vector<std::string>);
         DirectionalLightComponent* clone() {return new DirectionalLightComponent(*this);}
 

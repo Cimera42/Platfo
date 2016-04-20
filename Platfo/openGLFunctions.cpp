@@ -66,10 +66,11 @@ void glSetUseProgram(GLuint program) //Handler to stop redundant glUseProgram ca
 
 void errCallback(int inCode, const char* descrip)
 {
-    Logger() << "#GLFW ERROR# -- " << descrip << std::endl;
+    Logger() << inCode << " -- #GLFW ERROR# -- " << descrip << std::endl;
 }
 
 GLFWwindow* glContext;
+pthread_mutex_t context_lock = PTHREAD_MUTEX_INITIALIZER;
 WindowComponent* mainWindow;
 bool initGLFW()
 {

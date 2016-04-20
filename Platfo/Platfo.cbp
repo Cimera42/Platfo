@@ -21,15 +21,15 @@
 					<Add directory="../libraries/include" />
 				</Compiler>
 				<Linker>
-					<Add library="..\libraries\shared\lib\libglew32.dll.a" />
-					<Add library="..\libraries\shared\lib\glfw3dll.a" />
-					<Add library="..\libraries\shared\lib\libSOIL.a" />
-					<Add library="..\libraries\shared\lib\libassimp.dll.a" />
+					<Add library="../libraries/shared/lib/libglew32.dll.a" />
+					<Add library="../libraries/shared/lib/glfw3dll.a" />
+					<Add library="../libraries/shared/lib/libSOIL.a" />
+					<Add library="../libraries/shared/lib/libassimp.dll.a" />
 					<Add library="glu32" />
 					<Add library="opengl32" />
 					<Add library="gdi32" />
 					<Add library="comdlg32" />
-					<Add library="..\libraries\shared\lib\libpthreadGC2.a" />
+					<Add library="../libraries/shared/lib/libpthreadGC2.a" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -152,6 +152,9 @@
 			<Option virtualFolder="StoreFiles/Shader/" />
 		</Unit>
 		<Unit filename="debug/skyboxTexture.store">
+			<Option virtualFolder="StoreFiles/Texture/" />
+		</Unit>
+		<Unit filename="debug/terrainTexture.store">
 			<Option virtualFolder="StoreFiles/Texture/" />
 		</Unit>
 		<Unit filename="debug/texture.store">
@@ -417,6 +420,18 @@
 			<Option virtualFolder="System/" />
 		</Unit>
 		<Unit filename="tempplayerControlSystem.h">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="terrainComponent.cpp">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="terrainComponent.h">
+			<Option virtualFolder="Component/" />
+		</Unit>
+		<Unit filename="terrainSystem.cpp">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="terrainSystem.h">
 			<Option virtualFolder="System/" />
 		</Unit>
 		<Unit filename="textureStore.cpp">

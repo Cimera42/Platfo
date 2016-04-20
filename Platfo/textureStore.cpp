@@ -27,7 +27,9 @@ TextureStore::~TextureStore()
 void TextureStore::loadStore(std::string name)
 {
     glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
+    pthread_mutex_lock(&context_lock);
     GLFWwindow* tempWindow = glfwCreateWindow(1,1,"",NULL,glContext);
+    pthread_mutex_unlock(&context_lock);
     if(MULTITHREADED_LOADING)
         glfwMakeContextCurrent(tempWindow);
 

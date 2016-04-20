@@ -22,6 +22,7 @@
 #include "movementSystem.h"
 #include "lightingSystem.h"
 #include "mouseRotationSystem.h"
+#include "terrainSystem.h"
 #include "consoleSystem.h"
 
 #include "camera2DComponent.h"
@@ -39,6 +40,7 @@
 #include "pointLightComponent.h"
 #include "spotLightComponent.h"
 #include "mouseRotationComponent.h"
+#include "terrainComponent.h"
 
 #include <iostream>
 #include <string>
@@ -62,6 +64,7 @@ int main()
     systems[MovementSystem::getStaticID()] = new MovementSystem();
     systems[LightingSystem::getStaticID()] = new LightingSystem();
     systems[MouseRotationSystem::getStaticID()] = new MouseRotationSystem();
+    systems[TerrainSystem::getStaticID()] = new TerrainSystem();
     systems[ConsoleSystem::getStaticID()] = new ConsoleSystem();
 
     components[Camera2DComponent::getStaticID()] = new Camera2DComponent();
@@ -78,6 +81,7 @@ int main()
     components[PointLightComponent::getStaticID()] = new PointLightComponent();
     components[SpotLightComponent::getStaticID()] = new SpotLightComponent();
     components[MouseRotationComponent::getStaticID()] = new MouseRotationComponent();
+    components[TerrainComponent::getStaticID()] = new TerrainComponent();
 
     //File loading TEST
     SceneStore * scene;
@@ -112,6 +116,8 @@ int main()
             systems[Camera3DSystem::getStaticID()]->update();
             //Render Skybox system
             systems[RenderSkyboxSystem::getStaticID()]->update();
+            //Terrain system
+            systems[TerrainSystem::getStaticID()]->update();
             //3D rendering system
             systems[Render3DSystem::getStaticID()]->update();
             //Screen rendering system

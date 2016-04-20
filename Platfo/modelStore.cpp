@@ -2,6 +2,7 @@
 #include "mesh.h"
 #include "logger.h"
 #include "globals.h"
+#include <pthread.h>
 
 ///ModelStore allows us to store the actual models from files!
 ModelStore::ModelStore()
@@ -18,7 +19,9 @@ ModelStore::~ModelStore()
 void ModelStore::loadStore(std::string name)
 {
     glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
+    pthread_mutex_lock(&context_lock);
     GLFWwindow* tempWindow = glfwCreateWindow(1,1,"",NULL,glContext);
+    pthread_mutex_unlock(&context_lock);
     if(MULTITHREADED_LOADING)
         glfwMakeContextCurrent(tempWindow);
 

@@ -83,9 +83,9 @@ void WorldComponent::updateMatrix()
     }
 
     modelMatrix = glm::translate(modelMatrix, position);
-    modelMatrix = glm::rotate(modelMatrix, rotation.y, glm::vec3(0,1,0));
-    modelMatrix = glm::rotate(modelMatrix, -rotation.x, glm::vec3(1,0,0));
-    modelMatrix = glm::rotate(modelMatrix, rotation.z, glm::vec3(0,0,1));
+    modelMatrix = glm::rotate(modelMatrix, toRad(rotation.y), glm::vec3(0,1,0));
+    modelMatrix = glm::rotate(modelMatrix, toRad(-rotation.x), glm::vec3(1,0,0));
+    modelMatrix = glm::rotate(modelMatrix, toRad(rotation.z), glm::vec3(0,0,1));
     modelMatrix = glm::scale(modelMatrix, scale);
 
     glm::vec3 rot = getParentRotation();

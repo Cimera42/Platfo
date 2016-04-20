@@ -12,7 +12,7 @@ class PointLightComponent : public Component
     public:
         PointLightComponent();
         virtual ~PointLightComponent();
-        PointLightComponent* construct(float,float,glm::vec3);
+        PointLightComponent* construct(float, float, glm::vec3);
         PointLightComponent* construct(std::vector<std::string>);
         PointLightComponent* clone() {return new PointLightComponent(*this);}
 

@@ -12,7 +12,7 @@ class WorldComponent : public Component
     public:
         WorldComponent();
         virtual ~WorldComponent();
-        WorldComponent* construct(glm::vec3,glm::vec3,glm::vec3);
+        WorldComponent* construct(glm::vec3 inPosition,glm::vec3 inScale,glm::vec3 inRotation);
         WorldComponent* construct(std::vector<std::string>);
         WorldComponent* clone() {return new WorldComponent(*this);}
 
