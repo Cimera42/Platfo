@@ -1,0 +1,5 @@
+Texture2D "terrain_texture"
+{
+filename: ../textures/terr/terr_tex.png;
+srgb: false;
+}
