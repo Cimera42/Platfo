@@ -1,5 +1,7 @@
 #include "globals.h"
-#include "logger.h"
+#include "entity.h"
+#include "component.h"
+#include "system.h"
 #include <pthread.h>
 
 void * __gxx_personality_v0=0;
@@ -87,7 +89,3 @@ void deleteAllSystems()
     }
     Logger() << sysCount << " systems deleted" << std::endl;
 }
-
-//Constants
-const float Constants::airDensity = 1.225f; //kg/m^3
-const float Constants::gravity = 9.8f;//m/s^2

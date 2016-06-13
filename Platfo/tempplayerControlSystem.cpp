@@ -1,16 +1,12 @@
 #include "tempplayerControlSystem.h"
-#include "globals.h"
-#include "openGLFunctions.h"
-
+#include <glm/glm.hpp>
 #include "keyboardHandler.h"
 #include "mouseHandler.h"
 #include "render2DComponent.h"
-
 #include "worldComponent.h"
 #include "physicsComponent.h"
 #include "tempplayerControlComponent.h"
-#include "own_funcs.h"
-#include <algorithm>
+//#include <algorithm>
 
 SystemID PlayerControlSystem::ID;
 

@@ -15,8 +15,7 @@ class Render2DComponent : public Component
     public:
         Render2DComponent();
         virtual ~Render2DComponent();
-        Render2DComponent* construct(std::string,bool,std::string);
-        Render2DComponent* construct(std::vector<std::string>);
+        Render2DComponent* construct(Json::Value inValue);
         Render2DComponent* clone() {return new Render2DComponent(*this);}
 
         TextureStore* textureStore;

@@ -12,8 +12,7 @@ class PointLightComponent : public Component
     public:
         PointLightComponent();
         virtual ~PointLightComponent();
-        PointLightComponent* construct(float, float, glm::vec3);
-        PointLightComponent* construct(std::vector<std::string>);
+        PointLightComponent* construct(Json::Value inValue);
         PointLightComponent* clone() {return new PointLightComponent(*this);}
 
         float intensity;

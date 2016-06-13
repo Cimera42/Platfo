@@ -1,30 +1,56 @@
 #ifndef LOADER_H_INCLUDED
 #define LOADER_H_INCLUDED
 
-///TODO:
-/*
-- Use smart pointers... (aparently you cannot delete a pointer that you do not assign through new)
-- Control the use of the string independantly within each of the subStores - aka load datablocks and process them
-- Make a version of loading work on copying/instancing from a pointer rather than pure literal string
-- Find a way to put implementations of templates in .cpp
-*/
-
 /**
 - All loading from the program should be evoked through the loader.
-- This then sends commands to the appropriate subStore which can then process the loading as it wishes.
-- The subStore will most likely then evoke other loading through either this loader or through others - Eg. textureLoading through SOIL.
+- Any internal stores, like framebuffer textures may or may not go through the loader,
+  that is up to the system/component to deal with creation and deletion.
+- The loadingSystem will then deal with registered objects, by requesting the appropriate store.
+- The components have control over the JSON and handling multiple objects. The loader only deals
+  with one object at a time.
 **/
 
+#include <pthread.h>
 #include <map>
 #include <string>
 #include "fileReader.h"
 #include "store.h"
 #include "openGLFunctions.h"
-#include "logger.h"
-#include "windowComponent.h"
-#include <pthread.h>
 #include "globals.h"
 
+/*
+class StoreLoader{
+public:
+    StoreLoader();
+    ~StoreLoader();
+    template <typename T>
+    bool load(T** inStore, Json::Value inValue) {
+        //Recieves a pointers to stores within components
+        //Expects a valid JSON for the currentStore
+        try {
+            //Register the object/store to be loaded in loadingSystem
+            T* newStore = new T();
+            regJSON.push_back(inValue);
+            regStore.push_back(newStore);
+            *inStore = newStore; //Set default value
+        }
+        catch(std::exception e) {
+            Logger()<<"Store loading mismatch. "<<e.what()<<" Please check"
+            "you have the correct amount of JSON arguments for each store."<<std::endl;
+            return false;
+        }
+        return true;
+    }
+
+    //bool unload();
+private:
+    std::vector<Store*> regStore;
+    std::vector<Json::Value> regJSON;
+};
+
+extern StoreLoader LoadStore;*/
+
+/*
 extern std::map<std::string, Store*> internalMap;
 extern std::map<std::string, pthread_t> currentlyLoadingMap;
 extern pthread_mutex_t internalMapMutex;
@@ -38,7 +64,7 @@ private:
     static void *threadedLoad(void*);
 public:
     //scene
-    static bool Object(T** returnLoc, bool attemptLoad, std::string s);//objects
+    static bool Object(T** returnLoc, bool attemptLoad, Json::Value);//objects
 };
 
 template <class T>
@@ -145,7 +171,7 @@ void* Load<T>::threadedLoad(void* inptr)
                 Logger()<<"Load Error: Cannot load object '"<<s<<"'. \n \n"; //Loading a new object hasnt worked - report it
                 //use default and delete the new threaded one etc etc and return
                 //*returnLoc = nullptr;
-                Logger() << pthread_self().p << " done" << std::endl;
+                Logger() << pthread_self() << " done" << std::endl;
                 return NULL; //false;
             }
         }
@@ -157,21 +183,21 @@ void* Load<T>::threadedLoad(void* inptr)
 
 //IMPLEMENTATION - needs to be moved and the acceptable classes controlled in .cpp
 template <class T>
-bool Load<T>::Object(T** returnLoc, bool attemptLoad, std::string s)
+bool Load<T>::Object(T** returnLoc, bool attemptLoad, Json::Value s)
 {
     //Create a new instance of the store
     T * defaultValues = new T();
     if(!MULTITHREADED_LOADING)
     {
         //defaultValues->loadStore(s);
-        defaultValues->internalName = s;
+        defaultValues->internalName = s["name"].asString();
     }
     *returnLoc = defaultValues;
 
     //Create paramters to send to secondary thread
     LoadJoin<T>* param = new LoadJoin<T>();
     param->returnLoc = returnLoc;
-    param->s = s;
+    param->s = s["name"].asString();
     param->attemptLoad = attemptLoad;
     param->defaultValues = defaultValues;
 
@@ -232,6 +258,6 @@ bool Unload<T>::Object(T** deletePtr)
     Logger()<<"Unload Error: Cannot locate object. Returning nullptr. \n \n";
     *deletePtr = nullptr;
     return false;
-}
+}*/
 
 #endif // LOADER_H_INCLUDED

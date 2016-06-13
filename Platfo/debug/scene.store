@@ -1,156 +1,63 @@
-Entity
 {
-window: window.cfg;
-}
+	"Entities": [{
+		"Name": "Window&Screen",
+		"Components": {
+			"window": {
+				"title": "Platfo",
+				"size": [
+					900,
+					450
+				],
+				"windowed": 1,
+				"fullscreen": 0,
+				"borderless": 0
+			},
+			"renderScreen": {
+				"shaderStore": [{
+					"vertexFile": "shaders/2D/Screen/screenVert.vert",
+					"fragmentFile": "shaders/2D/Screen/screenFrag.frag"
+				}]
+			}
+		}
+	}, {
+		"Name": "2dCamera",
+		"Components": {
+			"world": {
+				"position": [0, 0, 0],
+				"scale": [1, 1, 1],
+				"rotation": [0, 0, 0]
+			},
+			"camera2d": {
+				"zoom": 10,
+				"activeFlag": 1
+			}
+		}
+	}, {
+		"Name": "Skybox",
+		"Components": {
+			"renderSkybox": {
+				"modelStore": [{
+					"modelFile": "models/cube.obj"
+				}, {
+                    "modelFile": "models/cube.obj"
+				}
+				],
+				"textureStore": [{
+					"cubeMapFile": [
+						"textures/skybox/left.jpg",
+						"textures/skybox/right.jpg",
+						"textures/skybox/top.jpg",
+						"textures/skybox/bottom.jpg",
+						"textures/skybox/front.jpg",
+						"textures/skybox/back.jpg"
+					]
+				}],
+				"shaderStore": [{
+					"vertexFile": "shaders/3D/Plain/skybox.vert",
+					"fragmentFile": "shaders/3D/Plain/skybox.frag"
+				}]
+			}
+		}
 
-Entity "2dCamera"
-{
-world: 0,0,0, 1,1,1, 0,0,0;
-camera2d: 10, true;
-}
-
-Entity "screen"
-{
-renderScreen: 3DRenderFBOTextures, false, debug/shaderScreen.store;
-}
-
-Entity "skybox"
-{
-renderSkybox: debug/defaultBox.store, debug/skyboxTexture.store, debug/shaderSkybox.store;
-}
-
-Entity "sunLight"
-{
-world: 1,1,-1, 1,1,1, 0,0,0;
-directionalLight: 1, 1,1,1;
-}
-
-Entity "fighterJet"
-{
-world: -3,10.5,3, .1,.1,.1, 0,135,0;
-render3d: debug/fighterJet.store, debug/fighterJetTexture.store, debug/shader3D.store;
-control: 5, W, S, A, D, Q, E;
-mouseRot: -90,90, -9999,0;
-}
-Entity "3dCamera"
-{
-childOf: fighterJet;
-world: 0,.2,-1, 1,1,1, 0,0,0;
-camera3d: 90,0.01,100, true;
-}
-Entity "fighterJet spotlight"
-{
-childOf: fighterJet;
-world: 0,-0.05,.05, 1,1,1, 190,0,0;
-spotLight: 1, 5, 10,20, 1,1,1;
-}
-Entity "fighterJet winglightL"
-{
-childOf: fighterJet;
-world: -0.23,.01,-.475, 1,1,1, 0,0,0;
-pointLight: 2, 0.2, 1,0,0;
-}
-Entity "fighterJet winglightR"
-{
-childOf: fighterJet;
-world: 0.23,.01,-.475, 1,1,1, 0,0,0;
-pointLight: 2, 0.2, 0,1,0;
-}
-
-Entity "tunnel spotlight 1"
-{
-world: 3.7,7.5,-0.5, 1,1,1, 90,0,0;
-spotLight: .5, 5, 5,35, 1,1,0;
-}
-
-Entity "tunnel spotlight 2"
-{
-world: 3,7,2, 1,1,1, 90,0,0;
-spotLight: .5, 5, 5,35, 1,1,0;
-}
-
-Entity "tunnel spotlight 3"
-{
-world: 2.25,6,4.5, 1,1,1, 90,0,0;
-spotLight: .5, 5, 5,35, 1,1,0;
-}
-
-Entity "flooor"
-{
-world: 0,0,0, 0.1,20,0.1, 0,0,0;
-terrain: ./textures/terr/terr.png, debug/terrainTexture.store, debug/shader3D.store;
-}
-
-Entity "mountain path"
-{
-world: 0,0,0, 1,1,1, 0,0,0;
-render3d: debug/mountainPath.store, debug/mountainPathTexture.store, debug/shader3D.store;
-}
-
-Entity "hut"
-{
-world: 2,9.8,2.8, .25,.25,.25, 0,200,0;
-render3d: debug/hut.store, debug/hutTexture.store, debug/shader3D.store;
-}
-Entity "hut light"
-{
-world: 1.55,10,1.5, 1,1,1, 0,0,0;
-pointLight: 1, 1, 1,1,1;
-}
-
-Entity "grug"
-{
-world: -4,7.4,-5.3, .25,.25,.25, 0,135,0;
-render3d: debug/grug.store, debug/grugTexture.store, debug/shader3D.store;
-}
-Entity "grug light"
-{
-world: -3.5,8.2,-5.4, 1,1,1, 0,0,0;
-pointLight: 1, 1.5, 1,.75,0;
-}
-
-Entity "houserock1"
-{
-world: 0.6,9.8,3.2, .25,.25,.25, 0,0,0;
-render3d: debug/rock3.store, debug/rockTexture.store, debug/shader3D.store;
-}
-Entity "houserock"
-{
-world: -0.6,9.8,3.2, .25,.25,.25, 0,0,0;
-render3d: debug/rock3.store, debug/rockTexture.store, debug/shader3D.store;
-}
-
-Entity "pathrock"
-{
-world: -3,7.7,-2, .25,.25,.25, 0,0,0;
-render3d: debug/rock2.store, debug/rockTexture.store, debug/shader3D.store;
-}
-Entity "pathrock"
-{
-world: -0.8,6.6,-6.7, .25,.25,.25, 0,150,15;
-render3d: debug/rock2.store, debug/rockTexture.store, debug/shader3D.store;
-}
-
-Entity "handBL"
-{
-world: -9.4,-9.4,0, 1,1,1, 0,0,-45;
-render2d: debug/texture.store, true, debug/shader2D.store;
-}
-
-Entity "handBR"
-{
-world: 9.4,-9.4,0, 1,1,1, 0,0,45;
-render2d: debug/texture.store, true, debug/shader2D.store;
-}
-
-Entity "handTL"
-{
-world: -9.4,9.4,0, 1,1,1, 0,0,-135;
-render2d: debug/texture.store, true, debug/shader2D.store;
-}
-
-Entity "handTR"
-{
-world: 9.4,9.4,0, 1,1,1, 0,0,135;
-render2d: debug/texture.store, true, debug/shader2D.store;
+	}]
 }

@@ -1,12 +1,10 @@
 #include "camera3DSystem.h"
-
-#include "globals.h"
-#include "worldComponent.h"
-#include "camera3DComponent.h"
+#include "openGLFunctions.h"
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
-#include "openGLFunctions.h"
 #include "mouseHandler.h"
+#include "worldComponent.h"
+#include "camera3DComponent.h"
 #include "windowComponent.h"
 
 SystemID Camera3DSystem::ID;

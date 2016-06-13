@@ -1,17 +1,8 @@
 #include "renderScreenSystem.h"
-#include "globals.h"
-
-#include <iostream>
 #include "worldComponent.h"
 #include "renderScreenComponent.h"
-#include "loadShader.h"
-#include "openGLFunctions.h"
-#include "loader.h"
-
 #include "lightingSystem.h"
 #include "camera3DSystem.h"
-
-#include <glm/glm.hpp>
 
 SystemID RenderScreenSystem::ID;
 
@@ -152,17 +143,23 @@ void RenderScreenSystem::update()
             }
 
             //Bind texture
-            if(renderComp->textureStore->correctlyLoaded)
-            {
-                for(int i = 0; i < renderComp->textureStore->textureList.size(); i++)
+            //if(renderComp->textureStore->correctlyLoaded)
+            //{
+                //MODIFIED TO SUITE CURRENT LOADING SYSTEM, NOT SURE OF EFFECTS
+                for(int i = 0; i < renderComp->frameBufferTextures.size(); i++)
                 {
                     glSetActiveTexture(GL_TEXTURE0 + i);
-                    glSetBindTexture(GL_TEXTURE_2D, renderComp->textureStore->textureList[i].textureID);
-                    std::string s = "textureSampler"+InttoStr(i+1);
+                    glSetBindTexture(GL_TEXTURE_2D, renderComp->frameBufferTextures[i]->textureID);
+                    std::string s = "textureSampler"+intToStr(i+1);
                     GLuint texLoc = glGetUniformLocation(renderComp->shaderStore->shaderID, s.c_str());
                     glUniform1i(texLoc, i);
                 }
-            }
+                //glSetActiveTexture(GL_TEXTURE0);
+                //glSetBindTexture(GL_TEXTURE_2D, renderComp->textureStore->textureID);
+                //std::string s = "textureSampler"+intToStr(0);
+                //GLuint texLoc = glGetUniformLocation(renderComp->shaderStore->shaderID, s.c_str());
+                //glUniform1i(texLoc, 0);
+            //}
 
             //Draw
             glSetBindVertexArray(VAO);

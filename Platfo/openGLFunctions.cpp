@@ -86,16 +86,16 @@ bool initGLFW()
     glfwSetErrorCallback(errCallback);
 
     //Load main context for sharing
+    mainWindow = new WindowComponent();
     glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
-    glContext = glfwCreateWindow(1,1,"CONTEXT",NULL,NULL);
+    mainWindow->glfwWindow = glfwCreateWindow(1,1,"CONTEXT",NULL,NULL);
 
     //Load display window
     //Possibly could be turned back into an entity
     glfwWindowHint(GLFW_VISIBLE, GL_TRUE);
-    mainWindow = (new WindowComponent())->construct("debug/window.cfg",glContext);
     glfwMakeContextCurrent(mainWindow->glfwWindow);
 
-    glfwSetInputMode(mainWindow->glfwWindow, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+    //glfwSetInputMode(glfwWindow, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
     return true;
 }

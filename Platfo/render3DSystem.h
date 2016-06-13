@@ -2,7 +2,7 @@
 #define RENDER3DSYSTEM_H_INCLUDED
 
 #include "system.h"
-#include <GL/glew.h>
+#include "openGLFunctions.h"
 #include "textureStore.h"
 
 class Render3DSystem : public System
@@ -15,7 +15,7 @@ class Render3DSystem : public System
         virtual ~Render3DSystem();
 
         GLuint framebufferID;
-        TextureStore* textureStore;
+        std::vector<TextureStore*> frameBufferTextures;
 
         //Auto generation of ID
         SystemID getID() {if(ID == 0) {ID = systemIDIncrementor++;} return ID;}

@@ -1,12 +1,6 @@
 #ifndef LOADSHADER_H_INCLUDED
 #define LOADSHADER_H_INCLUDED
 
-#include <iostream>
-#include <fstream>
-#include <string>
-
-#include <glm/glm.hpp>
-#include <map>
 #include <GL/glew.h>
 
 //! \brief Loads a shader to display images on screen.

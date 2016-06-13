@@ -2,7 +2,7 @@
 #define MOUSEHANDLER_H_INCLUDED
 
 #include <unordered_map>
-#include <GLFW/glfw3.h>
+#include "openGLFunctions.h"
 
 struct MouseMoveData
 {

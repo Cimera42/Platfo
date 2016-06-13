@@ -1,11 +1,11 @@
 #ifndef WINDOWCOMPONENT_H_INCLUDED
 #define WINDOWCOMPONENT_H_INCLUDED
 
-#include <string>
 #include "component.h"
-#include "fileReader.h"
-#include "openGLFunctions.h"
 #include <glm/glm.hpp>
+#include "openGLFunctions.h"
+#include <string>
+
 
 class WindowComponent : public Component
 {
@@ -15,8 +15,7 @@ class WindowComponent : public Component
     public:
         WindowComponent();
         virtual ~WindowComponent();
-        WindowComponent* construct(std::string fileName, GLFWwindow* shareContext);
-        WindowComponent* construct(std::vector<std::string>);
+        WindowComponent* construct(Json::Value inValue);
         WindowComponent* clone() {return new WindowComponent(*this);}
 
         //Values set

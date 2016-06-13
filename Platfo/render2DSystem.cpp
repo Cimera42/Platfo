@@ -1,17 +1,9 @@
 #include "render2DSystem.h"
-#include "globals.h"
-
-#include <iostream>
+#include <glm/gtx/transform.hpp>
 #include "worldComponent.h"
 #include "camera2DComponent.h"
 #include "camera2DSystem.h"
 #include "render2DComponent.h"
-#include "loadShader.h"
-#include "openGLFunctions.h"
-#include "loader.h"
-
-#include <glm/glm.hpp>
-#include <glm/gtx/transform.hpp>
 
 SystemID Render2DSystem::ID;
 
@@ -95,14 +87,14 @@ void Render2DSystem::update()
     Camera2DSystem* cameraSys = static_cast<Camera2DSystem*>(systems[Camera2DSystem::getStaticID()]);
     if(cameraSys->activeCamera != -1)
     {
-        Camera2DComponent* cameraComp = static_cast<Camera2DComponent*>(entities[cameraSys->activeCamera]->getComponent(Camera2DComponent::getStaticID()));
         //Send view and projection matrix to shader
-
+        Camera2DComponent* cameraComp = static_cast<Camera2DComponent*>(entities[cameraSys->activeCamera]->getComponent(Camera2DComponent::getStaticID()));
         cameraViewMatrix = cameraComp->viewMatrix;
         cameraProjMatrix = cameraComp->projectionMatrix;
     }
 
     glDisable(GL_DEPTH_TEST);
+    //Render all subscribed entities
     for(int subID = 0; subID < subscribedEntities[0].size(); subID++)
     {
         Entity* entity = entities[subscribedEntities[0][subID]];
@@ -120,17 +112,15 @@ void Render2DSystem::update()
             glUniformMatrix4fv(renderComp->projMatLoc, 1, GL_FALSE, &cameraProjMatrix[0][0]);
             glUniformMatrix4fv(renderComp->modelMatLoc, 1, GL_FALSE, &worldComp->modelMatrix[0][0]);
 
-            //Bind texture
+            //Bind textures
             if(renderComp->textureStore->correctlyLoaded)
             {
-                for(int i = 0; i < renderComp->textureStore->textureList.size(); i++)
-                {
-                    glSetActiveTexture(GL_TEXTURE0 + i);
-                    glSetBindTexture(GL_TEXTURE_2D, renderComp->textureStore->textureList[i].textureID);
-                    std::string s = "textureSampler"+InttoStr(i+1);
-                    GLuint texLoc = glGetUniformLocation(renderComp->shaderStore->shaderID, s.c_str());
-                    glUniform1i(texLoc, i);
-                }
+                //MODIFIED TO SUITE CURRENT LOADING SYSTEM, NOT SURE OF EFFECTS
+                glSetActiveTexture(GL_TEXTURE0);
+                glSetBindTexture(GL_TEXTURE_2D, renderComp->textureStore->textureID);
+                std::string s = "textureSampler"+intToStr(0);
+                GLuint texLoc = glGetUniformLocation(renderComp->shaderStore->shaderID, s.c_str());
+                glUniform1i(texLoc, 0);
             }
 
             //Draw

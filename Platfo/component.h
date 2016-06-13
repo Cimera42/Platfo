@@ -3,7 +3,9 @@
 
 #include <string>
 #include <vector>
+#include <json/json.h>
 #include "entity.h"
+#include "globals.h"
 
 typedef int ComponentID;
 
@@ -16,7 +18,7 @@ class Component
         Component();
         virtual ~Component();
         virtual Component* construct();
-        virtual Component* construct(std::vector<std::string>);
+        virtual Component* construct(Json::Value inValue);
         virtual Component* clone() {return new Component(*this);}
 
         bool enabled = true;

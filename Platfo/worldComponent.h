@@ -12,8 +12,7 @@ class WorldComponent : public Component
     public:
         WorldComponent();
         virtual ~WorldComponent();
-        WorldComponent* construct(glm::vec3 inPosition,glm::vec3 inScale,glm::vec3 inRotation);
-        WorldComponent* construct(std::vector<std::string>);
+        WorldComponent* construct(Json::Value inValue);
         WorldComponent* clone() {return new WorldComponent(*this);}
 
         glm::vec3 offsetPosition;

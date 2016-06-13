@@ -1,7 +1,5 @@
 #include "render3DComponent.h"
-#include "logger.h"
-#include "typeConversion.h"
-#include "loader.h"
+#include "loadingSystem.h"
 #include "mesh.h"
 
 ComponentID Render3DComponent::ID;
@@ -9,39 +7,25 @@ ComponentID Render3DComponent::ID;
 Render3DComponent::Render3DComponent(){vanityName = "Render 3D Component";}
 Render3DComponent::~Render3DComponent()
 {
-    Unload<ModelStore>::Object(&modelStore);
-    Unload<TextureStore>::Object(&textureStore);
-    Unload<ShaderStore>::Object(&shaderStore);
+    //Unload<ModelStore>::Object(&modelStore);
+    //Unload<TextureStore>::Object(&textureStore);
+    //Unload<ShaderStore>::Object(&shaderStore);
 }
 
-Render3DComponent* Render3DComponent::construct(std::string modelStorePath, std::string textureStorePath, std::string shaderStorePath)
+Render3DComponent* Render3DComponent::construct(Json::Value inValue)
 {
-    Load<ModelStore>::Object(&modelStore, true, modelStorePath);
-    Load<TextureStore>::Object(&textureStore, true, textureStorePath);
-    Load<ShaderStore>::Object(&shaderStore, true, shaderStorePath);
+    //Load<ModelStore>::Object(&modelStore, true, inValue["modelStore"]);
+    //Load<TextureStore>::Object(&textureStore, true, inValue["textureStore"]);
+    //Load<ShaderStore>::Object(&shaderStore, true, inValue["shaderStore"]);
+    LoadingSystem* loadingSys = static_cast<LoadingSystem*>(systems[LoadingSystem::getStaticID()]);
+    loadingSys->load<ModelStore>(&modelStore, inValue["modelStore"][0]);
+    loadingSys->load<TextureStore>(&textureStore, inValue["textureStore"][0]);
+    loadingSys->load<ShaderStore>(&shaderStore, inValue["shaderStore"][0]);
 
     textureLoc = -1;
     modelMatLoc = -1;
     viewMatLoc = -1;
     projMatLoc = -1;
-
-    return this;
-}
-Render3DComponent* Render3DComponent::construct(std::vector<std::string> inArgs)
-{
-    if(inArgs.size() == 0)
-    {
-        std::string modelPath = inArgs[0];
-        std::string texturePath = inArgs[1];
-        std::string shaderPath = inArgs[2];
-
-        if(modelPath != "" && texturePath != "" && shaderPath != "")
-            this->construct(modelPath,texturePath,shaderPath);
-    }
-    else
-    {
-        Logger() << "Invalid number of arguments to Render 3D Component creation" << std::endl;
-    }
 
     return this;
 }

@@ -1,12 +1,7 @@
 #include "movementSystem.h"
 #include <glm/glm.hpp>
-
-#include "globals.h"
-#include "own_funcs.h"
 #include "worldComponent.h"
 #include "physicsComponent.h"
-#include "logger.h"
-
 #include "playerComponent.h"
 
 SystemID MovementSystem::ID;
@@ -30,9 +25,9 @@ void MovementSystem::update(float inDelta)
         WorldComponent* worldComp = static_cast<WorldComponent*>(entity->getComponent(WorldComponent::getStaticID()));
         PhysicsComponent* movementComp = static_cast<PhysicsComponent*>(entity->getComponent(PhysicsComponent::getStaticID()));
         //gravity
-        if(!movementComp->staticObject)
+        if(!movementComp->isStatic)
         {
-            float gravityForce = movementComp->mass*Constants::gravity;
+            float gravityForce = movementComp->mass*9.8;//Constants::gravity;
             movementComp->force += glm::vec3(0,-1,0) * gravityForce;
         }
 
@@ -43,8 +38,8 @@ void MovementSystem::update(float inDelta)
             //crosssectional area depends on shape. currently just use average of scale.x and scale.y
             float crossSection = (worldComp->scale.x+worldComp->scale.y)/2.0f;
             //force = 1/2(air density * v^2 (of object relative to air) * crosssectional area * drag coefficient
-            glm::vec3 dragForce = -glm::normalize(movementComp->velocity) //direction
-                                *0.5f*Constants::airDensity*(sq(movementComp->velocity.x)+sq(movementComp->velocity.y)+sq(movementComp->velocity.z))*crossSection*movementComp->coefficientDrag; //magnitude
+            glm::vec3 dragForce = -glm::normalize(movementComp->velocity) //direction //Constants::airDensity
+                                *0.5f*1.225f*(sq(movementComp->velocity.x)+sq(movementComp->velocity.y)+sq(movementComp->velocity.z))*crossSection*movementComp->coefficientDrag; //magnitude
             movementComp->force += dragForce;
         }
 

@@ -2,7 +2,6 @@
 #define RENDERSKYBOXSYSTEM_H_INCLUDED
 
 #include "system.h"
-#include <GL/glew.h>
 
 class RenderSkyboxSystem : public System
 {

@@ -1,13 +1,7 @@
 #include "consoleSystem.h"
-
-#include "keyboardHandler.h"
 #include <string>
 #include <iostream>
-#include "logger.h"
-#include "own_funcs.h"
-#include "globals.h"
-#include "typeConversion.h"
-
+#include "keyboardHandler.h"
 #include "worldComponent.h"
 
 SystemID ConsoleSystem::ID;
@@ -20,6 +14,7 @@ ConsoleSystem::~ConsoleSystem(){}
 
 void ConsoleSystem::update()
 {
+    /*
     if(isKeyPressed(GLFW_KEY_GRAVE_ACCENT))
         inConsole = true;
     while(inConsole)
@@ -317,7 +312,7 @@ void ConsoleSystem::update()
         //Here to prevent insanely high delta when
         //exiting console
         lastFrame = glfwGetTime();
-    }
+    }*/
 }
 
 void listComponents(EntityID inEntityID)

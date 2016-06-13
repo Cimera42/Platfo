@@ -1,13 +1,12 @@
 #include "main.h"
-#include "globals.h"
 #include "entity.h"
 #include "component.h"
 #include "system.h"
 #include "store.h"
-#include "loader.h"
 
 #include "openGLFunctions.h"
 
+#include "loadingSystem.h"
 #include "windowSystem.h"
 #include "render2DSystem.h"
 #include "render3DSystem.h"
@@ -42,9 +41,7 @@
 #include "mouseRotationComponent.h"
 #include "terrainComponent.h"
 
-#include <iostream>
 #include <string>
-#include <fstream>
 
 int main()
 {
@@ -52,6 +49,7 @@ int main()
     initGLEW();
 
     //Temporary loading place for systems
+    systems[LoadingSystem::getStaticID()] = new LoadingSystem();
     systems[WindowSystem::getStaticID()] = new WindowSystem();
     systems[Render3DSystem::getStaticID()] = new Render3DSystem();
     systems[RenderSkyboxSystem::getStaticID()] = new RenderSkyboxSystem();
@@ -83,16 +81,21 @@ int main()
     components[MouseRotationComponent::getStaticID()] = new MouseRotationComponent();
     components[TerrainComponent::getStaticID()] = new TerrainComponent();
 
-    //File loading TEST
-    SceneStore * scene;
-    if(Load<SceneStore>::Object(&scene, true, "debug/scene.store"))
+    //Scene loading
+    LoadingSystem* loadingSys = static_cast<LoadingSystem*>(systems[LoadingSystem::getStaticID()]);
+    SceneStore* scene;
+    std::string sceneStr = "{\"sceneFile\": \"debug/scene.store\"}";
+    Json::Value sceneFile;
+    Json::Reader reader;
+    reader.parse(sceneStr.c_str(), sceneFile);
+    if(loadingSys->load<SceneStore>(&scene, sceneFile))
     {
         int fps = 0;
         double now = glfwGetTime();
         float delta = 0;
         lastFrame = glfwGetTime();
 
-        glClearColor(0.55f,0.65f,0.8f,1.0f);
+        //glClearColor(0.55f,0.65f,0.8f,1.0f);
         while(!shouldExit)
         {
             delta = (glfwGetTime() - lastFrame);
@@ -102,6 +105,8 @@ int main()
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
             //Temporary system loop
+            //Loads registered objects
+            systems[LoadingSystem::getStaticID()]->update();
             //System to transform mouse movement to different spaces
             systems[MouseScreenCoordSystem::getStaticID()]->update();
             //Player movement system

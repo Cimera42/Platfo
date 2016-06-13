@@ -2,7 +2,7 @@
 #define TERRAINSYSTEM_H_INCLUDED
 
 #include "system.h"
-#include <GL/glew.h>
+#include "openGLFunctions.h"
 #include "textureStore.h"
 
 class TerrainSystem : public System
@@ -15,7 +15,6 @@ class TerrainSystem : public System
         virtual ~TerrainSystem();
 
         GLuint framebufferID;
-        TextureStore* textureStore;
 
         //Auto generation of ID
         SystemID getID() {if(ID == 0) {ID = systemIDIncrementor++;} return ID;}

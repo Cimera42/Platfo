@@ -11,8 +11,7 @@ class PlayerControlComponent : public Component
     public:
         PlayerControlComponent();
         virtual ~PlayerControlComponent();
-        PlayerControlComponent* construct(float inSpeed, int inForward, int inBack, int inLeft, int inRight, int inUp, int inDown);
-        PlayerControlComponent* construct(std::vector<std::string>);
+        PlayerControlComponent* construct(Json::Value inValue);
         PlayerControlComponent* clone() {return new PlayerControlComponent(*this);}
 
         float speed;

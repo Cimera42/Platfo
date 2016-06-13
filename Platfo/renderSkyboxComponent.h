@@ -2,9 +2,8 @@
 #define RENDERSKYBOXCOMPONENT_H_INCLUDED
 
 #include "component.h"
-#include <glm/glm.hpp>
 #include <GL/glew.h>
-#include <string>
+#include <glm/glm.hpp>
 #include "modelStore.h"
 #include "textureStore.h"
 #include "shaderStore.h"
@@ -17,8 +16,7 @@ class RenderSkyboxComponent : public Component
     public:
         RenderSkyboxComponent();
         virtual ~RenderSkyboxComponent();
-        RenderSkyboxComponent* construct(std::string,std::string,std::string);
-        RenderSkyboxComponent* construct(std::vector<std::string>);
+        RenderSkyboxComponent* construct(Json::Value inValue);
         RenderSkyboxComponent* clone() {return new RenderSkyboxComponent(*this);}
 
         ModelStore* modelStore;

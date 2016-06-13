@@ -1,16 +1,10 @@
 #include "mouseScreenCoordSystem.h"
-#include "globals.h"
 #include "openGLFunctions.h"
-
 #include "mouseHandler.h"
-
 #include "windowComponent.h"
 #include "worldComponent.h"
 #include "camera2DComponent.h"
 #include "camera2DSystem.h"
-
-#include "logger.h"
-#include "own_funcs.h"
 
 SystemID MouseScreenCoordSystem::ID;
 

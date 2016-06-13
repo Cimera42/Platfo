@@ -1,24 +1,14 @@
 #include "terrainSystem.h"
-#include "globals.h"
-
-#include <iostream>
+#include <glm/glm.hpp>
+#include <glm/gtx/transform.hpp>
 #include "worldComponent.h"
 #include "terrainComponent.h"
 #include "render3DSystem.h"
-#include "textureStore.h"
 #include "camera3DComponent.h"
 #include "camera3DSystem.h"
-#include "loadShader.h"
-#include "openGLFunctions.h"
-#include "loader.h"
-#include "own_funcs.h"
 #include "windowComponent.h"
 #include "render2DSystem.h"
-#include "typeConversion.h"
 #include "render2DComponent.h"
-
-#include <glm/glm.hpp>
-#include <glm/gtx/transform.hpp>
 
 SystemID TerrainSystem::ID;
 
@@ -30,10 +20,7 @@ TerrainSystem::TerrainSystem()
     subList1.push_back(TerrainComponent::getStaticID());
     addSubList(subList1);
 }
-TerrainSystem::~TerrainSystem()
-{
-    Unload<TextureStore>::Object(&textureStore);
-}
+TerrainSystem::~TerrainSystem(){}
 
 void TerrainSystem::update()
 {
@@ -79,7 +66,7 @@ void TerrainSystem::update()
             if(renderComp->textureStore->correctlyLoaded)
             {
                 glSetActiveTexture(GL_TEXTURE0);
-                glSetBindTexture(GL_TEXTURE_2D, renderComp->textureStore->textureList[0].textureID);
+                glSetBindTexture(GL_TEXTURE_2D, renderComp->textureStore->textureID);
                 glUniform1i(renderComp->textureLoc, 0);
             }
 

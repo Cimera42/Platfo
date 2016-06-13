@@ -3,6 +3,7 @@
 
 #include <unordered_map>
 #include <string>
+#include "globals.h"
 
 typedef int EntityID;
 typedef int ComponentID;

@@ -17,8 +17,7 @@ class Render3DComponent : public Component
     public:
         Render3DComponent();
         virtual ~Render3DComponent();
-        Render3DComponent* construct(std::string,std::string,std::string);
-        Render3DComponent* construct(std::vector<std::string>);
+        Render3DComponent* construct(Json::Value inValue);
         Render3DComponent* clone() {return new Render3DComponent(*this);}
 
         ModelStore* modelStore;

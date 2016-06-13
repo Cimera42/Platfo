@@ -1,61 +1,25 @@
 #include "worldComponent.h"
 #include <glm/gtx/transform.hpp>
 
-#include "logger.h"
-#include "typeConversion.h"
-#include "own_funcs.h"
-#include "globals.h"
-
 ComponentID WorldComponent::ID;
 
 WorldComponent::WorldComponent(){vanityName = "World Component";}
 WorldComponent::~WorldComponent(){}
-WorldComponent* WorldComponent::construct(glm::vec3 inPosition, glm::vec3 inScale, glm::vec3 inRotation)
+WorldComponent* WorldComponent::construct(Json::Value inValue)
 {
-    offsetPosition = inPosition;
-    position = inPosition;
-    scale = inScale;
-    rotation = glm::vec3(inRotation);
-
+    offsetPosition = glm::vec3(inValue["position"][0].asDouble(),
+                               inValue["position"][1].asDouble(),
+                               inValue["position"][2].asDouble());
+    position = glm::vec3(inValue["position"][0].asDouble(),
+                               inValue["position"][1].asDouble(),
+                               inValue["position"][2].asDouble());
+    scale = glm::vec3(inValue["scale"][0].asDouble(),
+                               inValue["scale"][1].asDouble(),
+                               inValue["scale"][2].asDouble());
+    rotation = glm::vec3(inValue["rotation"][0].asDouble(),
+                               inValue["rotation"][1].asDouble(),
+                               inValue["rotation"][2].asDouble());
     updateData();
-
-    return this;
-}
-WorldComponent* WorldComponent::construct(std::vector<std::string> inArgs)
-{
-    if(inArgs.size() == 5)
-    {
-        float pX = stringToFloat(inArgs[0]);
-        float pY = stringToFloat(inArgs[1]);
-        float pZ = stringToFloat(inArgs[2]);
-
-        float sX = stringToFloat(inArgs[3]);
-        float sY = stringToFloat(inArgs[4]);
-        float sZ = stringToFloat(inArgs[5]);
-
-        float rotX = stringToFloat(inArgs[6]);
-        float rotY = stringToFloat(inArgs[7]);
-        float rotZ = stringToFloat(inArgs[8]);
-
-        if(pX != -9999 && pY != -9999 && pZ != -9999 &&
-           sX != -9999 && sY != -9999 && sZ != -9999 &&
-           rotX != -9999 && rotY != -9999 && rotZ != -9999)
-        {
-            glm::vec3 pos = glm::vec3(pX,pY,pZ);
-            glm::vec3 sca = glm::vec3(sX,sY,sZ);
-            glm::vec3 rot = glm::vec3(rotX,rotY,rotZ);
-
-            this->construct(pos,sca,rot);
-        }
-        else
-        {
-            Logger() << "Invalid input to World Component creation" << std::endl;
-        }
-    }
-    else
-    {
-        Logger() << "Invalid number of arguments to World Component creation" << std::endl;
-    }
 
     return this;
 }

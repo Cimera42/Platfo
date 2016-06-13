@@ -1,33 +1,23 @@
 #ifndef TEXTURESTORE_H_INCLUDED
 #define TEXTURESTORE_H_INCLUDED
 
-#include "fileReader.h"
 #include "store.h"
 #include "openGLFunctions.h"
-#include <pthread.h>
-
-struct TextureData
-{
-    std::string textureFile = "";
-    bool srgb = false;
-
-    //Loaded
-    GLuint textureID = 0;
-};
+#include <vector>
 
 class TextureStore : public Store
 {
 public:
     TextureStore();
     ~TextureStore();
-    void loadStore(std::string);
+    void loadStore(Json::Value inValue);
 
-    //Extracted
-    DataBlock* textureBlock;
+    //In case of cubmap, set to the first texture's path
+    std::string textureFile;
+    bool hasSRGB;
 
-    std::vector<TextureData> textureList;
-
-    pthread_mutex_t textureLoadMutex;
+    //Loaded
+    GLuint textureID = 0;
 };
 
 #endif // TEXTURESTORE_H_INCLUDED

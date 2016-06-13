@@ -25,11 +25,11 @@
 					<Add library="../libraries/shared/lib/glfw3dll.a" />
 					<Add library="../libraries/shared/lib/libSOIL.a" />
 					<Add library="../libraries/shared/lib/libassimp.dll.a" />
+					<Add library="../libraries/shared/lib/libjsoncpp.dll.a" />
 					<Add library="glu32" />
 					<Add library="opengl32" />
 					<Add library="gdi32" />
 					<Add library="comdlg32" />
-					<Add library="../libraries/shared/lib/libpthreadGC2.a" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -217,6 +217,12 @@
 		</Unit>
 		<Unit filename="loader.h">
 			<Option virtualFolder="Loading/" />
+		</Unit>
+		<Unit filename="loadingSystem.cpp">
+			<Option virtualFolder="System/" />
+		</Unit>
+		<Unit filename="loadingSystem.h">
+			<Option virtualFolder="System/" />
 		</Unit>
 		<Unit filename="logger.cpp">
 			<Option virtualFolder="Global/" />

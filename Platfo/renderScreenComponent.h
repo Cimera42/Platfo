@@ -15,11 +15,11 @@ class RenderScreenComponent : public Component
     public:
         RenderScreenComponent();
         virtual ~RenderScreenComponent();
-        RenderScreenComponent* construct(std::string,bool,std::string);
-        RenderScreenComponent* construct(std::vector<std::string>);
+        RenderScreenComponent* construct(Json::Value inValue);
         RenderScreenComponent* clone() {return new RenderScreenComponent(*this);}
 
-        TextureStore* textureStore;
+        //TextureStore* textureStore;
+        std::vector<TextureStore*> frameBufferTextures;
         ShaderStore* shaderStore;
 
         GLuint cameraPositionLoc;

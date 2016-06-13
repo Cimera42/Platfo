@@ -1,6 +1,4 @@
 #include "camera2DSystem.h"
-
-#include "globals.h"
 #include "worldComponent.h"
 #include "camera2DComponent.h"
 

@@ -2,9 +2,8 @@
 #define TERRAINCOMPONENT_H_INCLUDED
 
 #include "component.h"
-#include <glm/glm.hpp>
 #include <GL/glew.h>
-#include <string>
+#include <glm/glm.hpp>
 #include "modelStore.h"
 #include "textureStore.h"
 #include "shaderStore.h"
@@ -17,8 +16,7 @@ class TerrainComponent : public Component
     public:
         TerrainComponent();
         virtual ~TerrainComponent();
-        TerrainComponent* construct(std::string,std::string,std::string);
-        TerrainComponent* construct(std::vector<std::string>);
+        TerrainComponent* construct(Json::Value inValue);
         TerrainComponent* clone() {return new TerrainComponent(*this);}
 
         ModelStore* modelStore;

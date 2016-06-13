@@ -11,8 +11,7 @@ class PlayerComponent : public Component
     public:
         PlayerComponent();
         virtual ~PlayerComponent();
-        PlayerComponent* construct(int);
-        PlayerComponent* construct(std::vector<std::string>);
+        PlayerComponent* construct(Json::Value inValue);
         PlayerComponent* clone() {return new PlayerComponent(*this);}
 
         int teamID;

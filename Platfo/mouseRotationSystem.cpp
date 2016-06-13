@@ -1,9 +1,6 @@
 #include "mouseRotationSystem.h"
-#include "windowComponent.h"
-#include "globals.h"
-
 #include "mouseHandler.h"
-
+#include "windowComponent.h"
 #include "worldComponent.h"
 #include "mouseRotationComponent.h"
 

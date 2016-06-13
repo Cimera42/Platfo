@@ -12,8 +12,7 @@ class Camera2DComponent : public Component
     public:
         Camera2DComponent();
         virtual ~Camera2DComponent();
-        Camera2DComponent* construct(float inZoom, bool inActive);
-        Camera2DComponent* construct(std::vector<std::string>);
+        Camera2DComponent* construct(Json::Value inValue);
         Camera2DComponent* clone() {return new Camera2DComponent(*this);}
 
         bool activeFlag;

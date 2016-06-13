@@ -2,8 +2,7 @@
 #define RENDER2DSYSTEM_H_INCLUDED
 
 #include "system.h"
-#include <GL/glew.h>
-#include <glm/glm.hpp>
+#include "openGLFunctions.h"
 
 class Render2DSystem : public System
 {

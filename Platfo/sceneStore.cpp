@@ -1,9 +1,10 @@
 #include "sceneStore.h"
-
-#include "openGLFunctions.h"
-#include "entity.h"
+#include "fileReader.h"
 #include "globals.h"
+#include "openGLFunctions.h"
+
 #include "main.h"
+
 #include "windowComponent.h"
 #include "renderScreenComponent.h"
 #include "render2DComponent.h"
@@ -20,204 +21,131 @@
 #include "spotLightComponent.h"
 #include "mouseRotationComponent.h"
 #include "terrainComponent.h"
-#include "logger.h"
-#include <pthread.h>
-/**SceneStore allows us to store the entities and any global properties.
+
+/*SceneStore allows us to store the entities and any global properties.
     - Evokes components on entities. Essentially the only reason this is a store is to allow for preloading of levels in the future.
-**/
-SceneStore::SceneStore()
+*/
+SceneStore::SceneStore(){}
+
+void SceneStore::loadStore(Json::Value inValue)
 {
-
-}
-
-void SceneStore::loadStore(std::string name)
-{
-    glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
-    pthread_mutex_lock(&context_lock);//glContext can only be bound to a single thread at a time >< WHY!!!!
-    GLFWwindow* tempWindow = glfwCreateWindow(1,1,"",NULL,glContext);
-    pthread_mutex_unlock(&context_lock);
-    if(MULTITHREADED_LOADING)
-        glfwMakeContextCurrent(tempWindow);
-
-    //load the actual scene
-    File readFile;
-    sceneBlock = readFile.readFromFile(name);
-    if(readFile.success)
+    try
     {
-        //process this block
-        while(sceneBlock->getNextElement()) //Changed to if for only the one texture.
+        JSONFile parsedScene;
+        sceneFile = inValue["sceneFile"].asString();
+        bool readSuccess = parsedScene.readFile(sceneFile);
+        if(readSuccess)
         {
-            if(sceneBlock->checkCurrentElement("Entity"))
+            Json::Value sceneValue = parsedScene.getValue();
+            Json::Value entitiesValue = sceneValue["Entities"];
+            for(int i = 0; i < entitiesValue.size(); i++)
             {
-                Entity * ent = new Entity(); //Create the new entity from file
+                Json::Value entityValue = entitiesValue[i];
+                Entity * ent = new Entity();
                 addEntity(ent);
-                ent->vanityName = sceneBlock->getCurrentIdentifier();
-                while(sceneBlock->getNextProperty()) //Add the components to the entity
+                ent->vanityName = entityValue["Name"].asString();
+
+                Json::Value componentValue = entityValue["Components"];
+                if(componentValue.isMember("window"))
                 {
-                    if(sceneBlock->checkCurrentProperty("window"))
+                    WindowComponent* win = (new WindowComponent())->construct(componentValue["window"]);
+                    //delete mainWindow;
+                    mainWindow = win;
+                    ent->addComponent(win);
+                }
+                if(componentValue.isMember("renderScreen"))
+                {
+                    RenderScreenComponent* render = (new RenderScreenComponent())->construct(componentValue["renderScreen"]);
+                    ent->addComponent(render);
+                }
+                if(componentValue.isMember("render2d"))
+                {
+                    Render2DComponent* render = (new Render2DComponent())->construct(componentValue["render2d"]);
+                    ent->addComponent(render);
+                }
+                if(componentValue.isMember("render3d"))
+                {
+                    Render3DComponent* render = (new Render3DComponent())->construct(componentValue["render3d"]);
+                    ent->addComponent(render);
+                }
+                if(componentValue.isMember("terrain"))
+                {
+                    TerrainComponent* terrain = (new TerrainComponent())->construct(componentValue["terrain"]);
+                    ent->addComponent(terrain);
+                }
+                if(componentValue.isMember("renderSkybox"))
+                {
+                    RenderSkyboxComponent* render = (new RenderSkyboxComponent())->construct(componentValue["renderSkybox"]);
+                    ent->addComponent(render);
+                }
+                if(componentValue.isMember("world"))
+                {
+                    WorldComponent* world = (new WorldComponent())->construct(componentValue["world"]);
+                    ent->addComponent(world);
+                }
+                if(componentValue.isMember("player"))
+                {
+                    PlayerComponent* player = (new PlayerComponent())->construct(componentValue["player"]);
+                    ent->addComponent(player);
+                }
+                if(componentValue.isMember("physics"))
+                {
+                    PhysicsComponent* physics = (new PhysicsComponent())->construct(componentValue["physics"]);
+                    ent->addComponent(physics);
+                }
+                if(componentValue.isMember("camera2d"))
+                {
+                    Camera2DComponent* camera = (new Camera2DComponent())->construct(componentValue["camera2d"]);
+                    ent->addComponent(camera);
+                }
+                if(componentValue.isMember("camera3d"))
+                {
+                    Camera3DComponent* camera = (new Camera3DComponent())->construct(componentValue["camera3d"]);
+                    ent->addComponent(camera);
+                }
+                if(componentValue.isMember("control"))
+                {
+                    PlayerControlComponent* control = (new PlayerControlComponent())->construct(componentValue["control"]);
+                    ent->addComponent(control);
+                }
+                if(componentValue.isMember("directionalLight"))
+                {
+                    DirectionalLightComponent* directionalLight = (new DirectionalLightComponent())->construct(componentValue["directionalLight"]);
+                    ent->addComponent(directionalLight);
+                }
+                if(componentValue.isMember("pointLight"))
+                {
+                    PointLightComponent* pointLight = (new PointLightComponent())->construct(componentValue["pointLight"]);
+                    ent->addComponent(pointLight);
+                }
+                if(componentValue.isMember("spotLight"))
+                {
+                    SpotLightComponent* spotLight = (new SpotLightComponent())->construct(componentValue["spotLight"]);
+                    ent->addComponent(spotLight);
+                }
+                if(componentValue.isMember("mouseRot"))
+                {
+                    MouseRotationComponent* mouseRotComp = (new MouseRotationComponent())->construct(componentValue["mouseRot"]);
+                    ent->addComponent(mouseRotComp);
+                }
+                if(componentValue.isMember("childOf"))
+                {
+                    /*std::string entityName = sceneBlock->getCurrentValue<std::string>(0);
+                    for(std::unordered_map<EntityID, Entity*>::iterator entityPair = entities.begin(); entityPair != entities.end(); ++entityPair)
                     {
-                        //Window component
-                        /*std::string filename = readFile.fileDirectory+sceneBlock->getCurrentValue<std::string>(0);
-                        WindowComponent* win = (new WindowComponent())->construct(filename);
-                        //Temporary system init???? WHERE TO PUT
-                        ent->addComponent(win);*/
-                    }
-                    else if(sceneBlock->checkCurrentProperty("renderScreen"))
-                    {
-                        //Render2D component FOR NOW
-                        std::string textureStoreName = sceneBlock->getCurrentValue<std::string>(0);
-                        bool doLoadTextures = sceneBlock->getCurrentValue<bool>(1);
-                        std::string shaderStoreName = sceneBlock->getCurrentValue<std::string>(2);
-                        RenderScreenComponent* render = (new RenderScreenComponent())->construct(textureStoreName,doLoadTextures,shaderStoreName);
-                        ent->addComponent(render);
-                    }
-                    else if(sceneBlock->checkCurrentProperty("render2d"))
-                    {
-                        //Render2D component FOR NOW
-                        std::string textureStoreName = sceneBlock->getCurrentValue<std::string>(0);
-                        bool doLoadTextures = sceneBlock->getCurrentValue<bool>(1);
-                        std::string shaderStoreName = sceneBlock->getCurrentValue<std::string>(2);
-                        Render2DComponent* render = (new Render2DComponent())->construct(textureStoreName,doLoadTextures,shaderStoreName);
-                        ent->addComponent(render);
-                    }
-                    else if(sceneBlock->checkCurrentProperty("render3d"))
-                    {
-                        //Render3D component FOR NOW
-                        std::string modelPath = sceneBlock->getCurrentValue<std::string>(0);
-                        std::string texturePath = sceneBlock->getCurrentValue<std::string>(1);
-                        std::string shaderPath = sceneBlock->getCurrentValue<std::string>(2);
-                        Render3DComponent* render = (new Render3DComponent())->construct(modelPath,texturePath,shaderPath);
-                        ent->addComponent(render);
-                    }
-                    else if(sceneBlock->checkCurrentProperty("terrain"))
-                    {
-                        //Terrain component FOR NOW
-                        std::string mapPath = sceneBlock->getCurrentValue<std::string>(0);
-                        std::string texturePath = sceneBlock->getCurrentValue<std::string>(1);
-                        std::string shaderPath = sceneBlock->getCurrentValue<std::string>(2);
-                        TerrainComponent* terrain = (new TerrainComponent())->construct(mapPath,texturePath,shaderPath);
-                        ent->addComponent(terrain);
-                    }
-                    else if(sceneBlock->checkCurrentProperty("renderSkybox"))
-                    {
-                        //RenderSkybox component FOR NOW
-                        std::string modelPath = sceneBlock->getCurrentValue<std::string>(0);
-                        std::string texturePath = sceneBlock->getCurrentValue<std::string>(1);
-                        std::string shaderPath = sceneBlock->getCurrentValue<std::string>(2);
-                        RenderSkyboxComponent* render = (new RenderSkyboxComponent())->construct(modelPath,texturePath,shaderPath);
-                        ent->addComponent(render);
-                    }
-                    else if(sceneBlock->checkCurrentProperty("world"))
-                    {
-                        //World component FOR NOW
-                        glm::vec3 position = sceneBlock->getCurrentValue<glm::vec3>(0);
-                        glm::vec3 scale = sceneBlock->getCurrentValue<glm::vec3>(3);
-                        glm::vec3 rotation = sceneBlock->getCurrentValue<glm::vec3>(6);
-                        WorldComponent* world = (new WorldComponent())->construct(position, scale, rotation);
-                        ent->addComponent(world);
-                    }
-                    else if(sceneBlock->checkCurrentProperty("player"))
-                    {
-                        //Player component FOR NOW
-                        PlayerComponent* player = (new PlayerComponent())->construct(sceneBlock->getCurrentValue<int>(0));
-                        ent->addComponent(player);
-                    }
-                    else if(sceneBlock->checkCurrentProperty("physics"))
-                    {
-                        //Physics component FOR NOW
-                        PhysicsComponent* physics = (new PhysicsComponent())->construct(sceneBlock->getCurrentValue<float>(0),
-                                                                                        sceneBlock->getCurrentValue<float>(1),
-                                                                                        sceneBlock->getCurrentValue<float>(2));
-                        ent->addComponent(physics);
-                    }
-                    else if(sceneBlock->checkCurrentProperty("camera2d"))
-                    {
-                        float zoom = sceneBlock->getCurrentValue<float>(0);
-                        bool active = sceneBlock->getCurrentValue<bool>(1);
-                        //Camera component FOR NOW
-                        Camera2DComponent* camera = (new Camera2DComponent())->construct(zoom, active);
-                        ent->addComponent(camera);
-                    }
-                    else if(sceneBlock->checkCurrentProperty("camera3d"))
-                    {
-                        float fov = sceneBlock->getCurrentValue<float>(0);
-                        float nearDist = sceneBlock->getCurrentValue<float>(1);
-                        float farDist = sceneBlock->getCurrentValue<float>(2);
-                        bool active = sceneBlock->getCurrentValue<bool>(3);
-                        //Camera component FOR NOW
-                        Camera3DComponent* camera = (new Camera3DComponent())->construct(fov,nearDist,farDist, active);
-                        ent->addComponent(camera);
-                    }
-                    else if(sceneBlock->checkCurrentProperty("control"))
-                    {
-                        float speed = sceneBlock->getCurrentValue<float>(0);
-                        int forward = sceneBlock->getCurrentValue<char>(1);
-                        int back = sceneBlock->getCurrentValue<char>(2);
-                        int left = sceneBlock->getCurrentValue<char>(3);
-                        int right = sceneBlock->getCurrentValue<char>(4);
-                        int up = sceneBlock->getCurrentValue<char>(5);
-                        int down = sceneBlock->getCurrentValue<char>(6);
-                        //Player control component FOR NOW
-                        PlayerControlComponent* control = (new PlayerControlComponent())->construct(speed, forward, back, left, right, up, down);
-                        ent->addComponent(control);
-                    }
-                    else if(sceneBlock->checkCurrentProperty("directionalLight"))
-                    {
-                        float intensity = sceneBlock->getCurrentValue<float>(0);
-                        glm::vec3 colour = sceneBlock->getCurrentValue<glm::vec3>(1);
-                        //Directional light component FOR NOW
-                        DirectionalLightComponent* directionalLight = (new DirectionalLightComponent())->construct(intensity, colour);
-                        ent->addComponent(directionalLight);
-                    }
-                    else if(sceneBlock->checkCurrentProperty("pointLight"))
-                    {
-                        float intensity = sceneBlock->getCurrentValue<float>(0);
-                        float attenuation = sceneBlock->getCurrentValue<float>(1);
-                        glm::vec3 colour = sceneBlock->getCurrentValue<glm::vec3>(2);
-                        //Point light component FOR NOW
-                        PointLightComponent* pointLight = (new PointLightComponent())->construct(intensity, attenuation, colour);
-                        ent->addComponent(pointLight);
-                    }
-                    else if(sceneBlock->checkCurrentProperty("spotLight"))
-                    {
-                        float intensity = sceneBlock->getCurrentValue<float>(0);
-                        float attenuation = sceneBlock->getCurrentValue<float>(1);
-                        glm::vec2 angle = sceneBlock->getCurrentValue<glm::vec2>(2);
-                        glm::vec3 colour = sceneBlock->getCurrentValue<glm::vec3>(4);
-                        //Spot light component FOR NOW
-                        SpotLightComponent* spotLight = (new SpotLightComponent())->construct(intensity, attenuation, angle, colour);
-                        ent->addComponent(spotLight);
-                    }
-                    else if(sceneBlock->checkCurrentProperty("mouseRot"))
-                    {
-                        float pitchMin = sceneBlock->getCurrentValue<float>(0);
-                        float pitchMax = sceneBlock->getCurrentValue<float>(1);
-                        float yawMin = sceneBlock->getCurrentValue<float>(2);
-                        float yawMax = sceneBlock->getCurrentValue<float>(3);
-                        //Mouse rotation component FOR NOW
-                        MouseRotationComponent* mouseRotComp = (new MouseRotationComponent())->construct(pitchMin, pitchMax, yawMin, yawMax);
-                        ent->addComponent(mouseRotComp);
-                    }
-                    else if(sceneBlock->checkCurrentProperty("childOf"))
-                    {
-                        std::string entityName = sceneBlock->getCurrentValue<std::string>(0);
-                        for(std::unordered_map<EntityID, Entity*>::iterator entityPair = entities.begin(); entityPair != entities.end(); ++entityPair)
+                        Entity* checkEnt = entityPair->second;
+                        if(checkEnt->vanityName.compare(entityName) == 0)
                         {
-                            Entity* checkEnt = entityPair->second;
-                            if(checkEnt->vanityName.compare(entityName) == 0)
-                            {
-                                checkEnt->addChild(ent);
-                            }
+                            checkEnt->addChild(ent);
                         }
-                    }
-                    else
-                    {
-                        Logger()<<"Innapropriate scene property in: "<<readFile.fileName<<std::endl;
-                    }
+                    }*/
                 }
             }
+            correctlyLoaded = true;
         }
-        correctlyLoaded = true;
     }
-    glfwDestroyWindow(tempWindow);
+    catch(std::exception& e)
+    {
+        Logger()<<"Scene "<<sceneFile<<" failed to load. "<<e.what()<<std::endl;
+    }
 }

@@ -12,8 +12,7 @@ class SpotLightComponent : public Component
     public:
         SpotLightComponent();
         virtual ~SpotLightComponent();
-        SpotLightComponent* construct(float, float, glm::vec2, glm::vec3);
-        SpotLightComponent* construct(std::vector<std::string>);
+        SpotLightComponent* construct(Json::Value inValue);
         SpotLightComponent* clone() {return new SpotLightComponent(*this);}
 
         float intensity;

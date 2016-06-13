@@ -11,8 +11,7 @@ class MouseRotationComponent : public Component
     public:
         MouseRotationComponent();
         virtual ~MouseRotationComponent();
-        MouseRotationComponent* construct(float,float,float,float);
-        MouseRotationComponent* construct(std::vector<std::string>);
+        MouseRotationComponent* construct(Json::Value inValue);
         MouseRotationComponent* clone() {return new MouseRotationComponent(*this);}
 
         float pitchMin;

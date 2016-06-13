@@ -1,21 +1,12 @@
 #include "renderSkyboxSystem.h"
-#include "globals.h"
-
-#include <iostream>
+#include "openGLFunctions.h"
+#include <glm/glm.hpp>
+#include <glm/gtx/transform.hpp>
 #include "renderSkyboxComponent.h"
 #include "render3DSystem.h"
 #include "camera3DComponent.h"
 #include "camera3DSystem.h"
-#include "loadShader.h"
-#include "openGLFunctions.h"
-#include "loader.h"
-#include "own_funcs.h"
-#include "windowComponent.h"
-#include "typeConversion.h"
 #include "render2DComponent.h"
-
-#include <glm/glm.hpp>
-#include <glm/gtx/transform.hpp>
 
 SystemID RenderSkyboxSystem::ID;
 
@@ -76,7 +67,7 @@ void RenderSkyboxSystem::update()
             if(renderComp->textureStore->correctlyLoaded)
             {
                 glSetActiveTexture(GL_TEXTURE0);
-                glSetBindTexture(GL_TEXTURE_CUBE_MAP, renderComp->textureStore->textureList[0].textureID);
+                glSetBindTexture(GL_TEXTURE_CUBE_MAP, renderComp->textureStore->textureID);
                 glUniform1i(renderComp->textureLoc, 0);
             }
 

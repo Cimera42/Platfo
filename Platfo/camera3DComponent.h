@@ -12,8 +12,7 @@ class Camera3DComponent : public Component
     public:
         Camera3DComponent();
         virtual ~Camera3DComponent();
-        Camera3DComponent* construct(float inFov, float inNear, float inFar, bool inActive);
-        Camera3DComponent* construct(std::vector<std::string>);
+        Camera3DComponent* construct(Json::Value inValue);
         Camera3DComponent* clone() {return new Camera3DComponent(*this);}
 
         bool activeFlag;

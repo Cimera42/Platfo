@@ -37,17 +37,31 @@ float stringToFloat(std::string s)
 
 
 //fix up
-char* StrtoChar(std::string s)
+/*char* StrtoChar(std::string s)
 {
    char *pc = new char[s.size()+1];
    std::strcpy(pc, s.c_str());
    return pc;
-}
+}*/
 
-std::string InttoStr(int a)
+std::string intToStr(int a)
 {
     std::stringstream ss;
     ss << a;
     return ss.str();
 }
 
+/*glm::vec2 doubleToVec2(double a, double b)
+{
+    return glm::vec2(a,b);
+}
+
+glm::vec3 doubleToVec3(double a, double b, double c)
+{
+    return glm::vec3(a,b,c);
+}
+
+glm::vec4 doubleToVec4(double a, double b, double c, double d)
+{
+    return glm::vec4(a,b,c,d);
+}*/

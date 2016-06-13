@@ -1,5 +1,7 @@
 #include "loadTexture.h"
 #include "logger.h"
+#include "openGLFunctions.h"
+#include <SOIL.h>
 
 GLuint load2DTexture(std::string texturePath, bool srgb)
 {

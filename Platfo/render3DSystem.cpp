@@ -1,23 +1,14 @@
 #include "render3DSystem.h"
-#include "globals.h"
-
-#include <iostream>
-#include "worldComponent.h"
-#include "render3DComponent.h"
-#include "textureStore.h"
-#include "camera3DComponent.h"
-#include "camera3DSystem.h"
-#include "loadShader.h"
-#include "openGLFunctions.h"
-#include "loader.h"
-#include "own_funcs.h"
-#include "windowComponent.h"
-#include "render2DSystem.h"
-#include "typeConversion.h"
-#include "render2DComponent.h"
-
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
+#include "worldComponent.h"
+#include "render3DComponent.h"
+#include "camera3DComponent.h"
+#include "camera3DSystem.h"
+#include "windowComponent.h"
+#include "render2DSystem.h"
+#include "render2DComponent.h"
+//#include "loadingSystem.h"
 
 SystemID Render3DSystem::ID;
 
@@ -34,8 +25,9 @@ Render3DSystem::Render3DSystem()
     glSetBindFramebuffer(GL_FRAMEBUFFER, framebufferID);
 
     WindowComponent* window = mainWindow;
-    int width = window->windowSize.x;
-    int height = window->windowSize.y;
+    //HARDCODED FOR THE MOMENT, PLEASE FIX
+    int width = 900;//window->windowSize.x;
+    int height = 450;//window->windowSize.y;
 
     GLuint renderBuffer;
     glGenRenderbuffers(1, &renderBuffer);
@@ -97,18 +89,20 @@ Render3DSystem::Render3DSystem()
     std::cout<<fboAttachmentList.size()<<" colours attached to <3d fbo> with "<<textureAttachmentList.size()<<" total components. \n"<<std::endl;
     std::vector<GLuint>().swap(fboAttachmentList);
 
-    Load<TextureStore>::Object(&textureStore, false, "3DRenderFBOTextures");
     for(int i = 0; i < textureList.size(); i++)
     {
-        TextureData texData;
-        texData.textureID = textureList[i];
-        textureStore->textureList.push_back(texData);
+        TextureStore* texData = new TextureStore();
+        texData->textureID = textureList[i];
+        texData->correctlyLoaded = true;
+        frameBufferTextures.push_back(texData);
     }
-    textureStore->correctlyLoaded = true;
 }
 Render3DSystem::~Render3DSystem()
 {
-    Unload<TextureStore>::Object(&textureStore);
+    for(int i = frameBufferTextures.size()-1; i != 0 ; i--)
+    {
+        delete frameBufferTextures[i];
+    }
 }
 
 void Render3DSystem::update()
@@ -153,7 +147,7 @@ void Render3DSystem::update()
             if(renderComp->textureStore->correctlyLoaded)
             {
                 glSetActiveTexture(GL_TEXTURE0);
-                glSetBindTexture(GL_TEXTURE_2D, renderComp->textureStore->textureList[0].textureID);
+                glSetBindTexture(GL_TEXTURE_2D, renderComp->textureStore->textureID);
                 glUniform1i(renderComp->textureLoc, 0);
             }
 

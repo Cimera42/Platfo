@@ -1,9 +1,7 @@
 #include "system.h"
 #include "entity.h"
-#include "globals.h"
 
 #include <map>
-#include "logger.h"
 
 SystemID System::systemIDIncrementor = 1;
 SystemID System::ID;

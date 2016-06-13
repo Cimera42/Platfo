@@ -3,10 +3,18 @@
 
 #define MULTITHREADED_LOADING true
 
-#include "entity.h"
-#include "component.h"
-#include "system.h"
+#include "logger.h"
+#include "typeConversion.h"
+#include "own_funcs.h"
 #include <unordered_map>
+
+typedef int EntityID;
+typedef int ComponentID;
+typedef int SystemID;
+
+class Component;
+class Entity;
+class System;
 
 extern void * __gxx_personality_v0;
 extern void * _Unwind_Resume;
@@ -29,11 +37,5 @@ void deleteFlaggedEntities();
 void deleteAllEntities();
 void deleteAllSystems();
 
-class Constants
-{
-public:
-    static const float airDensity;
-    static const float gravity;
-};
 
 #endif // GLOBALS_H_INCLUDED

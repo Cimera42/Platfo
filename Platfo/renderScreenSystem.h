@@ -2,7 +2,7 @@
 #define RENDERSCREENSYSTEM_H_INCLUDED
 
 #include "system.h"
-#include <GL/glew.h>
+#include "openGLFunctions.h"
 #include <glm/glm.hpp>
 
 class RenderScreenSystem : public System

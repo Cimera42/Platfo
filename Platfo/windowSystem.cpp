@@ -1,9 +1,6 @@
 #include "windowSystem.h"
-#include "globals.h"
-
-#include <iostream>
-#include "windowComponent.h"
 #include "openGLFunctions.h"
+#include "windowComponent.h"
 #include "keyboardHandler.h"
 
 SystemID WindowSystem::ID;

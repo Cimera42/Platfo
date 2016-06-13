@@ -2,6 +2,7 @@
 #define SYSTEM_H_INCLUDED
 
 #include <vector>
+#include "globals.h"
 
 typedef int EntityID;
 typedef int ComponentID;

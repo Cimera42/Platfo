@@ -1,12 +1,8 @@
 #include "lightingSystem.h"
-
-#include <iostream>
 #include "worldComponent.h"
 #include "directionalLightComponent.h"
 #include "pointLightComponent.h"
 #include "spotLightComponent.h"
-#include "globals.h"
-#include "own_funcs.h"
 
 SystemID LightingSystem::ID;
 

@@ -12,8 +12,7 @@ class DirectionalLightComponent : public Component
     public:
         DirectionalLightComponent();
         virtual ~DirectionalLightComponent();
-        DirectionalLightComponent* construct(float, glm::vec3);
-        DirectionalLightComponent* construct(std::vector<std::string>);
+        DirectionalLightComponent* construct(Json::Value inValue);
         DirectionalLightComponent* clone() {return new DirectionalLightComponent(*this);}
 
         float intensity;

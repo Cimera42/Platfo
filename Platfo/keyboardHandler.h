@@ -2,7 +2,7 @@
 #define KEYBOARDHANDLER_H_INCLUDED
 
 #include <unordered_map>
-#include <GLFW/glfw3.h>
+#include "openGLFunctions.h"
 
 extern std::unordered_map<int, int> keyList;
 extern unsigned short modList;

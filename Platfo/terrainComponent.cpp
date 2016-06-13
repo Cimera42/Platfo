@@ -1,33 +1,34 @@
 #include "terrainComponent.h"
-#include "logger.h"
-#include "typeConversion.h"
-#include "loader.h"
-#include "mesh.h"
-#include "own_funcs.h"
-#include "loadTexture.h"
+#include "loadingSystem.h"
 #include <glm/gtc/noise.hpp>
+#include "mesh.h"
+#include "loadTexture.h"
 
 ComponentID TerrainComponent::ID;
 
 TerrainComponent::TerrainComponent(){vanityName = "Terrain Component";}
 TerrainComponent::~TerrainComponent()
 {
-    Unload<ModelStore>::Object(&modelStore);
-    Unload<TextureStore>::Object(&textureStore);
-    Unload<ShaderStore>::Object(&shaderStore);
+    //Unload<ModelStore>::Object(&modelStore);
+    //Unload<TextureStore>::Object(&textureStore);
+    //Unload<ShaderStore>::Object(&shaderStore);
+    delete modelStore;
 }
 
-TerrainComponent* TerrainComponent::construct(std::string heightmapPath, std::string textureStorePath, std::string shaderStorePath)
+TerrainComponent* TerrainComponent::construct(Json::Value inValue)
 {
-    Load<ModelStore>::Object(&modelStore, false, "TerrainMesh");
-    Load<TextureStore>::Object(&textureStore, true, textureStorePath);
-    Load<ShaderStore>::Object(&shaderStore, true, shaderStorePath);
+    //Load<ModelStore>::Object(&modelStore, false, "TerrainMesh");
+    LoadingSystem* loadingSys = static_cast<LoadingSystem*>(systems[LoadingSystem::getStaticID()]);
+    modelStore = new ModelStore();
+    loadingSys->load<TextureStore>(&textureStore, inValue["textureStore"][0]);
+    loadingSys->load<ShaderStore>(&shaderStore, inValue["shaderStore"][0]);
 
     textureLoc = -1;
     modelMatLoc = -1;
     viewMatLoc = -1;
     projMatLoc = -1;
 
+    std::string heightmapPath = inValue["heightmap"].asString();
     bool randMap = (heightmapPath == "randGen");
     unsigned char* loadedMapData;
     int loadedWidth = 0;
@@ -105,24 +106,6 @@ TerrainComponent* TerrainComponent::construct(std::string heightmapPath, std::st
     }
 
     modelStore->mesh.loadWithVectors(vertexArray, uvArray, normalArray, indexArray);
-
-    return this;
-}
-TerrainComponent* TerrainComponent::construct(std::vector<std::string> inArgs)
-{
-    if(inArgs.size() == 0)
-    {
-        std::string mapPath = inArgs[0];
-        std::string texturePath = inArgs[1];
-        std::string shaderPath = inArgs[2];
-
-        if(texturePath != "" && shaderPath != "")
-            this->construct(mapPath, texturePath,shaderPath);
-    }
-    else
-    {
-        Logger() << "Invalid number of arguments to Terrain Component creation" << std::endl;
-    }
 
     return this;
 }

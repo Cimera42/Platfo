@@ -1,6 +1,6 @@
 #include "mesh.h"
-#include "openGLFunctions.h"
 #include "logger.h"
+#include "openGLFunctions.h"
 
 #include <assimp/Importer.hpp>      // C++ importer interface
 #include <assimp/scene.h>           // Output data structure
