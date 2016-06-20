@@ -8,10 +8,9 @@ class SceneStore : public Store
 public:
     SceneStore();//Default values set
     ~SceneStore(){};
+    void loadStore(Json::Value inValue);
 
     std::string sceneFile;
-
-    void loadStore(Json::Value inValue); //Load the actual data on a new thread
 };
 
 #endif // SCENESTORE_H_INCLUDED

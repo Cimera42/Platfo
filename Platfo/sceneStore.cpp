@@ -25,7 +25,9 @@
 /*SceneStore allows us to store the entities and any global properties.
     - Evokes components on entities. Essentially the only reason this is a store is to allow for preloading of levels in the future.
 */
-SceneStore::SceneStore(){}
+SceneStore::SceneStore(){
+    sceneFile = "";
+}
 
 void SceneStore::loadStore(Json::Value inValue)
 {
@@ -49,7 +51,7 @@ void SceneStore::loadStore(Json::Value inValue)
                 if(componentValue.isMember("window"))
                 {
                     WindowComponent* win = (new WindowComponent())->construct(componentValue["window"]);
-                    //delete mainWindow;
+                    delete mainWindow;
                     mainWindow = win;
                     ent->addComponent(win);
                 }

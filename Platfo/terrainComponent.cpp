@@ -9,9 +9,9 @@ ComponentID TerrainComponent::ID;
 TerrainComponent::TerrainComponent(){vanityName = "Terrain Component";}
 TerrainComponent::~TerrainComponent()
 {
-    //Unload<ModelStore>::Object(&modelStore);
-    //Unload<TextureStore>::Object(&textureStore);
-    //Unload<ShaderStore>::Object(&shaderStore);
+    LoadingSystem* loadingSys = static_cast<LoadingSystem*>(systems[LoadingSystem::getStaticID()]);
+    loadingSys->unload(&textureStore);
+    loadingSys->unload(&shaderStore);
     delete modelStore;
 }
 

@@ -10,13 +10,21 @@ class LoadingSystem : public System
 {
     private:
         static SystemID ID;
+        static void* callLoaderUpdate(void *arg){return ((LoadingSystem*)arg)->loaderUpdate();}
+        void* loaderUpdate();
 
         std::map<std::string, Store*> loadedMap;
+        //Loading
         std::vector<Store*> regStore;
+        std::vector<void*> regLoad;
         std::vector<Json::Value> regJSON;
+        //Unloading
+        std::vector<void*> regUnload;
 
         int hasLoaded;
-        pthread_mutex_t loading_lock;
+        std::string currentLoadName;
+        pthread_mutex_t loadingMutex;
+        pthread_t loadingThread;
 
     public:
         LoadingSystem();
@@ -28,10 +36,13 @@ class LoadingSystem : public System
             //Expects a valid JSON for the currentStore
             try {
                 //Register the object/store to be loaded in loadingSystem
-                T* newStore = new T();
+                T* defaultStore = new T(); //default
+                T* loadingStore = new T(); //one we're loading on
                 regJSON.push_back(inValue);
-                regStore.push_back(newStore);
-                *inStore = newStore; //Set default value
+                regStore.push_back(defaultStore);
+                regStore.push_back(loadingStore);
+                regLoad.push_back(inStore);
+                *inStore = defaultStore; //Set default value
             }
             catch(std::exception e) {
                 Logger()<<"Store loading mismatch. "<<e.what()<<" Please check"
@@ -41,7 +52,13 @@ class LoadingSystem : public System
             return true;
         }
 
-        //bool unload(std::string key);
+        template <typename T>
+        bool unload(T** inStore) {
+            //Register the store to be unloaded at next non-blocked update
+            regUnload.push_back(inStore);
+            *inStore = nullptr;
+            return true;
+        }
 
         //Auto generation of ID
         SystemID getID() {if(ID == 0) {ID = systemIDIncrementor++;} return ID;}
@@ -53,5 +70,7 @@ class LoadingSystem : public System
 #endif // LOADINGSYSTEM_H_INCLUDED
 
 /*Questions:
-    -What happens if the component/entity is deleted as an object is loading?
+    - What happens if the component/entity is deleted as an object is loading?
+    - Just a reminder that the handling of multiple objects is to be done in the components,
+    not in the loading system or in the store.
 */

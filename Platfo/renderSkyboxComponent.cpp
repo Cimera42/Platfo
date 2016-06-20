@@ -4,14 +4,17 @@
 
 ComponentID RenderSkyboxComponent::ID;
 
-RenderSkyboxComponent::RenderSkyboxComponent(){vanityName = "Render Skybox Component";}
+RenderSkyboxComponent::RenderSkyboxComponent()
+{
+    vanityName = "Render Skybox Component";
+    glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+}
 RenderSkyboxComponent::~RenderSkyboxComponent()
 {
-    //Unload<ModelStore>::Object(&modelStore);
-    //Unload<TextureStore>::Object(&textureStore);
-    //Unload<ShaderStore>::Object(&shaderStore);
-
-    glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+    LoadingSystem* loadingSys = static_cast<LoadingSystem*>(systems[LoadingSystem::getStaticID()]);
+    loadingSys->unload(&textureStore);
+    loadingSys->unload(&shaderStore);
+    loadingSys->unload(&modelStore);
 }
 
 RenderSkyboxComponent* RenderSkyboxComponent::construct(Json::Value inValue)

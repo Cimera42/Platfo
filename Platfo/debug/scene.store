@@ -14,6 +14,7 @@
 			},
 			"renderScreen": {
 				"shaderStore": [{
+                    "name": "ScreenShader",
 					"vertexFile": "shaders/2D/Screen/screenVert.vert",
 					"fragmentFile": "shaders/2D/Screen/screenFrag.frag"
 				}]
@@ -30,6 +31,21 @@
 			"camera2d": {
 				"zoom": 10,
 				"activeFlag": 1
+			},
+			"render3d": {
+                "modelStore": [{
+                    "name": "Cube",
+					"modelFile": "models/cube.obj"
+				}],
+				"textureStore": [{
+                    "name": "HutTexture",
+					"textureFile": "textures/hut_texture.png"
+				}],
+				"shaderStore": [{
+                    "name": "3DShaders",
+					"vertexFile": "shaders/3D/Plain/3dvert.vert",
+					"fragmentFile": "shaders/3D/Plain/3dfrag.frag"
+				}]
 			}
 		}
 	}, {
@@ -37,12 +53,10 @@
 		"Components": {
 			"renderSkybox": {
 				"modelStore": [{
-					"modelFile": "models/cube.obj"
-				}, {
-                    "modelFile": "models/cube.obj"
-				}
-				],
+                    "name": "Cube"
+				}],
 				"textureStore": [{
+                    "name": "Skybox",
 					"cubeMapFile": [
 						"textures/skybox/left.jpg",
 						"textures/skybox/right.jpg",
@@ -53,6 +67,7 @@
 					]
 				}],
 				"shaderStore": [{
+                    "name": "SkyboxShader",
 					"vertexFile": "shaders/3D/Plain/skybox.vert",
 					"fragmentFile": "shaders/3D/Plain/skybox.frag"
 				}]

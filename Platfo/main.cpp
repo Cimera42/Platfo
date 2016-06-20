@@ -84,7 +84,7 @@ int main()
     //Scene loading
     LoadingSystem* loadingSys = static_cast<LoadingSystem*>(systems[LoadingSystem::getStaticID()]);
     SceneStore* scene;
-    std::string sceneStr = "{\"sceneFile\": \"debug/scene.store\"}";
+    std::string sceneStr = "{\"name\": \"A scene!\", \"sceneFile\": \"debug/scene.store\"}";
     Json::Value sceneFile;
     Json::Reader reader;
     reader.parse(sceneStr.c_str(), sceneFile);
@@ -98,6 +98,7 @@ int main()
         //glClearColor(0.55f,0.65f,0.8f,1.0f);
         while(!shouldExit)
         {
+            //std::cout<<"Scenefile "<<scene->sceneFile<<std::endl;
             delta = (glfwGetTime() - lastFrame);
             lastFrame = glfwGetTime();
 
@@ -154,7 +155,7 @@ int main()
 
         deleteAllEntities();
         deleteAllSystems();
-        delete mainWindow;
+        //delete mainWindow; - already deleted in entity cleanup!
         glfwDestroyWindow(glContext);
         glfwTerminate();
     }

@@ -19,6 +19,7 @@ void ModelStore::loadStore(Json::Value inValue)
     {
         modelFile = inValue["modelFile"].asString();
         mesh.loadModel(modelFile);
+        correctlyLoaded = true;
     }
     catch(std::exception& e)
     {

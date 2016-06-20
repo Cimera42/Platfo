@@ -12,7 +12,7 @@ public:
     ~TextureStore();
     void loadStore(Json::Value inValue);
 
-    //In case of cubmap, set to the first texture's path
+    //In case of cubemap, set to the first texture's path
     std::string textureFile;
     bool hasSRGB;
 

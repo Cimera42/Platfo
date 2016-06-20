@@ -7,8 +7,9 @@ ComponentID RenderScreenComponent::ID;
 RenderScreenComponent::RenderScreenComponent(){vanityName = "Render Screen Component";}
 RenderScreenComponent::~RenderScreenComponent()
 {
-    //Unload<TextureStore>::Object(&textureStore);
-    //Unload<ShaderStore>::Object(&shaderStore);
+    LoadingSystem* loadingSys = static_cast<LoadingSystem*>(systems[LoadingSystem::getStaticID()]);
+    //loadingSys->unload(&textureStore);
+    loadingSys->unload(&shaderStore);
 }
 RenderScreenComponent* RenderScreenComponent::construct(Json::Value inValue)
 {

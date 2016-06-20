@@ -6,8 +6,9 @@ ComponentID Render2DComponent::ID;
 Render2DComponent::Render2DComponent(){vanityName = "Render 2D Component";}
 Render2DComponent::~Render2DComponent()
 {
-    //Unload<TextureStore>::Object(&textureStore);
-    //Unload<ShaderStore>::Object(&shaderStore);
+    LoadingSystem* loadingSys = static_cast<LoadingSystem*>(systems[LoadingSystem::getStaticID()]);
+    loadingSys->unload(&textureStore);
+    loadingSys->unload(&shaderStore);
 }
 Render2DComponent* Render2DComponent::construct(Json::Value inValue)
 {

@@ -7,8 +7,8 @@ ComponentID WindowComponent::ID;
 WindowComponent::WindowComponent(){vanityName = "Window Component";}
 WindowComponent::~WindowComponent()
 {
-    glfwDestroyWindow(glfwWindow);
-    Logger() << "Window destroyed" << std::endl;
+    //glfwDestroyWindow(glfwWindow);
+    //Logger() << "Window destroyed" << std::endl;
 }
 
 WindowComponent* WindowComponent::construct(Json::Value inValue)

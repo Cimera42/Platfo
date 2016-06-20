@@ -29,6 +29,7 @@ void ShaderStore::loadStore(Json::Value inValue)
         {
             throw;
         }
+        correctlyLoaded = true;
     }
     catch(std::exception& e)
     {

@@ -12,11 +12,9 @@ public:
     virtual ~Store();
     virtual void loadStore(Json::Value inValue);
 
+    std::string storeName; //Name for loading
     bool correctlyLoaded = false; //Signal to detect incorrect loading
-
-private:
     int usageCount = 0; //Internal counter for object deletion
-    std::string internalName; //Name for loading
 };
 
 #endif // STORE_H_INCLUDED

@@ -46,6 +46,7 @@ void TextureStore::loadStore(Json::Value inValue)
         } else{
             throw;
         }
+        correctlyLoaded = true;
     }
     catch(std::exception& e)
     {

@@ -7,9 +7,10 @@ ComponentID Render3DComponent::ID;
 Render3DComponent::Render3DComponent(){vanityName = "Render 3D Component";}
 Render3DComponent::~Render3DComponent()
 {
-    //Unload<ModelStore>::Object(&modelStore);
-    //Unload<TextureStore>::Object(&textureStore);
-    //Unload<ShaderStore>::Object(&shaderStore);
+    LoadingSystem* loadingSys = static_cast<LoadingSystem*>(systems[LoadingSystem::getStaticID()]);
+    loadingSys->unload(&textureStore);
+    loadingSys->unload(&shaderStore);
+    loadingSys->unload(&modelStore);
 }
 
 Render3DComponent* Render3DComponent::construct(Json::Value inValue)
